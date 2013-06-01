@@ -1,0 +1,354 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+b, strong{
+  font-weight: bold;
+}
+i, em{
+  font-style: italic;
+}
+
+/*---- clear fix ----*/
+
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+}
+.group:after {
+  clear: both;
+}
+.group {
+  clear: both;
+  *zoom: 1;
+}
+
+/*----custom styles----*/
+
+body{
+  font-family: Serif;
+  min-height: 700px;
+}
+.show_page{
+/*  background: radial-gradient(rgb(235,235,245),rgb(190,185,200));
+*/}
+.label{
+  background: rgba(55,125,60,.3);
+  margin-bottom: 20px;
+}
+.co_info{
+  background: #abc;
+  height: 100%
+}
+.content{
+  background: #fbc;
+  height: 100%;
+}
+.sponsors{
+  background: #fdb;
+  height: 100%;
+}
+/*----typograpgy----*/
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Droid Sans', 'helvetica neue', helvetica, arial, sans-serif;
+}
+h1{
+  font-size: 48px;
+  line-height: 60px;
+}
+h2{
+  font-size: 36px;
+  line-height: 45px;
+}
+h3{
+  font-size: 24px;
+  line-height: 34px;
+}
+h4{
+  font-size: 18px;
+  line-height: 22px;
+}
+h5{
+  font-size: 16px;
+  line-height: 20px;
+}
+p{
+  font-size: 16px;
+  line-height: 20px;
+}
+header h1{
+  color: #666;
+  letter-spacing: -2px;
+  font-weight: 400;
+}
+header p{
+  color: #666;
+  font-family: 'Open Sans Condensed','helvetica neue', arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+    top: 27px;
+}
+.label h3{
+  color: #555;
+  font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
+  position: relative;
+  left: 20px;
+}
+footer h5{
+  text-shadow: 0 1px 1px #9d9;
+}
+.co_info h4{
+  display: block;
+  margin-left: 10px;
+}
+/*----links----*/
+
+/*----lists----*/
+.co_info dt{
+  font-family: 'Droid Sans', 'helvetica neue', helvetica, arial, sans-serif;
+}
+
+/*----misc styles----*/
+
+.center{
+  text-align: center;
+}
+.bling{
+  color: rgb(55,125,60);
+  font-weight: 700;
+}
+
+caption{
+  font-family: 'Droid Sans', 'helvetica neue', helvetica, arial, sans-serif;
+  font-size: 21px;
+  font-weight: bold;
+  padding: 15px;
+  text-align: center;
+}
+.section_nav{
+  padding-left: 50px;
+}
+.xyz{
+
+}
+.section_nav a{
+  background: linear-gradient(rgb(245,245,245),rgb(220,220,220));
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: #666;
+  display: inline-block;
+  margin: 20px 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  width: 230px;
+}
+.section_nav a:hover{
+  background: linear-gradient(rgb(235,235,235),rgb(205,205,205));
+}
+table{
+  border: 1px solid #888;
+  border-collapse: separate;
+  border-spacing: 2px;
+  margin: 20px auto;
+}
+th{
+  background: linear-gradient(#eef,#ccd);
+  border: 1px solid #999;
+  font-family: 'Droid Sans', 'helvetica neue', helvetica, arial, sans-serif;
+  font-size: 21px;
+  font-weight: 500;
+  padding: 10px;
+}
+td{
+  background: #f9f9fe;
+  font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
+  border: 1px solid #888;
+  padding: 10px 15px;
+}
+td a{
+  color: rgb(55,125,60);
+  text-decoration: none;
+}
+td a:hover{
+  text-decoration: underline;
+}
+tfoot td{
+  color: #888;
+  font-family: serif;
+  font-size: 12px;
+  text-align: right;
+}
+/*----header----*/
+header{
+  background: linear-gradient(rgb(245,255,245), rgb(190,195,220));
+  border-bottom: 1px solid #888;
+  width: 100%;
+}
+#banner_1{
+  background: url('cranes.jpg') no-repeat 0 -400px;
+  background-position: center;
+  background-size: cover;
+  height: 400px;
+  width: 100%;
+}
+#banner_1 p{
+  font-size: 21px;
+  line-height: 28px;
+  padding-top: 30px;
+}
+#banner_2{
+  background: url('bridge.jpg') no-repeat 0 -400px;
+  background-position: center;
+  background-size: cover;
+  height: 400px;
+  width: 100%;
+}
+.banner_text{
+  background: radial-gradient(
+    rgba(45,145,25,.7),
+    rgba(25,120,25,.8));
+  color: #fff;
+  margin-top: 40px;
+  padding-top: 30px;
+}
+.banner_text_left,
+.banner_text_right{
+  color: #fff;
+  margin-top: 60px;
+  padding: 40px;
+  width: 450px;
+}
+.banner_text_left{
+  background: rgba(220,100,60,.6);
+  float: left;
+}
+.banner_text_right{
+  background: rgba(55,125,60,.6);
+  float: right;
+}
+.banner_text_left a,
+.banner_text_right a{
+  border: 1px solid #fff;
+  color: #fff;
+  display: block;
+  margin-top: 15px;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  width: 100px;
+}
+.banner_text_left a:hover,
+.banner_text_right a:hover{
+  background-color: rgba(255,255,255,.3);
+}
+/*----nav----*/
+.bread_crumb{
+  padding: 0 5px;
+}
+.home_nav,
+.show_nav{
+  float: right;
+}
+.home_nav a,
+.home_nav li,
+.show_nav li{
+  float: left;
+  font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 60px;
+}
+.show_nav li a,
+.home_nav li a{
+  display: inline-block;
+  text-decoration: none;
+}
+.home_nav li a{
+  color: #555;
+  padding: 0 10px;
+}
+
+.home_nav li a:hover{
+  background: rgb(180,180,190);
+  color: #fff;
+}
+.show_nav li a{
+  color: rgb(55,125,60);
+}
+.show_nav li a:hover{
+  text-decoration: underline;
+}
+
+footer a{
+  color: #ccc;
+  font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+}
+footer a:hover{
+  color: rgb(55,60,125);
+}
+/*----footer----*/
+footer{
+  background: linear-gradient(to top right, rgb(50,145,45),rgb(40,220,170));
+  padding-top: 20px;
+}
+
+footer li{
+  padding: 5px 0;
+}
+footer ul{
+  list-style: none;
+  padding: 5px 0;
+}
+.sub_footer{
+  background-color: #ccc;
+  color: #444;
+  padding: 20px;
+  text-align: center;
+}
+.sub_footer p{
+  font-size: 12px;
+}

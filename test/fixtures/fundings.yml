@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  company_id: 1
+  funding_code: MyString
+  funding_amount: 1.5
+  funding_currency: MyString
+  funding_date: 2013-06-01
+
+two:
+  company_id: 1
+  funding_code: MyString
+  funding_amount: 1.5
+  funding_currency: MyString
+  funding_date: 2013-06-01

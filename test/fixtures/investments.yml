@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  funding_id: 1
+  investable_id: 1
+  investable_type: MyString
+
+two:
+  funding_id: 1
+  investable_id: 1
+  investable_type: MyString

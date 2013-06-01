@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @industry.name %>
+
+
+</p>
+
+<% @industry.companies.each do |f| %>
+
+<% if f.fundings != nil  %>
+<ul>
+  <li><%= link_to f.name, f %></li>
+      <% f.fundings.each do |g|  %>
+      <ul>
+        <li><%= g.funding_code %>: <%= g.funding_amount %></li>
+      </ul>
+
+        <% end %>
+      <% end  %>
+</ul>
+<% end  %>
+<%= link_to 'Edit', edit_industry_path(@industry) %> |
+<%= link_to 'Back', industries_path %>
