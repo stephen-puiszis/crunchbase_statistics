@@ -19,6 +19,7 @@ location_array.push(new google.maps.LatLng(<%=location.latitude %>, <%=location.
 company_array.push("<%=location.company.name %>");
 industry_array.push("<%=location.company.industry.name %>");
 link_array.push("link");
+address_array.push("<%=location.address1 %><br><%=location.address2 %><br><%=location.zipcode %><br><%=location.city %> (<%=location.statecode %>)<br><%=location.countrycode %>");
 
 <% end %>
 
@@ -54,7 +55,7 @@ link_array.push("link");
 
       google.maps.event.addListener(marker, 'click', function(marker, i) {
         return function() {
-          infowindow.setContent('<h3>' + company_array[i] + '</h3>'+'<p>(' +  industry_array[i] +')</p><p><a href="#">'+link_array[i]+'</a></p>');
+          infowindow.setContent('<h3>' + company_array[i] + '</h3>'+'<p>(' +  industry_array[i] +')</p><a href="#">'+link_array[i]+'</a></p>');
           infowindow.open(map, marker);
         }
       }(marker, i));

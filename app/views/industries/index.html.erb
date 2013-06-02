@@ -1,5 +1,9 @@
 <h1>Listing industries</h1>
 
+<% @fundings.each do |f| %>
+<%= f.funding_amount %>
+<% end %>
+
 <table>
   <tr>
     <th>Name</th>

@@ -4,6 +4,15 @@ class IndustriesController < ApplicationController
   def index
     @industries = Industry.all
 
+    @industry = Industry.first
+    @companies = Company.where(industry_id: @industry.id)
+    @fundings = []
+    @companies.each do |company|
+      unless Funding.find_by_company_id(company.id).nil?
+        @fundings << (Funding.find_by_company_id(company.id))
+      end
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @industries }
