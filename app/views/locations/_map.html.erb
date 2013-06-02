@@ -11,9 +11,15 @@
 
 var location_array = [];
 var company_array =[];
+var industry_array =[];
+var link_array =[];
+
 <% @locations.each do |location| %>
 location_array.push(new google.maps.LatLng(<%=location.latitude %>, <%=location.longitude %>));
 company_array.push("<%=location.company.name %>");
+industry_array.push("<%=location.company.industry.name %>");
+link_array.push("link");
+
 <% end %>
 
 
@@ -25,7 +31,7 @@ company_array.push("<%=location.company.name %>");
     function initialize() {
       var mapOptions = {
         zoom: 13,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeId: google.maps.MapTypeId.HYBRID,
         center: center_location
       };
 
@@ -48,7 +54,7 @@ company_array.push("<%=location.company.name %>");
 
       google.maps.event.addListener(marker, 'click', function(marker, i) {
         return function() {
-          infowindow.setContent(company_array[i]);
+          infowindow.setContent('<h3>' + company_array[i] + '</h3>'+'<p>(' +  industry_array[i] +')</p><p><a href="#">'+link_array[i]+'</a></p>');
           infowindow.open(map, marker);
         }
       }(marker, i));

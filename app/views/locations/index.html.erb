@@ -1,7 +1,8 @@
 
 
-<h1>Listing locations</h1>
-
+<%@companies.each do |comp| %>
+<%= comp.name %>
+<% end %>
 
 <%= form_tag locations_path, :method => :get do %>
   <p>
@@ -13,6 +14,32 @@
   </p>
 <% end %>
 
+
+<h2>All Fundings</h2>
+<table class="table table-hover">
+  <tr>
+    <th>Company</th>
+    <th>Funding code</th>
+    <th>Funding amount</th>
+    <th>Funding currency</th>
+    <th>Funding date</th>
+  </tr>
+
+<% @fundings.each do |funding| %>
+  <tr>
+    <td><%= funding.company.name %></td>
+    <td><%= funding.funding_code %></td>
+    <td><%= funding.funding_amount %></td>
+    <td><%= funding.funding_currency %></td>
+    <td><%= funding.funding_date %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<% if params[:search].present? %>
+<%= render :partial => "map" %>
+<% end %>
 
 <table>
   <tr>
@@ -48,9 +75,4 @@
 <% end %>
 </table>
 
-<br />
 
-<%= link_to 'New Location', new_location_path %>
-
-<!-- If searched -->
-<%= render :partial => "map" %>
