@@ -1,4 +1,7 @@
-<h1>Listing industries</h1>
+<div class="label">
+    <h3 class= "container">Listing industries</h1>
+</div>
+
 
 <table>
   <tr>
@@ -11,8 +14,7 @@
 <% @industries.each do |industry| %>
   <tr>
     <td><%= link_to industry.name, industry %></td>
-    <td><%= link_to 'Edit', edit_industry_path(industry) %></td>
-    <td><%= link_to 'Destroy', industry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= industry.funded %></td>
   </tr>
 <% end %>
 </table>

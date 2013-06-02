@@ -4,7 +4,7 @@ class Funding < ActiveRecord::Base
   belongs_to :company
   has_many :investments
 
-  def perma
+  def self.perma
     company.perma
   end
 
