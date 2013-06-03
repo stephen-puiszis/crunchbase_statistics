@@ -6,15 +6,13 @@
 <table>
   <tr>
     <th>Name</th>
-    <th></th>
-    <th></th>
-
+    <th>Total Funding</th>
   </tr>
 
 <% @industries.each do |industry| %>
   <tr>
     <td><%= link_to industry.name, industry %></td>
-    <td><%= industry.funded %></td>
+    <td><%= number_to_currency(industry.funded, unit: "$") %></td>
   </tr>
 <% end %>
 </table>
