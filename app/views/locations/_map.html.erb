@@ -1,6 +1,7 @@
 <% content_for :head do %>
     <style type="text/css">
-      #map-canvas { height: 100%; width: 75%}
+      /*#map-canvas { height: 40%; width: 25%}*/
+      #map-canvas { height: 85%; width: 100%}
     </style>
 
     <script type="text/javascript"
@@ -13,13 +14,14 @@ var location_array = [];
 var company_array =[];
 var industry_array =[];
 var link_array =[];
+var address_array =[];
 
 <% @locations.each do |location| %>
 location_array.push(new google.maps.LatLng(<%=location.latitude %>, <%=location.longitude %>));
 company_array.push("<%=location.company.name %>");
 industry_array.push("<%=location.company.industry.name %>");
 link_array.push("link");
-address_array.push("<%=location.address1 %><br><%=location.address2 %><br><%=location.zipcode %><br><%=location.city %> (<%=location.statecode %>)<br><%=location.countrycode %>");
+address_array.push("<%=location.address1 %><br><%=location.zipcode %><br><%=location.city %> (<%=location.statecode %>)<br><%=location.countrycode %>");
 
 <% end %>
 
@@ -40,6 +42,7 @@ address_array.push("<%=location.address1 %><br><%=location.address2 %><br><%=loc
           mapOptions);
 
 
+
     for (i = 0; i < location_array.length; i++) {
       marker = new google.maps.Marker({
         map:map,
@@ -55,15 +58,13 @@ address_array.push("<%=location.address1 %><br><%=location.address2 %><br><%=loc
 
       google.maps.event.addListener(marker, 'click', function(marker, i) {
         return function() {
-          infowindow.setContent('<h3>' + company_array[i] + '</h3>'+'<p>(' +  industry_array[i] +')</p><a href="#">'+link_array[i]+'</a></p>');
+          infowindow.setContent('<h3>' + company_array[i] + '</h3>'+'<h4>(' +  industry_array[i] +')</h4><p>'+ address_array[i] +'</p><a href="#">'+link_array[i]+'</a></p>');
           infowindow.open(map, marker);
         }
       }(marker, i));
 
-
-
-
     }
+
 }
 
 
@@ -71,6 +72,7 @@ address_array.push("<%=location.address1 %><br><%=location.address2 %><br><%=loc
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
+
 <% end %>
 
-<div id="map-canvas"/>
+<div id="map-canvas" />
