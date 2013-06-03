@@ -4,14 +4,14 @@ class Industry < ActiveRecord::Base
   has_many :companies
 
 
-  def self.funded
+  def funded
     total=0
 
-    self.companies.each |c|
+    self.companies.each do |c|
       if c==nil || c.fundings==nil
         next
       end
-      c.fundings.each |f|
+      c.fundings.each do |f|
         if f==nil || f.funding_amount==nil
           next
         end
@@ -20,6 +20,5 @@ class Industry < ActiveRecord::Base
     end
     return total
   end
-
 
 end
