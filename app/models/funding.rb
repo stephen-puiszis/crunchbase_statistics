@@ -4,6 +4,13 @@ class Funding < ActiveRecord::Base
   belongs_to :company
   has_many :investments
 
+  scope :for_financial, lambda { |financial_id| includes(:investments).where('investments.investable_id = ? AND investments.investable_type = ?', financial_id, 'Financial') if financial_id }
+  scope :for_company, lambda { |company_id| includes(:investments).where('investments.investable_id = ? AND investments.investable_type = ?', company_id, 'Company') if company_id }
+  scope :for_individual, lambda { |individual_id| includes(:investments).where('investments.investable_id = ? AND investments.investable_type = ?', individual_id, 'Individual') if individual_id }
+  # Funding.for_financial(financial_id)
+
+  # TODO: add_index :table_name, :foreign_key
+
   def perma
     company.perma
   end

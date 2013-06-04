@@ -1,24 +1,30 @@
 <p id="notice"><%= notice %></p>
 <div class="label">
-    <h3 class= "container"> <%= @financial.name %></h1>
+    <h3 class= "container"> <%= @financial.name %> | <%= link_to "Crunchbase Profile", @financial.crunch_url %> | <%= link_to "Home Page", @financial.home_url %> | Founded: <%= @financial.founded_date %></h3>
 </div>
 
-<p>
-  <%= link_to 'Crunchbase Profile', @financial.crunch_url %>
-</p>
-
-<p>
-  <%= link_to "#{@financial.name} Homepage", @financial.home_url %>
-</p>
-
-<p>
-  <b>Founded:
-  <%= @financial.founded_date %>
-</p>
-
 <h2>Recent Investments</h2>
-<p>Displays investments by date on aggregared level OR maybe a table of the last 10</p>
-<br>
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Date</th>
+    <th>Round</th>
+    <th>Amount</th>
+    <th>Industry</th>
+    <th>City</th>
+  </tr>
+
+<% Funding.for_financial(@financial.id).order("funding_date DESC").limit(10).each do |f| %>
+  <tr>
+    <td><%= f.company.name %></td>
+    <td><%= f.funding_date %></td>
+    <td><%= f.funding_code %></td>
+    <td><%= f.funding_amount %></td>
+    <td><%= f.company.industry.name %></td>
+    <td><%= f.company.location.city %></td>
+  </tr>
+<% end %>
+</table>
 
 <h2>Industry Breakdown</h2>
 <p>Pie Chart of Invesment Dollars by Industry</p>
@@ -34,28 +40,6 @@
 
 
 
-<h2>All Investments</h2>
-<table>
-  <tr>
-    <th>Company</th>
-    <th>Date</th>
-    <th>Round</th>
-    <th>Amount</th>
-    <th>Industry</th>
-  </tr>
-
-<% @financial.investments.each do |investment| %>
-  <tr>
-    <td><%= investment.funding.company.name %></td>
-    <td><%= investment.funding.funding_date %></td>
-    <td><%= investment.funding.funding_code %></td>
-    <td><%= investment.funding.funding_amount %></td>
-    <td><%= investment.funding.company.industry.name %></td>
-  </tr>
-<% end %>
-</table>
-
-
 
 
 <h2>All Investments</h2>
@@ -66,18 +50,18 @@
     <th>Round</th>
     <th>Amount</th>
     <th>Industry</th>
+    <th>City</th>
   </tr>
 
-<% @financial.investments_detail do |funding| %>
+<% Funding.for_financial(@financial.id).order("funding_date DESC").each do |f| %>
   <tr>
-    <td><%= funding.company.name %></td>
-    <td><%= funding.funding_date %></td>
-    <td><%= funding.funding_code %></td>
-    <td><%= funding.funding_amount %></td>
-    <td><%= funding.company.industry.name %></td>
+    <td><%= f.company.name %></td>
+    <td><%= f.funding_date %></td>
+    <td><%= f.funding_code %></td>
+    <td><%= f.funding_amount %></td>
+    <td><%= f.company.industry.name %></td>
+    <td><%= f.company.location.city %></td>
+
   </tr>
 <% end %>
 </table>
-
-<%= link_to 'Edit', edit_financial_path(@financial) %> |
-<%= link_to 'Back', financials_path %>

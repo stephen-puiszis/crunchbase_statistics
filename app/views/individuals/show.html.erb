@@ -1,23 +1,68 @@
 <p id="notice"><%= notice %></p>
 <div class="label">
-    <h3 class= "container"> <%= @individual.name %></h1>
+    <h3 class= "container"> <%= @individual.name %> | <%= link_to "Crunchbase Profile", @individual.crunch_url %> | <%= link_to "Home Page", @individual.home_url %></h3>
 </div>
 
-<p>
-  <b>Perma:</b>
-  <%= @individual.perma %>
-</p>
 
-<p>
-  <b>Crunch url:</b>
-  <%= @individual.crunch_url %>
-</p>
+<h2>Recent Investments</h2>
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Date</th>
+    <th>Round</th>
+    <th>Amount</th>
+    <th>Industry</th>
+    <th>City</th>
+  </tr>
 
-<p>
-  <b>Home url:</b>
-  <%= @individual.home_url %>
-</p>
+<% Funding.for_individual(@individual.id).order("funding_date DESC").limit(10).each do |f| %>
+  <tr>
+    <td><%= f.company.name %></td>
+    <td><%= f.funding_date %></td>
+    <td><%= f.funding_code %></td>
+    <td><%= f.funding_amount %></td>
+    <td><%= f.company.industry.name %></td>
+    <td><%= f.company.location.city %></td>
+  </tr>
+<% end %>
+</table>
+
+<h2>Industry Breakdown</h2>
+<p>Pie Chart of Invesment Dollars by Industry</p>
+<br>
+
+<h2>Round Breakdown</h2>
+<p>Breakdown by Round - table or pie chart</p>
+<br>
+
+<h2>Location Breakdown</h2>
+<p>Breakdown by top 10 locations invested - volume & dollars</p>
+<br>
 
 
-<%= link_to 'Edit', edit_individual_path(@individual) %> |
-<%= link_to 'Back', individuals_path %>
+
+
+
+<h2>All Investments</h2>
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Date</th>
+    <th>Round</th>
+    <th>Amount</th>
+    <th>Industry</th>
+    <th>City</th>
+  </tr>
+
+<% Funding.for_individual(@individual.id).order("funding_date DESC").each do |f| %>
+  <tr>
+    <td><%= f.company.name %></td>
+    <td><%= f.funding_date %></td>
+    <td><%= f.funding_code %></td>
+    <td><%= f.funding_amount %></td>
+    <td><%= f.company.industry.name %></td>
+    <td><%= f.company.location.city %></td>
+
+  </tr>
+<% end %>
+</table>
