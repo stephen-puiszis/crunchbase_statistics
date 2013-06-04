@@ -1,4 +1,7 @@
-<h1>Listing industries</h1>
+<div class="label">
+    <h3 class= "container">Listing industries</h1>
+</div>
+
 
 <% @fundings.each do |f| %>
 <%= f.funding_amount %>
@@ -7,16 +10,13 @@
 <table>
   <tr>
     <th>Name</th>
-    <th></th>
-    <th></th>
-
+    <th>Total funded</th>
   </tr>
 
 <% @industries.each do |industry| %>
   <tr>
     <td><%= link_to industry.name, industry %></td>
-    <td><%= link_to 'Edit', edit_industry_path(industry) %></td>
-    <td><%= link_to 'Destroy', industry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= number_to_currency(industry.funded, :unit => "$") %></td>
   </tr>
 <% end %>
 </table>

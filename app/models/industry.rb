@@ -3,4 +3,22 @@ class Industry < ActiveRecord::Base
 
   has_many :companies
 
+
+  def funded
+    total=0
+
+    self.companies.each do |c|
+      if c==nil || c.fundings==nil
+        next
+      end
+      c.fundings.each do |f|
+        if f==nil || f.funding_amount==nil
+          next
+        end
+        total+=f.funding_amount
+      end
+    end
+    return total
+  end
+
 end
