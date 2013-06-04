@@ -537,7 +537,73 @@
   </tr>
 </table>
 
-<h2>Q4 2012 Fundings</h2>
+<h2>1Q2012 Fundings</h2>
+<table class="table table-hover">
+  <tr>
+    <th>Company</th>
+    <th>Company perma</th>
+    <th>Funding code</th>
+    <th>Funding amount</th>
+    <th>Funding currency</th>
+    <th>Funding date</th>
+  </tr>
+
+<% Funding.quarterly_fundings(2012, 'q1').each do |funding| %>
+  <tr>
+    <td><%= funding.company_id %></td>
+    <td><%= funding.company.perma %></td>
+    <td><%= funding.funding_code %></td>
+    <td><%= funding.funding_amount%></td>
+    <td><%= funding.funding_currency %></td>
+    <td><%= funding.funding_date %></td>
+<% end %>
+</table>
+
+<h2>2Q2012 Fundings</h2>
+<table class="table table-hover">
+  <tr>
+    <th>Company</th>
+    <th>Company perma</th>
+    <th>Funding code</th>
+    <th>Funding amount</th>
+    <th>Funding currency</th>
+    <th>Funding date</th>
+  </tr>
+
+<% Funding.quarterly_fundings(2012, 'q2').each do |funding| %>
+  <tr>
+    <td><%= funding.company_id %></td>
+    <td><%= funding.company.perma %></td>
+    <td><%= funding.funding_code %></td>
+    <td><%= funding.funding_amount%></td>
+    <td><%= funding.funding_currency %></td>
+    <td><%= funding.funding_date %></td>
+<% end %>
+</table>
+
+<h2>3Q2012 Fundings</h2>
+<table class="table table-hover">
+  <tr>
+    <th>Company</th>
+    <th>Company perma</th>
+    <th>Funding code</th>
+    <th>Funding amount</th>
+    <th>Funding currency</th>
+    <th>Funding date</th>
+  </tr>
+
+<% Funding.quarterly_fundings(2012, 'q3').each do |funding| %>
+  <tr>
+    <td><%= funding.company_id %></td>
+    <td><%= funding.company.perma %></td>
+    <td><%= funding.funding_code %></td>
+    <td><%= funding.funding_amount%></td>
+    <td><%= funding.funding_currency %></td>
+    <td><%= funding.funding_date %></td>
+<% end %>
+</table>
+
+<h2>4Q2012 Fundings</h2>
 <table class="table table-hover">
   <tr>
     <th>Company</th>

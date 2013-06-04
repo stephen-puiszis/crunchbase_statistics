@@ -8,6 +8,9 @@ class Funding < ActiveRecord::Base
     company.perma
   end
 
+  #need to talk about the best way to write this so it goes fast and that I can then do multiple calculations on each
+  #I'd prefer not to write each one a million times but its not the end of the world
+
   #### Date Related ####
   def self.ltm_fundings(days = 90)
     today = Time.now
@@ -21,27 +24,23 @@ class Funding < ActiveRecord::Base
     Funding.find(:all, :conditions => ['funding_date >= ? and funding_date < ?', start_date, end_date]) #Need to determine if everything is inclusive of the end date or not
   end
 
-
-  # Need to refactor this code for sure because this blows!!!!!!!!!
   def self.quarterly_fundings(year, quarter)
-
-     def self.quarter_lookup(year, quarter)
       if quarter == 'q1'
-        return Date.new(year, 3, 31)
+       start_date = Date.new(year)
+       end_date = Date.new(year, 3, 31)
       elsif quarter == 'q2'
-        return Date.new(year, 6, 30)
+        start_date = Date.new(year, 4)
+        end_date = Date.new(year, 6, 30)
       elsif quarter == 'q3'
-        return Date.new(year, 9, 30)
+        start_date = Date.new(year, 7)
+        end_date = Date.new(year, 9, 30)
       elsif quarter == 'q4'
-        return Date.new(year, 12, 31)
+        start_date = Date.new(year, 10)
+        end_date = Date.new(year, 12, 31)
       else
         return nil
       end
-    end
-
-    end_date = Funding.quarter_lookup(year, quarter)
-    start_date = Date.new(year, quarter[1].to_i, 1)
-    Funding.find(:all, :conditions => ['funding_date >= ? and funding_date < ?', start_date, end_date]) #Need to determine if everything is inclusive of the end date or not
+     Funding.find(:all, :conditions => ['funding_date >= ? and funding_date < ?', start_date, end_date]) #Need to determine if everything is inclusive of the end date or not
   end
 
 
