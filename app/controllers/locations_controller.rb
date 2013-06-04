@@ -4,13 +4,29 @@ class LocationsController < ApplicationController
 
 
   def index
-# No results => crash!!!!
+
+
+
     if params[:search].present?
-      @locations = Location.near(params[:search], params[:radius], :order => :distance)
+      if @locations = Location.near(params[:search], params[:radius], :order => :distance).any?
+        @locations = Location.near(params[:search], params[:radius], :order => :distance)
+      else
+        @locations = Location.all
+        # redirect_to locations_url, notice: "No results found"
+      end
     else
       @locations = Location.all
     end
+   # @fundings = @companies.map { |x| Funding.find_by_company_id(x.id) }
 
+    @companies = @locations.map { |x| x.company }
+
+    @fundings = []
+    @companies.each do |company|
+      unless Funding.find_by_company_id(company.id).nil?
+        @fundings << (Funding.find_by_company_id(company.id))
+      end
+    end
 
     respond_to do |format|
       format.html # index.html.erb

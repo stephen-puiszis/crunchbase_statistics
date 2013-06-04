@@ -8,16 +8,20 @@
   <div id="donut-example"></div>
 
 
+<% @fundings.each do |f| %>
+<%= f.funding_amount %>
+<% end %>
+
 <table>
   <tr>
     <th>Name</th>
-    <th>Total Funding</th>
+    <th>Total funded</th>
   </tr>
 
 <% @industries.each do |industry| %>
   <tr>
     <td><%= link_to industry.name, industry %></td>
-    <td><%= number_to_currency(industry.funded, unit: "$") %></td>
+    <td><%= number_to_currency(industry.funded, :unit => "$") %></td>
   </tr>
   <% @industry_array<<{label: industry.name, value: industry.funded } %>
 <% end %>
