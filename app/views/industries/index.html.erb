@@ -1,6 +1,11 @@
+
+
 <div class="label">
     <h3 class= "container">Listing industries</h1>
 </div>
+
+<body>
+  <div id="donut-example"></div>
 
 
 <table>
@@ -14,9 +19,18 @@
     <td><%= link_to industry.name, industry %></td>
     <td><%= number_to_currency(industry.funded, unit: "$") %></td>
   </tr>
+  <% @industry_array<<{label: industry.name, value: industry.funded } %>
 <% end %>
 </table>
 
-<br />
+</body>
+<% j_array=@industry_array.to_json %>
+<script type="text/javascript">
+Morris.Donut({
+  element: 'donut-example',
+  data:
+    <%= raw(j_array) %>
+});
+</script>
 
 <%= link_to 'New Industry', new_industry_path %>

@@ -1,8 +1,11 @@
 class IndustriesController < ApplicationController
+  layout 'industry_layout' , only: [:index]
+
   # GET /industries
   # GET /industries.json
   def index
     @industries = Industry.all
+    @industry_array=[]
 
     respond_to do |format|
       format.html # index.html.erb

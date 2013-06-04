@@ -62,11 +62,27 @@ i, em{
   *zoom: 1;
 }
 
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
 /*----custom styles----*/
+a{
+  text-decoration: none
+}
+
+.left{
+  float: left;
+}
 
 body{
   font-family: Serif;
-  min-height: 700px;
+  min-height: 1000px;
 }
 .show_page{
 /*  background: radial-gradient(rgb(235,235,245),rgb(190,185,200));
