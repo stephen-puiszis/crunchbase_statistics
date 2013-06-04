@@ -9,4 +9,6 @@ class Investment < ActiveRecord::Base
     investable.perma
   end
 
+
+
 end

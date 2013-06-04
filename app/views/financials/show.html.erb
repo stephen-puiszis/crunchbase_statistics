@@ -4,25 +4,80 @@
 </div>
 
 <p>
-  <b>Perma:</b>
-  <%= @financial.perma %>
+  <%= link_to 'Crunchbase Profile', @financial.crunch_url %>
 </p>
 
 <p>
-  <b>Crunch url:</b>
-  <%= @financial.crunch_url %>
+  <%= link_to "#{@financial.name} Homepage", @financial.home_url %>
 </p>
 
 <p>
-  <b>Home url:</b>
-  <%= @financial.home_url %>
-</p>
-
-<p>
-  <b>Founded date:</b>
+  <b>Founded:
   <%= @financial.founded_date %>
 </p>
 
+<h2>Recent Investments</h2>
+<p>Displays investments by date on aggregared level OR maybe a table of the last 10</p>
+<br>
+
+<h2>Industry Breakdown</h2>
+<p>Pie Chart of Invesment Dollars by Industry</p>
+<br>
+
+<h2>Round Breakdown</h2>
+<p>Breakdown by Round - table or pie chart</p>
+<br>
+
+<h2>Location Breakdown</h2>
+<p>Breakdown by top 10 locations invested - volume & dollars</p>
+<br>
+
+
+
+<h2>All Investments</h2>
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Date</th>
+    <th>Round</th>
+    <th>Amount</th>
+    <th>Industry</th>
+  </tr>
+
+<% @financial.investments.each do |investment| %>
+  <tr>
+    <td><%= investment.funding.company.name %></td>
+    <td><%= investment.funding.funding_date %></td>
+    <td><%= investment.funding.funding_code %></td>
+    <td><%= investment.funding.funding_amount %></td>
+    <td><%= investment.funding.company.industry.name %></td>
+  </tr>
+<% end %>
+</table>
+
+
+
+
+<h2>All Investments</h2>
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Date</th>
+    <th>Round</th>
+    <th>Amount</th>
+    <th>Industry</th>
+  </tr>
+
+<% @financial.investments_detail do |funding| %>
+  <tr>
+    <td><%= funding.company.name %></td>
+    <td><%= funding.funding_date %></td>
+    <td><%= funding.funding_code %></td>
+    <td><%= funding.funding_amount %></td>
+    <td><%= funding.company.industry.name %></td>
+  </tr>
+<% end %>
+</table>
 
 <%= link_to 'Edit', edit_financial_path(@financial) %> |
 <%= link_to 'Back', financials_path %>

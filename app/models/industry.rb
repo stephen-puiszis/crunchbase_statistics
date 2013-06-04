@@ -21,4 +21,6 @@ class Industry < ActiveRecord::Base
     return total
   end
 
+
+
 end

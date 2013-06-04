@@ -11,7 +11,8 @@ class Funding < ActiveRecord::Base
   #need to talk about the best way to write this so it goes fast and that I can then do multiple calculations on each
   #I'd prefer not to write each one a million times but its not the end of the world
 
-  #### Date Related ####
+  ####-------------- Date Related -----------------####
+
   def self.ltm_fundings(days = 90)
     today = Time.now
     period = today - (60*60*24*days) #need to improve logic
