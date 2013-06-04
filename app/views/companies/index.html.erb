@@ -12,24 +12,18 @@
     <th>Founded date</th>
     <th>Dead date</th>
     <th>Stock symbol</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @companies.each do |company| %>
   <tr>
-    <td><%= company.name %></td>
+    <td><%= link_to company.name, company %></td>
     <td><%= company.perma %></td>
-    <td><%= company.industry_id %></td>
+    <td><%= Industry.find_by_id(company.industry_id).name %></td>
     <td><%= company.crunch_url %></td>
     <td><%= company.home_url %></td>
     <td><%= company.founded_date %></td>
     <td><%= company.dead_date %></td>
     <td><%= company.stock_symbol %></td>
-    <td><%= link_to 'Show', company %></td>
-    <td><%= link_to 'Edit', edit_company_path(company) %></td>
-    <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

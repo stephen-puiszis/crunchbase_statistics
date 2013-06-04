@@ -4,10 +4,7 @@ class LocationsController < ApplicationController
 
 
   def index
-
-
-
-    if params[:search].present?
+     if params[:search].present?
       if @locations = Location.near(params[:search], params[:radius], :order => :distance).any?
         @locations = Location.near(params[:search], params[:radius], :order => :distance)
       else
