@@ -1,20 +1,11 @@
 class IndustriesController < ApplicationController
+  layout 'industry_layout' , only: [:index]
+
   # GET /industries
   # GET /industries.json
   def index
     @industries = Industry.all
-
-# Example for Dan...
-    @industry = Industry.first
-    @companies = Company.where(industry_id: @industry.id)
-    @fundings = []
-    @companies.each do |company|
-      unless Funding.find_by_company_id(company.id).nil?
-        @fundings << (Funding.find_by_company_id(company.id))
-      end
-    end
-    # end example
-
+    @industry_array=[]
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @industries }
@@ -80,8 +71,6 @@ class IndustriesController < ApplicationController
     end
   end
 
-  # DELETE /industries/1
-  # DELETE /industries/1.json
   def destroy
     @industry = Industry.find(params[:id])
     @industry.destroy

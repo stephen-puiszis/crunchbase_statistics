@@ -12,7 +12,7 @@ class Industry < ActiveRecord::Base
         next
       end
       c.fundings.each do |f|
-        if f==nil || f.funding_amount==nil
+        if f==nil || f.funding_amount==nil || f.funding_code=="ipo"
           next
         end
         total+=f.funding_amount
