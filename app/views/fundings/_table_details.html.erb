@@ -1,0 +1,36 @@
+<h2>Total Funding</h2>
+<table class="table table-hover">
+  <tr>
+    <th>Timeframe</th>
+    <th>Amount ($ millions) - tbu</th>
+    <th>Number of Rounds(Volume)</th>
+    <th>Avg. Round Investment</th>
+  </tr>
+
+
+  <tr>
+    <td>Last 3 Months</td>
+    <td> <%= a = Funding.ltm_fundings(90).inject(0) {|sum, i| sum += i.funding_amount } %></td>
+    <td> <%= b = Funding.ltm_fundings(90).inject(0) {|sum, i| sum += 1 } %></td>
+    <td> <%= formatted_millions(a / b) %></td>
+  </tr>
+  <tr>
+    <td>Last 6 Months</td>
+    <td> <%= c = Funding.ltm_fundings(180).inject(0) {|sum, i| sum += i.funding_amount } %></td>
+    <td> <%= d = Funding.ltm_fundings(180).inject(0) {|sum, i| sum += 1 } %></td>
+    <td> <%= formatted_millions(c / d) %></td>
+  </tr>
+  <tr>
+    <td>Last 9 Months</td>
+    <td> <%= e = Funding.ltm_fundings(180).inject(0) {|sum, i| sum += i.funding_amount } %></td>
+    <td> <%= f = Funding.ltm_fundings(180).inject(0) {|sum, i| sum += 1 } %></td>
+    <td> <%= formatted_millions(e / f) %></td>
+  </tr>
+  <tr>
+    <td>Last 12 Months</td>
+    <td> <%= g = Funding.ltm_fundings(180).inject(0) {|sum, i| sum += i.funding_amount } %></td>
+    <td> <%= h = Funding.ltm_fundings(180).inject(0) {|sum, i| sum += 1 } %></td>
+    <td> <%= formatted_millions(g / h) %></td>
+  </tr>
+
+</table>
