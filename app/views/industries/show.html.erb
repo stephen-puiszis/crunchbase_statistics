@@ -5,7 +5,7 @@
 
 <% @industry.companies.each do |f| %>
   <% if f.fundings.present?  %>
-        <table class= 'left'>
+        <table class= 'left', class= "sortable">
         <tr><th colspan="3"><%= link_to f.name, f %></th></tr>
         <tr>
         <th>Funding Code</th>
