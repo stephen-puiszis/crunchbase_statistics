@@ -7,4 +7,13 @@ class Financial < ActiveRecord::Base
     Investment.all(:joins => :funding)
   end
 
+  def total_investments
+    total=0
+    Funding.for_financial(self.id).each do |f|
+      next unless f.present? && f.funding_amount.present?
+      total+=f.funding_amount
+    end
+    return total
+  end
+
 end

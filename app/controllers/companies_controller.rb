@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  layout 'donut_layout', only: [:show]
   # GET /companies
   # GET /companies.json
   def index

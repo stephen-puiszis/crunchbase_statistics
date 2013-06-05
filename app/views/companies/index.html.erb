@@ -2,9 +2,10 @@
     <h3 class= "container">Listing companies</h1>
 </div>
 
-<table>
+<table class= "sortable">
   <tr>
     <th>Name</th>
+    <th>Total Investments</th>
     <th>Perma</th>
     <th>Industry</th>
     <th>Crunch url</th>
@@ -17,6 +18,7 @@
 <% @companies.each do |company| %>
   <tr>
     <td><%= link_to company.name, company %></td>
+    <td><%= number_to_currency(company.total_investments, unit: "$") %></td>
     <td><%= company.perma %></td>
     <td><%= Industry.find_by_id(company.industry_id).name %></td>
     <td><%= company.crunch_url %></td>

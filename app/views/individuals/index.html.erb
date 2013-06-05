@@ -3,9 +3,10 @@
 </div>
 
 
-<table>
+<table class= "sortable">
   <tr>
     <th>Name</th>
+    <th>Total Investments</th>
     <th>Perma</th>
     <th>Crunch url</th>
     <th>Home url</th>
@@ -14,6 +15,7 @@
 <% @individuals.each do |individual| %>
   <tr>
     <td><%= link_to individual.name, individual %></td>
+    <td><%= number_to_currency(individual.total_investments, unit: "$") %></td>
     <td><%= individual.perma %></td>
     <td><%= individual.crunch_url %></td>
     <td><%= individual.home_url %></td>
