@@ -1,4 +1,5 @@
 class IndividualsController < ApplicationController
+  layout 'donut_layout', only: [:show]
   # GET /individuals
   # GET /individuals.json
   def index

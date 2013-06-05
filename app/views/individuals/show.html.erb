@@ -5,7 +5,7 @@
 
 
 <h2>Recent Investments</h2>
-<table>
+<table class= "sorttable">
   <tr>
     <th>Company</th>
     <th>Date</th>
@@ -14,6 +14,9 @@
     <th>Industry</th>
     <th>City</th>
   </tr>
+  <% company_array=[] %>
+  <% fcode_array=[] %>
+  <% industry_array=[] %>
 
 <% Funding.for_individual(@individual.id).order("funding_date DESC").limit(10).each do |f| %>
   <tr>
@@ -39,30 +42,4 @@
 <p>Breakdown by top 10 locations invested - volume & dollars</p>
 <br>
 
-
-
-
-
-<h2>All Investments</h2>
-<table>
-  <tr>
-    <th>Company</th>
-    <th>Date</th>
-    <th>Round</th>
-    <th>Amount</th>
-    <th>Industry</th>
-    <th>City</th>
-  </tr>
-
-<% Funding.for_individual(@individual.id).order("funding_date DESC").each do |f| %>
-  <tr>
-    <td><%= f.company.name %></td>
-    <td><%= f.funding_date %></td>
-    <td><%= f.funding_code %></td>
-    <td><%= f.funding_amount %></td>
-    <td><%= f.company.industry.name %></td>
-    <td><%= f.company.location.city %></td>
-
-  </tr>
-<% end %>
-</table>
+<%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_individual(@individual.id)} %>

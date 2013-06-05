@@ -10,7 +10,7 @@
 
 <p>
   <b>Industry:</b>
-  <%= @company.industry_id %>
+  <%= Industry.find_by_id(@company.industry_id).name %>
 </p>
 
 <p>
@@ -33,36 +33,7 @@
   <%= @company.dead_date %>
 </p>
 
-<p>
-  <b>Stock symbol:</b>
-  <%= @company.stock_symbol %>
-</p>
-
-<h2>All Investments</h2>
-<table>
-  <tr>
-    <th>Company</th>
-    <th>Date</th>
-    <th>Round</th>
-    <th>Amount</th>
-    <th>Industry</th>
-    <th>City</th>
-  </tr>
-
-<% Funding.for_company(@company.id).order("funding_date DESC").each do |f| %>
-  <tr>
-    <td><%= f.company.name %></td>
-    <td><%= f.funding_date %></td>
-    <td><%= f.funding_code %></td>
-    <td><%= f.funding_amount %></td>
-    <td><%= f.company.industry.name %></td>
-    <td><%= f.company.location.city %></td>
-
-  </tr>
-<% end %>
-</table>
-
-
+<%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_company(@company.id)} %>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

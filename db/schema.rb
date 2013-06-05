@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601220510) do
+ActiveRecord::Schema.define(:version => 20130605221731) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20130601220510) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  add_index "companies", ["industry_id"], :name => "industry_id_ix"
 
   create_table "financials", :force => true do |t|
     t.string   "name"
@@ -45,6 +47,8 @@ ActiveRecord::Schema.define(:version => 20130601220510) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
+
+  add_index "fundings", ["company_id"], :name => "company_id_ix"
 
   create_table "individuals", :force => true do |t|
     t.string   "name"
@@ -69,6 +73,9 @@ ActiveRecord::Schema.define(:version => 20130601220510) do
     t.datetime "updated_at",      :null => false
   end
 
+  add_index "investments", ["funding_id"], :name => "funding_id_ix"
+  add_index "investments", ["investable_id", "investable_type"], :name => "index_investments_on_investable_id_and_investable_type"
+
   create_table "locations", :force => true do |t|
     t.integer  "company_id"
     t.string   "address1"
@@ -82,5 +89,7 @@ ActiveRecord::Schema.define(:version => 20130601220510) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "locations", ["company_id"], :name => "index_locations_on_company_id"
 
 end

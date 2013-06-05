@@ -5,5 +5,12 @@ class Company < ActiveRecord::Base
   has_many :fundings
   has_many :investments, :as => :investable
   has_one :location
-
+  def total_investments
+    total=0
+    Funding.for_company(self.id).each do |f|
+      next unless f.present? && f.funding_amount.present?
+      total+=f.funding_amount
+    end
+    return total
+  end
 end
