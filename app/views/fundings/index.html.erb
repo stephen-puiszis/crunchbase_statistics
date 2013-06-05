@@ -11,7 +11,7 @@
     <th>Avg. Round Investment</th>
   </tr>
 
-<% Funding.ltm_fundings(90).each do |funding| %>
+
   <tr>
     <td>Last 3 Months</td>
     <td> <%= a = Funding.ltm_fundings(90).inject(0) {|sum, i| sum += i.funding_amount } %></td>
@@ -37,8 +37,30 @@
     <td> <%= formatted_millions(g / h) %></td>
   </tr>
 
+</table>
 
-<% end %>
+<h2>Total Funding</h2>
+<table class="table table-hover">
+  <tr>
+    <th>Series</th>
+    <th>Amount ($ millions) - tbu</th>
+    <th>Volume</th>
+    <th>Avg. Round Investment</th>
+  </tr>
+  <tr>
+    <td>Seed</td>
+    <td> <%=  Funding.for_funding_round('seed').ltm_fundings(365).sum('funding_amount') %></td>
+    <td> <%=  Funding.for_funding_round('seed').ltm_fundings(365).count %></td>
+    <td> <%=  Funding.for_funding_round('seed').ltm_fundings(365).average('funding_amount') %></td><
+  </tr>
+  <tr>
+    <td>Angel</td>
+    <td> <%=  Funding.for_funding_round('angel').ltm_fundings(365).sum('funding_amount') %></td>
+    <td> <%=  Funding.for_funding_round('angel').ltm_fundings(365).count %></td>
+    <td> <%=  Funding.for_funding_round('angel').ltm_fundings(365).average('funding_amount') %></td>
+  </tr>
+
+
 </table>
 
 <h2>Top 10, 25, etc. Investors by Date?</h2>

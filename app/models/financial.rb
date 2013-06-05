@@ -3,8 +3,5 @@ class Financial < ActiveRecord::Base
 
   has_many :investments, :as => :investable
 
-  def investments_detail
-    Investment.all(:joins => :funding)
-  end
 
 end
