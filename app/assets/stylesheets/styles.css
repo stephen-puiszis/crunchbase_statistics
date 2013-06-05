@@ -81,8 +81,7 @@ a{
 }
 
 body{
-  font-family: Serif;
-  min-height: 1000px;
+  font-family: sans-serif;
 }
 .show_page{
 /*  background: radial-gradient(rgb(235,235,245),rgb(190,185,200));
@@ -90,6 +89,7 @@ body{
 .label{
   background: rgba(55,125,60,.3);
   margin-bottom: 20px;
+  text-transform: uppercase;
 }
 .co_info{
   background: #abc;
@@ -137,14 +137,6 @@ header h1{
   letter-spacing: -2px;
   font-weight: 400;
 }
-header p{
-  color: #666;
-  font-family: 'Open Sans Condensed','helvetica neue', arial, sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  position: relative;
-    top: 27px;
-}
 .label h3{
   color: #555;
   font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
@@ -159,7 +151,14 @@ footer h5{
   margin-left: 10px;
 }
 /*----links----*/
-
+a{
+  color: #ccc;
+  font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
+  text-decoration: none;
+}
+a:hover{
+  color: rgb(55,60,125);
+}
 /*----lists----*/
 .co_info dt{
   font-family: 'Droid Sans', 'helvetica neue', helvetica, arial, sans-serif;
@@ -350,6 +349,9 @@ footer a:hover{
 footer{
   background: linear-gradient(to top right, rgb(50,145,45),rgb(40,220,170));
   padding-top: 20px;
+  position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 footer li{
@@ -366,5 +368,6 @@ footer ul{
   text-align: center;
 }
 .sub_footer p{
+  font-family: serif;
   font-size: 12px;
 }
