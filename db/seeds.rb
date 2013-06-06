@@ -238,7 +238,6 @@ puts "There are #{Location.all.count} locations in the database"
 
 # Jacob!!
 # This is changed   dan has better file!!
-        f.company_perma = c.perma
 
         if round["round_code"] == "unattributed"
             f.funding_code = "venture round"
@@ -276,8 +275,6 @@ puts "There are #{Location.all.count} locations in the database"
             if round["investments"].empty?
               i = Investment.new
               i.funding_id = f.id
-              i.company_id = nil
-              i.company_perma = "unattributed"
               i.save
             end
 
@@ -285,7 +282,7 @@ puts "There are #{Location.all.count} locations in the database"
 
               if investment["company"] != nil
                   # Need to include funding_round_id when seeding
-                  company = Company.find_by_perma(investment["company"]["permalink"])
+                  company = Company.find_by_(investment["company"]["permalink"])
                   company.investments.create(funding_id: f.id)
 
                 elsif investment["financial_org"] != nil
@@ -318,7 +315,6 @@ puts "There are #{Location.all.count} locations in the database"
                   i = Investment.new
                   i.funding_id = f.id
                   i.investable_id = nil
-                  i.company_perma = "unattributed"
                   i.save
               end
 
@@ -332,7 +328,6 @@ puts "There are #{Location.all.count} locations in the database"
 
        f = Funding.new
        f.company_id = c.id
-       f.company_perma = c.perma
        f.funding_code = 'ipo'
        f.funding_amount = company_data["ipo"]["valuation_amount"]
        f.funding_currency = company_data["ipo"]["valuation_currency_code"]
