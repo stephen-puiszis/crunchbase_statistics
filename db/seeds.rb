@@ -23,7 +23,7 @@ person = "person/"
 # Company Permalinks
 companies =
 [
-'facebook', 'twitter', 'tumblr', 'amazon', '37signals', 'salesforce', 'stripe',  'asana', 'fab-com', 'google', 'zynga',
+'facebook', 'twitter', 'tumblr', 'amazon', '37signals', 'salesforce', 'stripe',  'asana', 'google', 'zynga',
 'path',  'tesla-motors', 'surveymonkey', 'linkedin', 'y-combinator', 'techstars', 'parse', 'airbnb', 'dropbox',
 'pinterest', 'paypal', 'myspace', 'pixar', 'apple', 'airtime', 'uber-2', 'evernote', 'palantir-technologies', 'sunrise', 'handshake-2', 'wildfire-interactive', 'rocket-fuel', 'delphix', 'zalora'
 ]
@@ -282,7 +282,7 @@ puts "There are #{Location.all.count} locations in the database"
 
               if investment["company"] != nil
                   # Need to include funding_round_id when seeding
-                  company = Company.find_by_(investment["company"]["permalink"])
+                  company = Company.find_by_perma(investment["company"]["permalink"])
                   company.investments.create(funding_id: f.id)
 
                 elsif investment["financial_org"] != nil
