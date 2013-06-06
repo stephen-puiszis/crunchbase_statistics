@@ -15,14 +15,19 @@
 
 <!-- links are still broken -->
 <% if params[:search].present? %>
-  <% @fundings.each do |funding| %>
-    <%= link_to "#{funding.funding_date} (#{funding.company.name})" %>
-  <% end %>
+<table class="left">
+  <tr>
+    <th>Company Name</th>
+    <th>Industry</th>
+  </tr>
   <% @companies.each do |company| %>
-    <%= link_to company.name %>
+  <tr>
+    <td><%= link_to company.name, company %></td>
+    <td><%= link_to company.industry.name, company.industry %></td>
+  </tr>
   <% end %>
 <% end %>
-
+<table>
 <% if params[:search].present? %>
 <%= render :partial => "map" %>
 <% end %>

@@ -4,6 +4,8 @@ CrunchbaseStatistics::Application.routes.draw do
   root to: "Pages#index"
 
   get '/home'=> 'Pages#index', as: "home"
+
+  get '/contact'=> 'Pages#contact', as: "contact"
   resources :individuals do
     resources :investments
   end
