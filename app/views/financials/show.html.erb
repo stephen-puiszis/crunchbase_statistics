@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 <div class="label">
-    <h3 class= "container"> <%= @financial.name %> | <%= link_to "Crunchbase Profile", @financial.crunch_url %> | <%= link_to "Home Page", @financial.home_url %> | Founded: <%= @financial.founded_date %></h3>
+    <h3 class= "container"> <%= @financial.name %></h3>
 </div>
+<div class="cbw snap_nopreview"><div class="cbw_header"><script src="http://www.crunchbase.com/javascripts/widget.js" type="text/javascript"></script><div class="cbw_header_text"><a href="http://www.crunchbase.com/">CrunchBase Information</a></div></div><div class="cbw_content"><div class="cbw_subheader"><a href="http://www.crunchbase.com/financial-organization/<%= @financial.perma %>"><%= @financial.name %></a></div><div class="cbw_subcontent"><script src="http://www.crunchbase.com/cbw/financial-organization/<%= @financial.perma %>.js" type="text/javascript"></script></div><div class="cbw_footer">Information provided by <a href="http://www.crunchbase.com/">CrunchBase</a></div></div></div>
 
 <% company_array=[] %>
 <% fcode_array=[] %>
