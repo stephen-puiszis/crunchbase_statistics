@@ -1,7 +1,7 @@
 
 # ------------------------ Original Seed file
   run_number = 0
-  number_of_queries = 2
+  number_of_queries = 2541
 # bundle install other macs
 
 
