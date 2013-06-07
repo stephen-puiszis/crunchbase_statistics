@@ -1,5 +1,5 @@
 class FinancialsController < ApplicationController
-  layout 'donut_layout', only: [:show]
+  layout 'charts_layout', only: [:show]
   # GET /financials
   # GET /financials.json
   def index

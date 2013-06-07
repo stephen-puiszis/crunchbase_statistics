@@ -1,5 +1,7 @@
 class FundingsController < ApplicationController
-  layout 'donut_layout' , only: [:index]
+
+  layout 'charts_layout' , only: [:index]
+
   # GET /fundings
   # GET /fundings.json
   def index

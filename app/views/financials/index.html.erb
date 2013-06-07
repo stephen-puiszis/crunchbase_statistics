@@ -10,12 +10,13 @@
     <th>Volume</th>
   </tr>
 
-
 <% Financial.limit(10).each do |financial| %>
   <tr>
     <td><%= link_to financial.name, financial %></td>
+
     <td><%= format_mil(financial.investment_sum) %></td>
     <td><%= financial.investment_count %></td>
+
   </tr>
 <% end %>
 </table>

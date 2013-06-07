@@ -1,45 +1,10 @@
 <p id="notice"><%= notice %></p>
 <div class="label">
-    <h3 class= "container"> <%= @company.name %></h1>
+    <h3 class= "container"> <%= @company.name %></h3>
 </div>
 <div class="container group">
 
-  <div class="grid_8">
-    <p>
-      <b>Perma:</b><br>
-      <%= @company.perma %>
-    </p>
-    <p>&nbsp;</p>
-    <p>
-      <b>Industry:</b><br>
-      <%= @company.industry_id %>
-    </p>
-    <p>&nbsp;</p>
-    <p>
-      <b>Crunch url:</b><br>
-      <%= @company.crunch_url %>
-    </p>
-    <p>&nbsp;</p>
-    <p>
-      <b>Home url:</b><br>
-      <%= @company.home_url %>
-    </p>
-    <p>&nbsp;</p>
-    <p>
-      <b>Founded date:</b><br>
-      <%= @company.founded_date %>
-    </p>
-    <p>&nbsp;</p>
-    <p>
-      <b>Dead date:</b><br>
-      <%= @company.dead_date %>
-    </p>
-    <p>&nbsp;</p>
-  </div>
-
-  
-  
-
+  <div class="cbw snap_nopreview"><div class="cbw_header"><script src="http://www.crunchbase.com/javascripts/widget.js" type="text/javascript"></script><div class="cbw_header_text"><a href="http://www.crunchbase.com/">CrunchBase Information</a></div></div><div class="cbw_content"><div class="cbw_subheader"><a href="http://www.crunchbase.com/company/<%= @company.perma %>"><%= @company.name %></a></div><div class="cbw_subcontent"><script src="http://www.crunchbase.com/cbw/company/<%= @company.perma %>.js" type="text/javascript"></script></div><div class="cbw_footer">Information provided by <a href="http://www.crunchbase.com/">CrunchBase</a></div></div></div>
 
 <%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_company(@company.id)} %>
 
