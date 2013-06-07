@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
 <div class="label">
-    <h3 class= "container"> <%= @individual.name %> | <%= link_to "Crunchbase Profile", @individual.crunch_url %> | <%= link_to "Home Page", @individual.home_url %></h3>
+    <h3 class= "container"> <%= @individual.name %></h3>
 </div>
+
+<div class="cbw snap_nopreview"><div class="cbw_header"><script src="http://www.crunchbase.com/javascripts/widget.js" type="text/javascript"></script><div class="cbw_header_text"><a href="http://www.crunchbase.com/">CrunchBase Information</a></div></div><div class="cbw_content"><div class="cbw_subheader"><a href="http://www.crunchbase.com/person/<%= @individual.perma %>"><%= @individual.name %></a></div><div class="cbw_subcontent"><script src="http://www.crunchbase.com/cbw/person/<%= @individual.perma %>.js" type="text/javascript"></script></div><div class="cbw_footer">Information provided by <a href="http://www.crunchbase.com/">CrunchBase</a></div></div></div>
 
 
 <h2>Recent Investments</h2>
-<table class= "sorttable">
+<table class= "sortable">
   <tr>
     <th>Company</th>
     <th>Date</th>

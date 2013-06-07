@@ -1,5 +1,5 @@
 class IndustriesController < ApplicationController
-  layout 'donut_layout' , only: [:index]
+  layout 'charts_layout' , only: [:index]
 
   # GET /industries
   # GET /industries.json

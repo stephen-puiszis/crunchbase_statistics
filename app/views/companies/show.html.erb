@@ -1,31 +1,12 @@
 <p id="notice"><%= notice %></p>
 <div class="label">
-    <h3 class= "container"> <%= @company.name %></h1>
+    <h3 class= "container"> <%= @company.name %></h3>
 </div>
-<div class="show_page container group">
-  <div class="grid_8">
-    <h4>Genral Info</h4>
-    <dl>
-      <dt>Perma:</dt>
-      <dd><%= @company.perma %></dd>
-      <dt>Industry:</dt>
-      <dd><%= @company.industry_id %></dd>
-      <dt>Crunch url:</dt>
-      <dd><%= @company.crunch_url %></dd>
-      <dt>Home url:</dt>
-      <dd><%= @company.home_url %></dd>
-      <dt>Founded date:</dt>
-      <dd><%= @company.founded_date %></dd> 
-      <dt>Dead date:</dt>
-      <dd><%= @company.dead_date %></dd>
-    </dl>
-  </div>
-  <div class="grid_16">
-    <h4>Activity</h4>
-    <%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_company(@company.id)} %>
-  </div>
-</div>
- <div class="container">
-  <%= link_to 'Edit', edit_company_path(@company) %> |
-  <%= link_to 'Back', companies_path %>
-</div>
+<div class="container group">
+
+  <div class="cbw snap_nopreview"><div class="cbw_header"><script src="http://www.crunchbase.com/javascripts/widget.js" type="text/javascript"></script><div class="cbw_header_text"><a href="http://www.crunchbase.com/">CrunchBase Information</a></div></div><div class="cbw_content"><div class="cbw_subheader"><a href="http://www.crunchbase.com/company/<%= @company.perma %>"><%= @company.name %></a></div><div class="cbw_subcontent"><script src="http://www.crunchbase.com/cbw/company/<%= @company.perma %>.js" type="text/javascript"></script></div><div class="cbw_footer">Information provided by <a href="http://www.crunchbase.com/">CrunchBase</a></div></div></div>
+
+<%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_company(@company.id)} %>
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

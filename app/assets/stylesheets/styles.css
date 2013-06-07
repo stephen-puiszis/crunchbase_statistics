@@ -22,6 +22,10 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
+.left{
+  float: left;
+}
+
 body {
   line-height: 1;
 }

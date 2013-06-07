@@ -7,7 +7,7 @@
 <body>
   <div id="donut-example"></div>
 
-<table>
+<table class="sortable">
   <tr>
     <th>Name</th>
     <th>Total funded</th>
@@ -24,6 +24,7 @@
 
 </body>
 <% j_array=@industry_array.to_json %>
+
 <script type="text/javascript">
 Morris.Donut({
   element: 'donut-example',
