@@ -2,46 +2,30 @@
 <div class="label">
     <h3 class= "container"> <%= @company.name %></h1>
 </div>
-<div class="container group">
-
+<div class="show_page container group">
   <div class="grid_8">
-    <p>
-      <b>Perma:</b><br>
-      <%= @company.perma %>
-    </p>
-    <p>&nbsp;</p>
-    <p>
-      <b>Industry:</b><br>
-      <%= @company.industry_id %>
-    </p>
-    <p>&nbsp;</p>
-    <p>
-      <b>Crunch url:</b><br>
-      <%= @company.crunch_url %>
-    </p>
-    <p>&nbsp;</p>
-    <p>
-      <b>Home url:</b><br>
-      <%= @company.home_url %>
-    </p>
-    <p>&nbsp;</p>
-    <p>
-      <b>Founded date:</b><br>
-      <%= @company.founded_date %>
-    </p>
-    <p>&nbsp;</p>
-    <p>
-      <b>Dead date:</b><br>
-      <%= @company.dead_date %>
-    </p>
-    <p>&nbsp;</p>
+    <h4>Genral Info</h4>
+    <dl>
+      <dt>Perma:</dt>
+      <dd><%= @company.perma %></dd>
+      <dt>Industry:</dt>
+      <dd><%= @company.industry_id %></dd>
+      <dt>Crunch url:</dt>
+      <dd><%= @company.crunch_url %></dd>
+      <dt>Home url:</dt>
+      <dd><%= @company.home_url %></dd>
+      <dt>Founded date:</dt>
+      <dd><%= @company.founded_date %></dd> 
+      <dt>Dead date:</dt>
+      <dd><%= @company.dead_date %></dd>
+    </dl>
   </div>
-
-  
-  
-
-
-<%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_company(@company.id)} %>
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+  <div class="grid_16">
+    <h4>Activity</h4>
+    <%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_company(@company.id)} %>
+  </div>
+</div>
+ <div class="container">
+  <%= link_to 'Edit', edit_company_path(@company) %> |
+  <%= link_to 'Back', companies_path %>
+</div>

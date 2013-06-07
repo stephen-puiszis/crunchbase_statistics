@@ -1,5 +1,5 @@
-<h2>All Investments</h2>
 <table class= "sortable">
+<caption>All Investments</caption>
   <tr>
     <th>Company</th>
     <th>Date</th>
@@ -20,7 +20,6 @@
     <td><%= number_to_currency(f.funding_amount, unit: "$") %></td>
     <td><%= f.company.industry.name %></td>
     <td><%= f.company.location.city %></td>
-
   </tr>
 
   <% company_array<<{label: f.company.name, value: f.funding_amount } %>

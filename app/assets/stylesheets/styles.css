@@ -127,6 +127,7 @@ h4{
 h5{
   font-size: 16px;
   line-height: 20px;
+  text-shadow: 0 1px 1px #9d9;
 }
 p{
   font-size: 16px;
@@ -143,8 +144,9 @@ header h1{
   position: relative;
   left: 20px;
 }
-footer h5{
-  text-shadow: 0 1px 1px #9d9;
+.show_page h4{
+  border-bottom: 2px solid #ccc;
+  padding: 5px 10px; 
 }
 .co_info h4{
   display: block;
@@ -152,16 +154,26 @@ footer h5{
 }
 /*----links----*/
 a{
-  color: #ccc;
+  color: rgb(55,125,60);
   font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
+  font-size: 18px;
   text-decoration: none;
 }
 a:hover{
-  color: rgb(55,60,125);
+  text-decoration: underline;
 }
 /*----lists----*/
-.co_info dt{
+dd{
+  font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
+  padding-left: 10px; 
+  line-height: 20px;
+}
+
+dt{
+  display: block;
   font-family: 'Droid Sans', 'helvetica neue', helvetica, arial, sans-serif;
+  margin-bottom: 10px;
+  padding-top: 10px;
 }
 
 /*----misc styles----*/
@@ -181,11 +193,14 @@ caption{
   padding: 15px;
   text-align: center;
 }
+input,
+select{
+  font-size: 18px;
+  margin: 10px 0;
+}
+/*-----------ALL THIS STUFF WILL PROBABLY GO AWAY--------*/
 .section_nav{
   padding-left: 50px;
-}
-.xyz{
-
 }
 .section_nav a{
   background: linear-gradient(rgb(245,245,245),rgb(220,220,220));
@@ -203,25 +218,25 @@ caption{
 .section_nav a:hover{
   background: linear-gradient(rgb(235,235,235),rgb(205,205,205));
 }
+
+/*---------ALL THE WAY TO HERE----------*/
 table{
-  border: 1px solid #888;
-  border-collapse: separate;
-  border-spacing: 2px;
+  border: 1px solid #999;
   margin: 20px auto;
 }
 th{
-  background: linear-gradient(#eef,#ccd);
-  border: 1px solid #999;
-  font-family: 'Droid Sans', 'helvetica neue', helvetica, arial, sans-serif;
-  font-size: 21px;
+  background: #e9e9ee;
+  border-bottom: 1px solid #999;
+  font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
+  font-size: 18px;
   font-weight: 500;
-  padding: 10px;
+  padding: 10px 30px 10px 5px;
 }
 td{
-  background: #f9f9fe;
-  font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
-  border: 1px solid #888;
-  padding: 10px 15px;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  font-size: 14px;
+  border-bottom: 1px solid #888;
+  padding: 10px 5px;
 }
 td a{
   color: rgb(55,125,60);
@@ -229,6 +244,9 @@ td a{
 }
 td a:hover{
   text-decoration: underline;
+}
+tbody tr:nth-child(even) td {
+  background: #f9f9fe;
 }
 tfoot td{
   color: #888;
@@ -300,22 +318,17 @@ header{
   background-color: rgba(255,255,255,.3);
 }
 /*----nav----*/
-.bread_crumb{
-  padding: 0 5px;
-}
-.home_nav,
-.show_nav{
+
+.home_nav{
   float: right;
 }
 .home_nav a,
-.home_nav li,
-.show_nav li{
+.home_nav li{
   float: left;
   font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
   font-size: 14px;
   line-height: 60px;
 }
-.show_nav li a,
 .home_nav li a{
   display: inline-block;
   text-decoration: none;
@@ -324,18 +337,10 @@ header{
   color: #555;
   padding: 0 10px;
 }
-
 .home_nav li a:hover{
   background: rgb(180,180,190);
   color: #fff;
 }
-.show_nav li a{
-  color: rgb(55,125,60);
-}
-.show_nav li a:hover{
-  text-decoration: underline;
-}
-
 footer a{
   color: #ccc;
   font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
@@ -347,11 +352,10 @@ footer a:hover{
 }
 /*----footer----*/
 footer{
-  background: linear-gradient(to top right, rgb(50,145,45),rgb(40,220,170));
+  background: linear-gradient(to top right, rgba(55,125,60,.8), rgba(55,125,60,.5));
+  margin-top: 10px;
   padding-top: 20px;
-  position: relative;
-    bottom: 0;
-    width: 100%;
+  width: 100%;
 }
 
 footer li{
