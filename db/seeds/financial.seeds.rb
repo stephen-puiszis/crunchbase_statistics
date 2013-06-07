@@ -1,4 +1,5 @@
-
+start_time = Time.now
+puts start_time
 
 Financial.create([
   { :name => "Greylock Partners", :perma => "greylock", :crunch_url => nil, :home_url => nil, :founded_date => nil, :created_at => "2013-06-06 05:58:53", :updated_at => "2013-06-06 05:58:53" },
@@ -9220,7 +9221,6 @@ Financial.create([
   { :name => "ATDC", :perma => "atdc", :crunch_url => nil, :home_url => nil, :founded_date => nil, :created_at => "2013-06-06 05:59:16", :updated_at => "2013-06-06 05:59:16" }
 ], :without_protection => true )
 
-
-
-
-
+puts "There are #{Financial.all.count} Financials database records"
+end_time = Time.now
+puts "It took #{end_time - start_time} seconds to run"
