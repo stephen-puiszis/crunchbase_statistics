@@ -1,0 +1,46 @@
+<% industry_array= Array.new %>
+<% a = Funding.ltm_fundings(365) %>
+<% total_funding = a.sum('funding_amount') %>
+
+<div>
+<table>
+  <caption>LTM Funding By Industry</caption>
+  <tr>
+    <th>Name</th>
+    <th>Funding ($ millions)</th>
+    <th>% Total</th>
+    <th>Volume</th>
+  </tr>
+
+<% Industry.order('name ASC').each do |industry| %>
+    <tr>
+      <td><%= industry_name = industry.name.titleize %></td>
+      <td><%= format_mil(a.for_industry(industry.id).sum('funding_amount')) %></td>
+      <% percent = a.for_industry(industry.id).sum('funding_amount') / total_funding %>
+      <td><%= number_to_percentage(percent * 100, :precision => 0) %></td>
+      <td><%= a.for_industry(industry.id).count %></td>
+    </tr>
+
+    <% industry_array << {label: industry_name , value: (percent*100).round(0) } %>
+
+<% end %>
+</table>
+
+</div>
+
+
+<% j_industry_array = industry_array.to_json %>
+
+
+<div id="industry_funding", class="right"></div>
+<div class="clearfix"></div>
+<script type="text/javascript">
+
+  Morris.Donut({
+    element: 'industry_funding',
+    data:
+      <%= raw(j_industry_array) %>,
+    formatter: function (x) { return x + "%" }
+  });
+
+</script>

@@ -17,12 +17,18 @@ class Funding < ActiveRecord::Base
   # Funding.for_industry(industry_id)
 
   # Location Based
-  scope :for_city, lambda { |city| includes(:company).where('location.city LIKE ?', city, ) if city }
+  # scope :for_state, lambda { |statecode| includes(:company).where('companies.location.statecode LIKE ?', statecode ) if statecode }
+  # scope :for_city, lambda { |city| includes(:company).where('companies.location.city LIKE ?', city ) if city }
+  # scope :for_location, lambda { |location| includes(:company).where('location.city LIKE ? OR location.zipcode ? LIKE ? OR location.statecode LIKE ? OR location.countrycode LIKE ?', location, location, location, location ) if location }
 
 
   # TODO: add_index :table_name, :foreign_key
   def perma
     company.perma
+  end
+
+  def self.multiple_funding_codes(round, round2)
+    Funding.where('funding_code = ? or funding_code = ?', round, round2 )
   end
 
   ####-------------- Date Related -----------------####
@@ -37,6 +43,15 @@ class Funding < ActiveRecord::Base
     end_date = Date.new (year + 1)
     Funding.where('funding_date >= ? and funding_date < ?', start_date, end_date) #Need to determine if everything is inclusive of the end date or not
   end
+
+  def self.monthly_fundings(date_var)
+    start_date = Date.new(date_var.year, date_var.month) # Returns First day of the month
+    end_date = Date.new(date_var.next_month.year, date_var.next_month.month) # Returns Midnight of the next month's first day
+    Funding.where('funding_date >= ? and funding_date < ?', start_date, end_date) #Need to determine if everything is inclusive of the end date or not
+  end
+
+
+
 
   def self.quarterly_fundings(year, quarter)
       if quarter == 'q1'

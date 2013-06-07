@@ -3,6 +3,16 @@ class Individual < ActiveRecord::Base
 
   has_many :investments, :as => :investable
 
+
+  def investment_sum
+    Funding.for_individual(self.id).sum(:funding_amount)
+  end
+
+  def investment_count
+    Funding.for_individual(self.id).count
+  end
+
+
     def total_investments
     total=0
     Funding.for_individual(self.id).each do |f|
@@ -10,5 +20,10 @@ class Individual < ActiveRecord::Base
       total+=f.funding_amount
     end
     return total
-  end
+    end
+
+    def num_of_investments
+      Funding.for_individual(self.id).count
+    end
+
 end

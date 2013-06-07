@@ -182,6 +182,9 @@ dt{
 
 /*----misc styles----*/
 
+.map{
+  border: solid;
+}
 .center{
   text-align: center;
 }

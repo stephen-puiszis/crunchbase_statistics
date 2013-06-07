@@ -1,29 +1,33 @@
 <div class="label">
-    <h3 class= "container">Listing financials</h1>
+    <h3 class= "container">Venture Capital Funding</h1>
 </div>
-
+<h2>Top Investors</h2>
+<p>How to do we make it so this shows the top 10 investors and not just where their id is 1-10</p>
 <table class= "sortable">
   <tr>
     <th>Name</th>
     <th>Total Investments</th>
-    <th>Perma</th>
-    <th>Crunch url</th>
-    <th>Home url</th>
-    <th>Founded date</th>
+    <th>Volume</th>
   </tr>
 
-<% @financials.each do |financial| %>
+<% Financial.limit(10).each do |financial| %>
   <tr>
     <td><%= link_to financial.name, financial %></td>
-    <td><%= number_to_currency(financial.total_investments, unit: "$") %></td>
-    <td><%= financial.perma %></td>
-    <td><%= financial.crunch_url %></td>
-    <td><%= financial.home_url %></td>
-    <td><%= financial.founded_date %></td>
+
+    <td><%= format_mil(financial.investment_sum) %></td>
+    <td><%= financial.investment_count %></td>
+
   </tr>
 <% end %>
 </table>
 
+<h2>Investors by Industry</h2>
+<h2>Investors by Round</h2>
+<h2>Investors by Location</h2>
+
+
 <br />
 
-<%= link_to 'New Financial', new_financial_path %>
+
+
+

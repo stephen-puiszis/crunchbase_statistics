@@ -1,30 +1,19 @@
 <div class="label">
     <h3 class= "container">Listing companies</h1>
 </div>
+
     <table class= "sortable">
       <tr>
         <th>Name</th>
         <th>Total Investments</th>
-        <th>Perma</th>
         <th>Industry</th>
-        <th>Crunch url</th>
-        <th>Home url</th>
-        <th>Founded date</th>
-        <th>Dead date</th>
-        <th>Stock symbol</th>
       </tr>
     
     <% @companies.each do |company| %>
       <tr>
         <td><%= link_to company.name, company %></td>
         <td><%= number_to_currency(company.total_investments, unit: "$") %></td>
-        <td><%= company.perma %></td>
-        <td><%= Industry.find_by_id(company.industry_id).name %></td>
-        <td><%= company.crunch_url %></td>
-        <td><%= company.home_url %></td>
-        <td><%= company.founded_date %></td>
-        <td><%= company.dead_date %></td>
-        <td><%= company.stock_symbol %></td>
+        <td><%= link_to Industry.find_by_id(company.industry_id).name, Industry.find_by_id(company.industry_id)%></td>
       </tr>
     <% end %>
     </table>
@@ -33,3 +22,26 @@
 <div class="container">    
     <%= link_to 'New Company', new_company_path %>
 </div>
+
+<h4>To Do: Determine View - not this table</h4>
+
+<table class= "sortable">
+  <tr>
+    <th>Name</th>
+    <th>Total Investments</th>
+    <th>Industry</th>
+  </tr>
+
+<% @companies.each do |company| %>
+  <tr>
+    <td><%= link_to company.name, company %></td>
+    <td><%= number_to_currency(company.total_investments, unit: "$") %></td>
+    <td><%= link_to Industry.find_by_id(company.industry_id).name, Industry.find_by_id(company.industry_id)%></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Company', new_company_path %>
+

@@ -5,14 +5,10 @@
 
 <table class= "sortable">
   <tr>
-    <th>Funding ID </th>
+    <th>Funding Round </th>
     <th>Company Being Funded</th>
     <th>Type</th>
-    <th>Investable Id</th>
-    <th>Perma</th>
-    <th>Show</th>
-    <th>Edit</th>
-    <th>Delete</th>
+    <th>Investor</th>
   </tr>
 
 <% @investments.each do |investment| %>
@@ -20,14 +16,10 @@
         <% next %>
     <% end %>
   <tr>
-    <td><%= investment.funding_id %></td>
+    <td><%= Funding.find_by_id(investment.funding_id).funding_code %></td>
     <td><%= investment.funding.company.name %></td>
     <td><%= investment.investable_type %></td>
-    <td><%= investment.investable_id %></td>
     <td><%= investment.investable.perma %></td>
-    <td><%= link_to 'Show', investment %></td>
-    <td><%= link_to 'Edit', edit_investment_path(investment) %></td>
-    <td><%= link_to 'Destroy', investment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

@@ -1,30 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Company:</b>
-  <%= @funding.company_id %>
-</p>
-
-<p>
-  <b>Funding code:</b>
-  <%= @funding.funding_code %>
-</p>
-
-<p>
-  <b>Funding amount:</b>
-  <%= @funding.funding_amount %>
-</p>
-
-<p>
-  <b>Funding currency:</b>
-  <%= @funding.funding_currency %>
-</p>
-
-<p>
-  <b>Funding date:</b>
-  <%= @funding.funding_date %>
-</p>
 
 
-<%= link_to 'Edit', edit_funding_path(@funding) %> |
-<%= link_to 'Back', fundings_path %>
+<% dates = Array.new  %>
+<% data_array = Array.new %>
+<% today = Date.today %>
+<% 12.times do |i| %>
+  <% new_date = today.prev_month %>
+  <% dates << new_date %>
+  <% today = new_date %>
+<% end  %>
+<% dates.sort! {|a,b| b <=> a } %>
+
+<%= dates.inspect %>
+<%= m1 = Funding.monthly_fundings( Date.today ).sum(:funding_amount) %>
+
+
+
+

@@ -1,4 +1,5 @@
 class FundingsController < ApplicationController
+
   layout 'charts_layout' , only: [:index]
 
   # GET /fundings
