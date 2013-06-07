@@ -10,5 +10,9 @@ class Individual < ActiveRecord::Base
       total+=f.funding_amount
     end
     return total
-  end
+    end
+
+    def num_of_investments
+      Funding.for_individual(self.id).count
+    end
 end

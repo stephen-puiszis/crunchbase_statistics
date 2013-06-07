@@ -170,6 +170,9 @@ a:hover{
 
 /*----misc styles----*/
 
+.map{
+  border: solid;
+}
 .center{
   text-align: center;
 }

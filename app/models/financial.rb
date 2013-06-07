@@ -13,4 +13,8 @@ class Financial < ActiveRecord::Base
     return total
   end
 
+    def num_of_investments
+      Funding.for_financial(self.id).count
+    end
+
 end

@@ -6,20 +6,14 @@
   <tr>
     <th>Name</th>
     <th>Total Investments</th>
-    <th>Perma</th>
-    <th>Crunch url</th>
-    <th>Home url</th>
-    <th>Founded date</th>
+    <th>Number of Investments</th>
   </tr>
 
 <% @financials.each do |financial| %>
   <tr>
     <td><%= link_to financial.name, financial %></td>
     <td><%= number_to_currency(financial.total_investments, unit: "$") %></td>
-    <td><%= financial.perma %></td>
-    <td><%= financial.crunch_url %></td>
-    <td><%= financial.home_url %></td>
-    <td><%= financial.founded_date %></td>
+    <td><%= financial.num_of_investments %></td>
   </tr>
 <% end %>
 </table>
