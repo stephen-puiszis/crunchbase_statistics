@@ -1,0 +1,29 @@
+<% dates = Array.new  %>
+<% data_array = Array.new %>
+<% current_date = Date.today %>
+
+<% 12.times do %>
+  <% new_date = current_date.prev_month %>
+  <% dates << new_date %>
+  <% current_date = new_date %>
+<% end  %>
+
+<% dates.each do |d| %>
+  <% data_array << { a: Funding.monthly_fundings(d).for_industry(7).sum(:funding_amount), y: d.strftime()} %>
+<% end %>
+
+<% j_data_array = data_array.to_json %>
+
+<div id="funding-bar", class="right"></div>
+<div class="clearfix"></div>
+
+<script type="text/javascript">
+Morris.Bar({
+  element: 'funding-bar',
+  data:
+      <%= raw(j_data_array) %>,
+  xkey: 'y',
+  ykeys: ['a'],
+  labels: ['Funding']
+});
+</script>

@@ -4,6 +4,10 @@ class IndividualsController < ApplicationController
   # GET /individuals.json
   def index
     @individuals = Individual.all
+    if @industry = params[:industry]
+    else
+      @industry = Industry.find_by_id(13)
+    end
 
     respond_to do |format|
       format.html # index.html.erb

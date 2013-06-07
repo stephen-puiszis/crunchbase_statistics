@@ -1,28 +1,106 @@
 <div class="label">
-    <h3 class= "container">Listing individuals</h1>
+    <h3 class= "container">Angel Investors</h1>
 </div>
 
+<h5>Why are the grids not working?????</h5>
+<h5>Need to Fix ranking</h5>
 
+<div class="grid_12">
 <table class= "sortable">
   <tr>
     <th>Name</th>
+    <th>Rank</th>
     <th>Total Investments</th>
-    <th>Perma</th>
-    <th>Crunch url</th>
-    <th>Home url</th>
+    <th>Volume</th>
   </tr>
-
-<% @individuals.each do |individual| %>
+<% i = 0 %>
+<% Individual.limit(25).each do |individual| %>
+<% i += 1 %>
   <tr>
     <td><%= link_to individual.name, individual %></td>
-    <td><%= number_to_currency(individual.total_investments, unit: "$") %></td>
-    <td><%= individual.perma %></td>
-    <td><%= individual.crunch_url %></td>
-    <td><%= individual.home_url %></td>
+    <td><%= i %></td>
+    <td><%= format_mil(individual.investment_sum) %></td>
+    <td><%= individual.investment_count %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+</div>
 
-<%= link_to 'New Individual', new_individual_path %>
+
+<h2>Top Angel Investors</h2>
+<h5>Need to make it so we are displaying the top from the database, not the guys who have id 1-10</h5>
+<table class= "sortable">
+  <tr>
+    <th>Name</th>
+    <th>Rank</th>
+    <th>Total Investments</th>
+    <th>Volume</th>
+  </tr>
+<% i = 0 %>
+<% Individual.limit(10).each do |individual| %>
+<% i += 1 %>
+  <tr>
+    <td><%= link_to individual.name, individual %></td>
+    <td><%= i %></td>
+    <td><%= format_mil(Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).sum(:funding_amount)) %></td>
+    <td><%= Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).count %></td>
+  </tr>
+<% end %>
+</table>
+
+<h5>Footnote: Angel Investor is defined as funding in seed or angel rounds</h5>
+
+</div>
+
+
+<h2>Top <%= @industry.name.titleize %> Angels </h2>
+<h5>Same as above</h5>
+
+<%=form_tag(@industry) do %>
+  <div>
+    <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
+  </div>
+
+  <%= submit_tag "Select Industry", class: 'btn btn-success' %>
+<% end %>
+
+<table class= "sortable">
+  <tr>
+    <th>Name</th>
+    <th>Rank</th>
+    <th>Total Investments</th>
+    <th>Volume</th>
+  </tr>
+<% i = 0 %>
+<% Individual.limit(5).each do |individual| %>
+<% i += 1 %>
+  <tr>
+    <td><%= link_to individual.name, individual %></td>
+    <td><%= i %></td>
+    <td><%= format_mil(Funding.multiple_funding_codes('seed', 'angel').for_industry(@industry.id).for_individual(individual.id).sum(:funding_amount)) %></td>
+    <td><%= Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).count %></td>
+  </tr>
+<% end %>
+</table>
+
+<h2>Angel Investing by Location</h2>
+
+<table class= "sortable">
+  <tr>
+    <th>Name</th>
+    <th>Rank</th>
+    <th>Total Investments</th>
+    <th>Volume</th>
+  </tr>
+<% i = 0 %>
+<% Individual.limit(5).each do |individual| %>
+<% i += 1 %>
+  <tr>
+    <td><%= link_to individual.name, individual %></td>
+    <td><%= i %></td>
+    <td><%= format_mil(Funding.multiple_funding_codes('seed', 'angel').for_industry(@industry.id).for_individual(individual.id).sum(:funding_amount)) %></td>
+    <td><%= Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).count %></td>
+  </tr>
+<% end %>
+</table>

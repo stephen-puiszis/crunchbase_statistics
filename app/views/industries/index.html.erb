@@ -1,35 +1,20 @@
-
-
 <div class="label">
-    <h3 class= "container">Listing industries</h1>
+    <h3 class= "container">Industry Snapshot</h1>
 </div>
 
-<body>
-  <div id="donut-example"></div>
+<%= render 'industry_donut' %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Total funded</th>
-  </tr>
+<div>
+<h2>LTM Industry Funding (Web) - Hardcoded</h2>
 
-<% @industries.each do |industry| %>
-  <tr>
-    <td><%= link_to industry.name, industry %></td>
-    <td><%= number_to_currency(industry.funded, :unit => "$") %></td>
-  </tr>
-  <% @industry_array<<{label: industry.name, value: industry.funded } %>
+<%=form_tag('/industry') do %>
+  <div>
+    <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
+  </div>
+
+  <%= submit_tag "Select Industry", class: 'btn btn-success' %>
 <% end %>
-</table>
 
-</body>
-<% j_array=@industry_array.to_json %>
-<script type="text/javascript">
-Morris.Donut({
-  element: 'donut-example',
-  data:
-    <%= raw(j_array) %>
-});
-</script>
+<%= render 'industry_bar' %>
 
-<%= link_to 'New Industry', new_industry_path %>
+</div>

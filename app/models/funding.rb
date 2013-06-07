@@ -25,6 +25,10 @@ class Funding < ActiveRecord::Base
     company.perma
   end
 
+  def self.multiple_funding_codes(round, round2)
+    Funding.where('funding_code = ? or funding_code = ?', round, round2 )
+  end
+
   ####-------------- Date Related -----------------####
   def self.ltm_fundings(days = 90)
     today = Time.now
@@ -37,6 +41,15 @@ class Funding < ActiveRecord::Base
     end_date = Date.new (year + 1)
     Funding.where('funding_date >= ? and funding_date < ?', start_date, end_date) #Need to determine if everything is inclusive of the end date or not
   end
+
+  def self.monthly_fundings(date_var)
+    start_date = Date.new(date_var.year, date_var.month) # Returns First day of the month
+    end_date = Date.new(date_var.next_month.year, date_var.next_month.month) # Returns Midnight of the next month's first day
+    Funding.where('funding_date >= ? and funding_date < ?', start_date, end_date) #Need to determine if everything is inclusive of the end date or not
+  end
+
+
+
 
   def self.quarterly_fundings(year, quarter)
       if quarter == 'q1'

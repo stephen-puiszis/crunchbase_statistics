@@ -1,29 +1,27 @@
-<h2>All Investments</h2>
 <table class= "sortable">
-  <tr>
-    <th>Company</th>
-    <th>Date</th>
-    <th>Round</th>
-    <th>Amount</th>
-    <th>Industry</th>
-    <th>City</th>
-  </tr>
-
 <% company_array=[] %>
 <% fcode_array=[] %>
 <% industry_array=[] %>
-<% fundings.order("funding_date DESC").each do |f| %>
-  <tr>
-    <td><%= f.company.name %></td>
-    <td><%= f.funding_date %></td>
-    <td><%= f.funding_code %></td>
-    <td><%= number_to_currency(f.funding_amount, unit: "$") %></td>
-    <td><%= f.company.industry.name %></td>
-    <td><%= f.company.location.city %></td>
+<% a = Funding.annual_fundings(2011) %>
+<% total_funding = a.sum('funding_amount') %>
 
+  <tr>
+    <th> Industry </th>
+    <th> % Total Funding </th>
   </tr>
 
-  <% company_array<<{label: f.company.name, value: f.funding_amount } %>
+<% Industry.order('name ASC').each do |industry| %>
+  <tr>
+    <td><%= industry.name.titleize %></td>
+    <td><%= a.for_industry(industry.id).sum('funding_amount') / total_funding %>  </td>
+  </tr>
+
+<% end %>
+</table>
+
+
+
+  <% industry_array<<{label: f.company.name, value: f.funding_amount } %>
   <% fcode_array<<{label: f.funding_code, value: f.funding_amount } %>
   <% industry_array<<{label: f.company.industry.name, value: f.funding_amount } %>
 <% end %>
@@ -43,15 +41,5 @@ Morris.Donut({
   element: 'company_funding',
   data:
     <%= raw(j_company_array) %>
-});
-Morris.Donut({
-  element: 'fcode_funding',
-  data:
-    <%= raw(j_fcode_array) %>
-});
-Morris.Donut({
-  element: 'industry_funding',
-  data:
-    <%= raw(j_industry_array) %>
 });
 </script>

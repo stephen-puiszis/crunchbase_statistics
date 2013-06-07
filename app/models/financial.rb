@@ -3,14 +3,12 @@ class Financial < ActiveRecord::Base
 
   has_many :investments, :as => :investable
 
+  def investment_sum
+    Funding.for_financial(self.id).sum(:funding_amount)
+  end
 
-  def total_investments
-    total=0
-    Funding.for_financial(self.id).each do |f|
-      next unless f.present? && f.funding_amount.present?
-      total+=f.funding_amount
-    end
-    return total
+  def investment_count
+    Funding.for_financial(self.id).count
   end
 
 end

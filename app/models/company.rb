@@ -13,4 +13,14 @@ class Company < ActiveRecord::Base
     end
     return total
   end
+
+  def investment_sum
+    Funding.for_company(self.id).sum(:funding_amount)
+  end
+
+  def investment_count
+    Funding.for_company(self.id).count
+  end
+
+
 end
