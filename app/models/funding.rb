@@ -17,7 +17,9 @@ class Funding < ActiveRecord::Base
   # Funding.for_industry(industry_id)
 
   # Location Based
-  scope :for_city, lambda { |city| includes(:company).where('location.city LIKE ?', city, ) if city }
+  # scope :for_state, lambda { |statecode| includes(:company).where('companies.location.statecode LIKE ?', statecode ) if statecode }
+  # scope :for_city, lambda { |city| includes(:company).where('companies.location.city LIKE ?', city ) if city }
+  # scope :for_location, lambda { |location| includes(:company).where('location.city LIKE ? OR location.zipcode ? LIKE ? OR location.statecode LIKE ? OR location.countrycode LIKE ?', location, location, location, location ) if location }
 
 
   # TODO: add_index :table_name, :foreign_key

@@ -116,6 +116,24 @@
       <td> <%=  Funding.for_funding_round('g').ltm_fundings(365).count %></td>
       <td> <%=  format_mil(Funding.for_funding_round('g').ltm_fundings(365).average('funding_amount') ) %></td>
     </tr>
+    <tr>
+      <td>Venture Round</td>
+      <td> <%=  format_mil(Funding.for_funding_round('venture_round').ltm_fundings(365).sum('funding_amount') ) %></td>
+      <td> <%=  Funding.for_funding_round('venture_round').ltm_fundings(365).count %></td>
+      <td> <%=  format_mil(Funding.for_funding_round('venture_round').ltm_fundings(365).average('funding_amount') ) %></td>
+    </tr>
+    <tr>
+      <td>Private Equity</td>
+      <td> <%=  format_mil(Funding.for_funding_round('private_equity').ltm_fundings(365).sum('funding_amount') ) %></td>
+      <td> <%=  Funding.for_funding_round('private_equity').ltm_fundings(365).count %></td>
+      <td> <%=  format_mil(Funding.for_funding_round('private_equity').ltm_fundings(365).average('funding_amount') ) %></td>
+    </tr>
+    <tr>
+      <td>Debt Round</td>
+      <td> <%=  format_mil(Funding.for_funding_round('debt_round').ltm_fundings(365).sum('funding_amount') ) %></td>
+      <td> <%=  Funding.for_funding_round('debt_round').ltm_fundings(365).count %></td>
+      <td> <%=  format_mil(Funding.for_funding_round('debt_round').ltm_fundings(365).average('funding_amount') ) %></td>
+    </tr>
 
 
 
