@@ -1,0 +1,25 @@
+<% industry_array= Array.new %>
+<% a = Funding.ltm_fundings(365).for_city('San Francisco') %>
+<% total_funding = a.sum('funding_amount') %>
+
+<% Industry.order('name ASC').each do |industry| %>
+    <% industry_name = industry.name.titleize %>
+    <% percent = a.for_industry(industry.id).sum('funding_amount') / total_funding %>
+    <% industry_array << {label: industry_name , value: (percent*100).round(0) } %>
+
+<% end %>
+
+<% j_industry_array = industry_array.to_json %>
+
+<div id="industry_location_funding", class="right"></div>
+<div class="clearfix"></div>
+<script type="text/javascript">
+
+  Morris.Donut({
+    element: 'industry_location_funding',
+    data:
+      <%= raw(j_industry_array) %>,
+    formatter: function (x) { return x + "%" }
+  });
+
+</script>

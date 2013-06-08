@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  layout 'charts_layout' , only: [:index]
   # GET /locations
   # GET /locations.json
 

@@ -4,6 +4,7 @@ class Funding < ActiveRecord::Base
   belongs_to :company
 
   has_many :investments
+  has_one :location, through: :company
 
   scope :for_financial, lambda { |financial_id| includes(:investments).where('investments.investable_id = ? AND investments.investable_type = ?', financial_id, 'Financial') if financial_id }
   # Funding.for_financial(financial_id)
@@ -18,7 +19,7 @@ class Funding < ActiveRecord::Base
 
   # Location Based
   # scope :for_state, lambda { |statecode| includes(:company).where('companies.location.statecode LIKE ?', statecode ) if statecode }
-  # scope :for_city, lambda { |city| includes(:company).where('companies.location.city LIKE ?', city ) if city }
+  scope :for_city, lambda { |city| includes(:location).where('locations.city LIKE ?', "%#{city}%" ) if city }
   # scope :for_location, lambda { |location| includes(:company).where('location.city LIKE ? OR location.zipcode ? LIKE ? OR location.statecode LIKE ? OR location.countrycode LIKE ?', location, location, location, location ) if location }
 
 
