@@ -9,7 +9,7 @@
 <% end  %>
 
 <% dates.each do |d| %>
-  <% data_array << { a: Funding.monthly_fundings(d).for_industry(7).sum(:funding_amount), y: d.strftime()} %>
+  <% data_array << { a: Funding.monthly_fundings(d).for_industry(7).sum(:funding_amount), y: d.strftime("%b%y")} %>
 <% end %>
 
 <% j_data_array = data_array.to_json %>
@@ -24,6 +24,7 @@ Morris.Bar({
       <%= raw(j_data_array) %>,
   xkey: 'y',
   ykeys: ['a'],
-  labels: ['Funding']
+  labels: ['Funding'],
+  barColors: ['#377D3C', '#228B22', '#32CD32']
 });
 </script>

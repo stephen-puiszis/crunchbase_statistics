@@ -58,12 +58,11 @@
   </div>
 
   <div class="grid_12">
-    <!-- top right -->
-    <h3>Industry - Hardcoded 'SF'</h3>
-    <%= render "location_donut" %>
+
+    <h3>Industry Views for- <%= params[:search] %></h3>
+    <%= render :partial => "location_donut", locals: {fundings: Funding.ltm_fundings(365).for_city(params[:search])} %>
   </div>
 </section>
-
 
 <section class="container group">
 
@@ -154,32 +153,30 @@
 
   <div class="grid_12">
     <!-- bottom right -->
-    <%= render :partial => "location_bar" %>
+    <%= render :partial => "location_bar", locals: {fundings: Funding.for_city(params[:search])} %>
+
   </div>
 </section>
 
-
-
-
-<div class="container grid_12">
-
+<section class="container group">
+<div class="grid_8">
 
   <!-- links are still broken -->
-  <% if params[:search].present? %>
-  <table class="left">
-    <tr>
-      <th>Company Name</th>
-      <th>Industry</th>
-    </tr>
-    <% @companies.each do |company| %>
-    <tr>
-      <td><%= link_to company.name, company %></td>
-      <td><%= link_to company.industry.name, company.industry %></td>
-    </tr>
-    <% end %>
-  <% end %>
-  </table>
-  <% if params[:search].present? %>
-    <%= render :partial => "map" %>
-  <% end %>
+    <% if params[:search].present? %>
+    <table class="left">
+      <tr>
+        <th>Company Name</th>
+        <th>Industry</th>
+      </tr>
+      <% @companies.each do |company| %>
+      <tr>
+        <td><%= link_to company.name, company %></td>
+        <td><%= link_to company.industry.name, company.industry %></td>
+      </tr>
+      <% end %>
+    </table>
+    </div>
 
+   <div class="grid_16"> <%= render :partial => "map" %></div>
+  <% end %>
+</section>

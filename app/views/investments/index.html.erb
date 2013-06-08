@@ -22,10 +22,14 @@
     <% end %>
   <tr>
     <td><%= Funding.find_by_id(investment.funding_id).funding_code %></td>
-    <td><%= investment.funding.company.name %></td>
+    <td><%= link_to investment.funding.company.name, investment.funding.company %></td>
     <td><%= investment.investable_type %></td>
-    <td><%= investment.investable.perma %></td>
+    <td><%= link_to investment.investable.perma, investment.investable %></td>
   </tr>
 <% end %>
 </table>
 <br />
+
+
+
+

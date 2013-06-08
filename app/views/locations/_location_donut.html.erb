@@ -1,11 +1,14 @@
 <% industry_array= Array.new %>
-<% a = Funding.ltm_fundings(365).for_city('San Francisco') %>
-<% total_funding = a.sum('funding_amount') %>
+
+<% total_funding = fundings.sum('funding_amount') %>
 
 <% Industry.order('name ASC').each do |industry| %>
     <% industry_name = industry.name.titleize %>
-    <% percent = a.for_industry(industry.id).sum('funding_amount') / total_funding %>
+    <% percent = fundings.for_industry(industry.id).sum('funding_amount') / total_funding %>
+    <% if percent==0||percent.nan? %>
+    <% else %>
     <% industry_array << {label: industry_name , value: (percent*100).round(0) } %>
+    <% end %>
 
 <% end %>
 
@@ -19,6 +22,14 @@
     element: 'industry_location_funding',
     data:
       <%= raw(j_industry_array) %>,
+    backgroundColor: '#ccc',
+    labelColor: '#060',
+    colors: [
+    '#0BA462',
+    '#39B580',
+    '#67C69D',
+    '#95D7BB'
+    ],
     formatter: function (x) { return x + "%" }
   });
 
