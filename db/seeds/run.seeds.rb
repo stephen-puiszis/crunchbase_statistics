@@ -1,9 +1,16 @@
+# In new file:
+# Industry.destroy_all
+# Company.destroy_all
+# Individual.destroy_all
+# Financial.destroy_all
+# Investment.destroy_all
+# Funding.destroy_all
+# Location.destroy_all
 
-# ------------------------ Original Seed file
   run_number = 0
-  number_of_queries = 2541
+  number_of_queries = 1000
 # bundle install other macs
-
+# ____________________________________________________________
 
 require 'open-uri'
 require 'json'
@@ -26,25 +33,160 @@ co = "company/"
 fin = "financial-organization/"
 person = "person/"
 
-# # --------------------------------------- Individual Seeding --------------------------------- #
-individuals = Individual.offset(run_number * number_of_queries).limit(number_of_queries)
-individuals.each_index do |j|
 
-    person_data = JSON.parse(open(base_url+person+individuals[j].perma+".js?"+api_key).read)
+# -------------------------------- Company Seeding --------------------------------- #
 
-    i = Individual.find_by_perma(person_data["permalink"])
+companies = Company.offset(run_number * number_of_queries).limit(number_of_queries)
+companies.each_index do |i|
 
-    i.crunch_url = person_data["crunchbase_url"]
-    i.home_url = person_data["homepage_url"]
-    i.save
+  # error 1)
+  If JSON.parse(open(base_url+co+companies[i].perma+".js?"+api_key).read)
+    company_data = JSON.parse(open(base_url+co+companies[i].perma+".js?"+api_key).read)
 
+    c = Company.find_by_perma(company_data["permalink"])
+
+    if company_data["category_code"] == nil
+      c.industry_id = Industry.first.id
+    elsif Industry.find_by_name(company_data["category_code"]) == nil
+      Industry.create(name: company_data["category_code"])
+      c.industry_id = Industry.find_by_name(company_data["category_code"]).id
+    else
+      c.industry_id = Industry.find_by_name(company_data["category_code"]).id
+    end
+
+    l = Location.new
+    l.address1 = company_data['offices'][0]['address1']
+    l.address2 = company_data['offices'][0]['address12']
+    l.zipcode = company_data['offices'][0]['zip_code']
+    l.city = company_data['offices'][0]['city']
+    l.statecode = company_data['offices'][0]['state_code']
+    l.countrycode = company_data['offices'][0]['country_code']
+    if company_data['offices'][0]['latitude'].present?
+      l.latitude = company_data['offices'][0]['latitude']
+      l.longitude = company_data['offices'][0]['longitude']
+    end
+    l.company_id = c.id
+    l.save
+
+
+    puts "There are #{Company.all.count} companies in the database"
+
+# -------------- Company Funding Rounds -------------- #
+
+
+    company_data["funding_rounds"].each do |round|
+      f = Funding.new
+      f.company_id = c.id
+
+
+      if round["round_code"] == "unattributed"
+        f.funding_code = "venture round"
+      else
+        f.funding_code = round["round_code"]
+      end
+
+      if round["raised_amount"] != nil
+        f.funding_amount = round["raised_amount"]
+      else
+        f.funding_amount = nil
+      end
+
+      if round["raised_currency_code"] != nil
+        f.funding_currency = round["raised_currency_code"]
+      else
+        f.funding_currency = nil
+      end
+
+      if round["funded_year"] == nil
+          f.funding_date = nil
+        elsif round["funded_month"] == nil
+          f.funding_date = Date.new( round["funded_year"] )
+        elsif round["funded_day"] == nil
+          f.funding_date = Date.new( round["funded_year"], round["funded_month"])
+        else
+          f.funding_date = Date.new(round["funded_year"], round["funded_month"], round["funded_day"])
+      end
+
+      f.save
+      puts "There are #{Funding.all.count} funding rounds in the database"
+
+# ------------------Investments
+
+# WAT KUNNEN WE HIER MEE?!
+      if round["investments"].empty?
+        i = Investment.new
+        i.funding_id = f.id
+        i.save
+      end
+
+      round["investments"].each do |investment|
+
+      if investment["company"] != nil
+          company = Company.find_by_perma(investment["company"]["permalink"])
+          company.investments.create(funding_id: f.id)
+
+      elsif investment["financial_org"] != nil
+        financial = Financial.find_by_perma(investment["financial_org"]["permalink"])
+        financial.investments.create(funding_id: f.id)
+
+        i = Investment.new
+        i.funding_id = f.id
+# Niet nodig fin perma?!
+        i.financial_perma = investment["financial_org"]["permalink"]
+        i.investable_id = Financial.find_by_perma(i.financial_perma).id
+        i.investable_type="financial"
+        i.save
+
+        elsif investment["person"] != nil
+          individual = Individual.find_by_perma(investment["person"]["permalink"])
+          individual.investments.create(funding_id: f.id)
+
+          i = Investment.new
+          i.funding_id = f.id
+# indiv perma?!
+          i.individual_perma = investment["person"]["permalink"]
+          i.investable_id = Individual.find_by_perma(i.individual_perma).id
+          i.investable_type="individual"
+          i.save
+
+        else
+
+          i = Investment.new
+          i.funding_id = f.id
+          i.investable_id = nil
+          i.save
+        end
+
+      end
+
+    end
+
+    if company_data["ipo"] != nil
+
+      f = Funding.new
+      f.company_id = c.id
+      f.funding_code = 'ipo'
+      f.funding_amount = company_data["ipo"]["valuation_amount"]
+      f.funding_currency = company_data["ipo"]["valuation_currency_code"]
+
+
+    if company_data["ipo"]["pub_year"] == nil
+      f.funding_date = nil
+    elsif company_data["ipo"]["pub_month"] == nil
+      f.funding_date = Date.new(company_data["ipo"]["pub_year"])
+    elsif company_data["ipo"]["pub_day"] == nil
+      f.funding_date = Date.new(company_data["ipo"]["pub_year"], company_data["ipo"]["pub_month"])
+    else
+      f.funding_date = Date.new(company_data["ipo"]["pub_year"], company_data["ipo"]["pub_month"], company_data["ipo"]["pub_day"] )
+    end
+
+    f.save
+
+    end
+
+  end
 end
-
-puts "There are #{Individual.all.count} people in the database"
-
-
 end_time = Time.now
-
 puts "It took #{end_time - start_time} seconds to run"
 
 

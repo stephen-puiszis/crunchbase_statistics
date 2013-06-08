@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(:version => 20130601220510) do
     t.string   "name"
     t.string   "perma"
     t.integer  "industry_id"
-    t.string   "crunch_url"
-    t.string   "home_url"
-    t.date     "founded_date"
-    t.date     "dead_date"
-    t.string   "stock_symbol"
+    t.string   "crunch_url"       #not
+    t.string   "home_url"         #not
+    t.date     "founded_date"     #not
+    t.date     "dead_date"        #not
+    t.string   "stock_symbol"     #not
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(:version => 20130601220510) do
   create_table "financials", :force => true do |t|
     t.string   "name"
     t.string   "perma"
-    t.string   "crunch_url"
-    t.string   "home_url"
-    t.date     "founded_date"
+    t.string   "crunch_url"       #not
+    t.string   "home_url"         #not
+    t.date     "founded_date"     #not
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20130601220510) do
   create_table "individuals", :force => true do |t|
     t.string   "name"
     t.string   "perma"
-    t.string   "crunch_url"
-    t.string   "home_url"
+    t.string   "crunch_url"       #not
+    t.string   "home_url"         #not
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
