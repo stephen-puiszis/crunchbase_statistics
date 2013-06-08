@@ -170,9 +170,6 @@ a:hover{
 
 /*----misc styles----*/
 
-.map{
-  border: solid;
-}
 .center{
   text-align: center;
 }
@@ -191,9 +188,7 @@ caption{
 .section_nav{
   padding-left: 50px;
 }
-.xyz{
 
-}
 .section_nav a{
   background: linear-gradient(rgb(245,245,245),rgb(220,220,220));
   border: 1px solid #ddd;
