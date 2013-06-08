@@ -24,6 +24,13 @@ Morris.Bar({
       <%= raw(j_data_array) %>,
   xkey: 'y',
   ykeys: ['a'],
-  labels: ['Funding']
+  labels: ['Funding'],
+  barFillColors: [
+    '#aaa #555',      // from light gray to dark gray (top to bottom)
+    '#555 #aaa black', // from dark day, through light gray, to black
+    '#555 #aaa black', // from dark day, through light gray, to black
+    '#555 #aaa black', // from dark day, through light gray, to black
+    '#555 #aaa black' // from dark day, through light gray, to black
+  ]
 });
 </script>
