@@ -195,7 +195,7 @@ caption{
 
 }
 .section_nav a{
-  background: linear-gradient(rgb(245,245,245),rgb(220,220,220));
+  /*background: linear-gradient(rgb(245,245,245),rgb(220,220,220));*/
   border: 1px solid #ddd;
   border-radius: 3px;
   color: #666;
@@ -243,9 +243,14 @@ tfoot td{
   font-size: 12px;
   text-align: right;
 }
+
+.search-icon {
+  height: 15px;
+}
+
 /*----header----*/
 header{
-  background: linear-gradient(rgb(245,255,245), rgb(190,195,220));
+  /*background: linear-gradient(rgb(245,255,245), rgb(190,195,220));*/
   border-bottom: 1px solid #888;
   width: 100%;
 }
@@ -354,7 +359,8 @@ footer a:hover{
 }
 /*----footer----*/
 footer{
-  background: linear-gradient(to top right, rgb(50,145,45),rgb(40,220,170));
+  /*background: linear-gradient(to top right, rgb(50,145,45),rgb(40,220,170));*/
+  background-color: rgb(50,145,45);
   padding-top: 20px;
   position: relative;
     bottom: 0;
