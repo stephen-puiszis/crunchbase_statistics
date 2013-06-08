@@ -59,12 +59,11 @@
   </div>
 
   <div class="grid_12">
-    <!-- top right -->
+
     <h3>Industry Views for- <%= params[:search] %></h3>
     <%= render :partial => "location_donut", locals: {fundings: Funding.ltm_fundings(365).for_city(params[:search])} %>
   </div>
 </section>
-
 
 <section class="container group">
 
@@ -182,4 +181,3 @@
    <div class="grid_16"> <%= render :partial => "map" %></div>
   <% end %>
 </section>
-

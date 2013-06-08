@@ -45,8 +45,6 @@
     <div id="industry_funding", class="right"></div>
     <div class="clearfix"></div>
       <%= render 'industry_donut' %>
-
-
   </div>
 </section>
 <section class="container group">
@@ -55,11 +53,11 @@
 
     <h3>LTM Funding by Round - Web (Hardcoded)</h3>
 
+
     <%=form_tag('/industry') do %>
       <div>
         <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
       </div>
-
       <%= submit_tag "Select Industry", class: 'btn btn-success' %>
     <% end %>
 
@@ -155,7 +153,7 @@
       <div>
         <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
       </div>
-
+      <%= submit_tag "Select Industry", class: 'btn btn-success' %>
     <% end %>
 
     <%= render 'industry_bar' %>
