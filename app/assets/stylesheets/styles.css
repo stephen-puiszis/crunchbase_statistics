@@ -150,7 +150,8 @@ header h1{
 }
 .show_page h4{
   border-bottom: 2px solid #ccc;
-  padding: 5px 10px; 
+  padding: 5px 10px;
+
 }
 .co_info h4{
   display: block;
@@ -169,7 +170,7 @@ a:hover{
 /*----lists----*/
 dd{
   font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
-  padding-left: 10px; 
+  padding-left: 10px;
   line-height: 20px;
 }
 
@@ -210,7 +211,7 @@ select{
   padding-left: 50px;
 }
 .section_nav a{
-  background: linear-gradient(rgb(245,245,245),rgb(220,220,220));
+  /*background: linear-gradient(rgb(245,245,245),rgb(220,220,220));*/
   border: 1px solid #ddd;
   border-radius: 3px;
   color: #666;
@@ -261,6 +262,11 @@ tfoot td{
   font-size: 12px;
   text-align: right;
 }
+
+.search-icon {
+  height: 15px;
+}
+
 /*----header----*/
 header{
   background: linear-gradient(rgb(245,255,245), rgb(190,195,220));
@@ -359,7 +365,9 @@ footer a:hover{
 }
 /*----footer----*/
 footer{
-  background: linear-gradient(to top right, rgba(55,125,60,.8), rgba(55,125,60,.5));
+/*  background: linear-gradient(to top right, rgba(55,125,60,.8), rgba(55,125,60,.5));
+*/ 
+  background-color: rgb(50,145,45);
   margin-top: 10px;
   padding-top: 20px;
   width: 100%;

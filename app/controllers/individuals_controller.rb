@@ -1,5 +1,5 @@
 class IndividualsController < ApplicationController
-  layout 'charts_layout', only: [:show]
+  layout 'charts_layout', only: [:show, :index]
   # GET /individuals
   # GET /individuals.json
   def index

@@ -8,7 +8,7 @@
   <%= csrf_meta_tags %>
   <%= yield :head %>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-  <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
   <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
   <meta charset=utf-8 />
   </head>
@@ -22,6 +22,7 @@
                 <li><%= link_to "Home", "/" %></li>
                 <li><%= link_to "Fundings", fundings_url %></li>
                 <li><%= link_to "Industries", "/industries" %></li>
+                <li><%= link_to "Angels", "/individuals" %></li>
                 <li><%= link_to "Investments", "/investments" %></li>
                 <li><%= link_to "Locations", "/locations" %></li>
                 <li><%= link_to "Contact", contact_url %></li>

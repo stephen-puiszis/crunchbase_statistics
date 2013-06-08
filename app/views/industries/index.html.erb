@@ -44,18 +44,7 @@
     <% j_industry_array = industry_array.to_json %>
     <div id="industry_funding", class="right"></div>
     <div class="clearfix"></div>
-    <script type="text/javascript">
-
-      Morris.Donut({
-        element: 'industry_funding',
-        data:
-          <%= raw(j_industry_array) %>,
-        formatter: function (x) { return x + "%" }
-      });
-
-    </script>
-
-
+      <%= render 'industry_donut' %>
   </div>
 </section>
 <section class="container group">
@@ -64,11 +53,11 @@
 
     <h3>LTM Funding by Round - Web (Hardcoded)</h3>
 
+
     <%=form_tag('/industry') do %>
       <div>
         <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
       </div>
-
       <%= submit_tag "Select Industry", class: 'btn btn-success' %>
     <% end %>
 
@@ -164,7 +153,6 @@
       <div>
         <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
       </div>
-
       <%= submit_tag "Select Industry", class: 'btn btn-success' %>
     <% end %>
 
