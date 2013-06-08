@@ -1,5 +1,5 @@
 <% industry_array= Array.new %>
-<% a = Funding.ltm_fundings(365).for_city("San Francisco") %>
+<% a = Funding.ltm_fundings(365).for_city('San Francisco') %>
 <% total_funding = a.sum('funding_amount') %>
 
 <% Industry.order('name ASC').each do |industry| %>
@@ -11,12 +11,12 @@
 
 <% j_industry_array = industry_array.to_json %>
 
-<div id="industry_funding", class="right"></div>
+<div id="industry_location_funding", class="right"></div>
 <div class="clearfix"></div>
 <script type="text/javascript">
 
   Morris.Donut({
-    element: 'industry_funding',
+    element: 'industry_location_funding',
     data:
       <%= raw(j_industry_array) %>,
     formatter: function (x) { return x + "%" }
