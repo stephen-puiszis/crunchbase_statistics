@@ -1,9 +1,19 @@
+<script>
+      $(document).ready(function() {
+       $("h7").on("click", function() {
+          $("#facebook").slideToggle();
+        });
+      });
+
+  </script>
+
 <div class="label">
     <h3 class= "container">Listing investments</h1>
 </div>
 
 
 <h3>Ideas for page:</h3>
+<h7>hello</h7>
 <h4>Top Investors by Round</h4>
 <h4>Biggest Rounds for Time Period</h4>
 <h4>Biggest Rounds for Time Period by Location</h4>
@@ -20,7 +30,7 @@
     <% if investment.investable==nil %>
         <% next %>
     <% end %>
-  <tr>
+  <tr id="<%= investment.funding.company.perma %>">
     <td><%= Funding.find_by_id(investment.funding_id).funding_code %></td>
     <td><%= link_to investment.funding.company.name, investment.funding.company %></td>
     <td><%= investment.investable_type %></td>
@@ -29,7 +39,3 @@
 <% end %>
 </table>
 <br />
-
-
-
-
