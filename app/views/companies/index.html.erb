@@ -1,47 +1,46 @@
 <div class="label">
     <h3 class= "container">Listing companies</h1>
 </div>
-
-    <table class= "sortable">
+<section class="container">
+  <table class= "sortable">
+    <thead>
       <tr>
         <th>Name</th>
         <th>Total Investments</th>
         <th>Industry</th>
       </tr>
-    
+    </thead>
     <% @companies.each do |company| %>
+    <tbody>
       <tr>
         <td><%= link_to company.name, company %></td>
-        <td><%= number_to_currency(company.total_investments, unit: "$") %></td>
+        <td class="currency"><%= number_to_currency(company.total_investments, unit: "$") %></td>
         <td><%= link_to Industry.find_by_id(company.industry_id).name, Industry.find_by_id(company.industry_id)%></td>
       </tr>
+    </tbody>
     <% end %>
-    </table>
-    
-    <br />
-<div class="container">    
-    <%= link_to 'New Company', new_company_path %>
-</div>
-
-<h4>To Do: Determine View - not this table</h4>
-
-<table class= "sortable">
-  <tr>
-    <th>Name</th>
-    <th>Total Investments</th>
-    <th>Industry</th>
-  </tr>
-
-<% @companies.each do |company| %>
-  <tr>
-    <td><%= link_to company.name, company %></td>
-    <td><%= number_to_currency(company.total_investments, unit: "$") %></td>
-    <td><%= link_to Industry.find_by_id(company.industry_id).name, Industry.find_by_id(company.industry_id)%></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Company', new_company_path %>
-
+  </table>
+  <br />
+  <%= link_to 'New Company', new_company_path %>
+  <h4>To Do: Determine View - not this table</h4>
+  <table class= "sortable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Total Investments</th>
+        <th>Industry</th>
+      </tr>
+    </thead>
+    <% @companies.each do |company| %>
+    <tbody>
+      <tr>
+        <td><%= link_to company.name, company %></td>
+        <td class="currency"><%= number_to_currency(company.total_investments, unit: "$") %></td>
+        <td><%= link_to Industry.find_by_id(company.industry_id).name, Industry.find_by_id(company.industry_id)%></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <br />
+  <%= link_to 'New Company', new_company_path %>
+</section>

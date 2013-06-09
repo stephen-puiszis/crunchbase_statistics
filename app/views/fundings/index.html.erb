@@ -1,143 +1,144 @@
 <div class="label">
     <h3 class= "container">The Startup Funding Landscape</h1>
 </div>
-
-
-<section class="container group">
+<section class="container group under">
       <div class="grid_12">
-        <!-- top left -->
-         <h3>LTM Funding</h3>
-         <p>To do: click on table row and take you to details for that table row </p>
-         <p>To do: how do we create footnotes (i.e. LTM is last tweleve months) </p>
-         <table class="table table-hover sortable">
-           <tr>
-             <th>Quarter</th>
-             <th>Amount ($ millions)</th>
-             <th>Volume</th>
-             <th>Avg. Round Investment</th>
-           </tr>
-           <tr>
-             <td>Q2 2013</td>
-             <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q2').sum('funding_amount')) %></td>
-             <td> <%= Funding.quarterly_fundings(Time.now().year, 'q2').count %></td>
-             <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q2').average('funding_amount')) %></td>
-           </tr>
-          </tr>
-             <td>Q1 2013</td>
-             <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q1').sum('funding_amount')) %></td>
-             <td> <%= Funding.quarterly_fundings(Time.now().year, 'q1').count %></td>
-             <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q1').average('funding_amount')) %></td>
-           </tr>
-         </tr>
-             <td>Q4 2012</td>
-             <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').sum('funding_amount')) %></td>
-             <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q4').count %></td>
-             <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').average('funding_amount')) %></td>
-           </tr>
-         </tr>
-             <td>Q3 2012</td>
-             <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').sum('funding_amount')) %></td>
-             <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q3').count %></td>
-             <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').average('funding_amount')) %></td>
-           </tr>
-
-         </table>
+        <p>To do: click on table row and take you to details for that table row </p>
+        <p>To do: how do we create footnotes (i.e. LTM is last tweleve months) </p>
+        <table class="table table-hover sortable">
+          <caption>LTM Funding</caption>
+          <thead>
+            <tr>
+              <th>Quarter</th>
+              <th>Amount ($M)</th>
+              <th>Volume</th>
+              <th>Avg. Round Investment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Q2 2013</td>
+              <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q2').sum('funding_amount')) %></td>
+              <td> <%= Funding.quarterly_fundings(Time.now().year, 'q2').count %></td>
+              <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q2').average('funding_amount')) %></td>
+            </tr>
+            </tr>
+              <td>Q1 2013</td>
+              <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q1').sum('funding_amount')) %></td>
+              <td> <%= Funding.quarterly_fundings(Time.now().year, 'q1').count %></td>
+              <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q1').average('funding_amount')) %></td>
+            </tr>
+            </tr>
+              <td>Q4 2012</td>
+              <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').sum('funding_amount')) %></td>
+              <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q4').count %></td>
+              <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').average('funding_amount')) %></td>
+            </tr>
+            </tr>
+              <td>Q3 2012</td>
+              <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').sum('funding_amount')) %></td>
+              <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q3').count %></td>
+              <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').average('funding_amount')) %></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="grid_12">
-        <!-- top right -->
-        <h3>LTM Funding by Industry</h3>
+        <h3 class="center">LTM Funding by Industry</h3>
         <h4>To Do: Need to recolor these</h4>
         <%= render "funding_donut" %>
       </div>
     </section>
     <section class="container group">
       <div class="grid_12">
-        <!-- bottom left -->
-        <h3>LTM Funding by Round</h3>
         <table class="table table-hover sortable">
-          <tr>
-            <th>Series</th>
-            <th>Amount ($ millions)</th>
-            <th>Volume</th>
-            <th>Avg. Round Investment</th>
-          </tr>
-          <tr>
-            <td>Seed</td>
-            <td> <%=  format_mil(Funding.for_funding_round('seed').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('seed').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('seed').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Angel</td>
-            <td> <%=  format_mil(Funding.for_funding_round('angel').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('angel').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('angel').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Series A</td>
-            <td> <%=  format_mil(Funding.for_funding_round('a').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('a').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('a').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Series B</td>
-            <td> <%=  format_mil(Funding.for_funding_round('b').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('b').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('b').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Series C</td>
-            <td> <%=  format_mil(Funding.for_funding_round('c').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('c').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('c').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Series D</td>
-            <td> <%=  format_mil(Funding.for_funding_round('d').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('d').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('d').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Series E</td>
-            <td> <%=  format_mil(Funding.for_funding_round('e').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('e').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('e').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Series F</td>
-            <td> <%=  format_mil(Funding.for_funding_round('f').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('f').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('f').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Series G</td>
-            <td> <%=  format_mil(Funding.for_funding_round('g').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('g').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('g').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Venture Round</td>
-            <td> <%=  format_mil(Funding.for_funding_round('venture_round').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('venture_round').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('venture_round').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Private Equity</td>
-            <td> <%=  format_mil(Funding.for_funding_round('private_equity').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('private_equity').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('private_equity').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
-          <tr>
-            <td>Debt Round</td>
-            <td> <%=  format_mil(Funding.for_funding_round('debt_round').ltm_fundings(365).sum('funding_amount') ) %></td>
-            <td> <%=  Funding.for_funding_round('debt_round').ltm_fundings(365).count %></td>
-            <td> <%=  format_mil(Funding.for_funding_round('debt_round').ltm_fundings(365).average('funding_amount') ) %></td>
-          </tr>
+          <caption>LTM Funding by Round</caption>
+          <thead>
+            <tr>
+              <th>Series</th>
+              <th>Amount ($M)</th>
+              <th>Volume</th>
+              <th>Avg. Round Investment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Seed</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('seed').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('seed').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('seed').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Angel</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('angel').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('angel').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('angel').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Series A</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('a').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('a').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('a').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Series B</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('b').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('b').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('b').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Series C</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('c').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('c').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('c').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Series D</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('d').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('d').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('d').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Series E</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('e').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('e').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('e').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Series F</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('f').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('f').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('f').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Series G</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('g').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('g').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('g').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Venture Round</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('venture_round').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('venture_round').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('venture_round').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Private Equity</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('private_equity').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('private_equity').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('private_equity').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+            <tr>
+              <td>Debt Round</td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('debt_round').ltm_fundings(365).sum('funding_amount') ) %></td>
+              <td> <%=  Funding.for_funding_round('debt_round').ltm_fundings(365).count %></td>
+              <td class="currency"> <%=  format_mil(Funding.for_funding_round('debt_round').ltm_fundings(365).average('funding_amount') ) %></td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div class="grid_12">
-        <!-- bottom right -->
-        <h3>LTM Total Funding...Why Is this So Squished unless I make this title big</h3>
+        <h3 class="center">LTM Total Funding</h3>
         <p>To Do: Format $ in millions</p>
         <p>To Do: Format dates in 'Jun 2013' or Jun '13</p>
         <p>To Do: Need to recolor this to green</p>

@@ -1,113 +1,109 @@
 <div class="label">
-    <h3 class= "container">Angel Investing</h1>
+  <h3 class= "container">Angel Investing</h1>
 </div>
-
-
-<section class="container group">
+<section class="container group under">
 <h5>Need to Fix underlying logic behind this</h5>
   <div class="grid_12">
-    <!-- top left -->
-    <h3>Top Angel Investors</h3>
     <table class= "sortable">
-      <tr>
-        <th>Name</th>
-        <th>Rank</th>
-        <th>Total Investments</th>
-        <th>Volume</th>
-      </tr>
-    <% i = 0 %>
-    <% Individual.limit(10).each do |individual| %>
-    <% i += 1 %>
-      <tr>
-        <td><%= link_to individual.name, individual %></td>
-        <td><%= i %></td>
-        <td><%= format_mil(Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).sum(:funding_amount)) %></td>
-        <td><%= Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).count %></td>
-      </tr>
-    <% end %>
+      <caption>Top Angel Investors</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Rank</th>
+          <th>Total Investments</th>
+          <th>Volume</th>
+        </tr>
+      </thead>
+      <% i = 0 %>
+      <% Individual.limit(10).each do |individual| %>
+      <% i += 1 %>
+      <tbody>
+        <tr>
+          <td><%= link_to individual.name, individual %></td>
+          <td><%= i %></td>
+          <td class="currency"><%= format_mil(Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).sum(:funding_amount)) %></td>
+          <td><%= Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).count %></td>
+        </tr>
+      </tbody>
+      <% end %>
     </table>
     <h5>Need to make it so we are displaying the top from the database, not the guys who have id 1-10</h5>
     <h5>Footnote: Angel Investor is defined as funding in seed or angel rounds</h5>
   </div>
-
   <div class="grid_12">
-    <!-- top right -->
-    <h3>Angel Investing by Industry</h3>
+    <h3 class="center">Angel Investing by Industry</h3>
     <%= render 'individuals_donut' %>
-
   </div>
 </section>
 <section class="container group">
   <div class="grid_12">
-    <!-- bottom left -->
-    <h3>Angel Investing by Location</h3>
     <table class= "sortable">
-      <tr>
-        <th>City</th>
-        <th>Total Investments</th>
-        <th>Volume</th>
-
-      </tr>
-      <tr>
-        <td> San Francisco</td>
-        <td><%= format_mil(Funding.for_city('San Francisco').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-        <td><%= Funding.for_city('San Francisco').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-      </tr>
-      <tr>
-        <td>New York</td>
-        <td><%= format_mil(Funding.for_city('New York').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-        <td><%= Funding.for_city('New York').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-      </tr>
-      <tr>
-        <td>Chicago</td>
-        <td><%= format_mil(Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-        <td><%= Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-      </tr>
-      <tr>
-        <td>Boston</td>
-        <td><%= format_mil(Funding.for_city('Boston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-        <td><%= Funding.for_city('Boston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-      </tr>
-      <tr>
-        <td>Boulder</td>
-        <td><%= format_mil(Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-        <td><%= Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-      </tr>
-      <tr>
-        <td>Austin</td>
-        <td><%= format_mil(Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-        <td><%= Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-      </tr>
-      <tr>
-        <td>Los Angeles</td>
-        <td><%= format_mil(Funding.for_city('Los Angeles').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-        <td><%= Funding.for_city('Los Angeles').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-      </tr>
-      <tr>
-        <td>Berkley</td>
-        <td><%= format_mil(Funding.for_city('Berkley').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-        <td><%= Funding.for_city('Berkley').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-      </tr>
-      <tr>
-        <td>Houston</td>
-        <td><%= format_mil(Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-        <td><%= Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-      </tr>
-      <tr>
-        <td>Atlanta</td>
-        <td><%= format_mil(Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-        <td><%= Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-      </tr>
+      <caption>Angel Investing by Location</caption>
+      <thead>
+        <tr>
+          <th>City</th>
+          <th>Total Investments</th>
+          <th>Volume</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> San Francisco</td>
+          <td class="currency"><%= format_mil(Funding.for_city('San Francisco').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('San Francisco').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+        <tr>
+          <td>New York</td>
+          <td class="currency"><%= format_mil(Funding.for_city('New York').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('New York').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+        <tr>
+          <td>Chicago</td>
+          <td class="currency"><%= format_mil(Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+        <tr>
+          <td>Boston</td>
+          <td class="currency"><%= format_mil(Funding.for_city('Boston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Boston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+        <tr>
+          <td>Boulder</td>
+          <td class="currency"><%= format_mil(Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+        <tr>
+          <td>Austin</td>
+          <td class="currency"><%= format_mil(Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+        <tr>
+          <td>Los Angeles</td>
+          <td class="currency"><%= format_mil(Funding.for_city('Los Angeles').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Los Angeles').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+        <tr>
+          <td>Berkley</td>
+          <td class="currency"><%= format_mil(Funding.for_city('Berkley').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Berkley').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+        <tr>
+          <td>Houston</td>
+          <td class="currency"><%= format_mil(Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+        <tr>
+          <td>Atlanta</td>
+          <td class="currency"><%= format_mil(Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+      </tbody>
     </table>
       <h5>Note: San Francisco includes Menlo Park, Mountain View and Silicon Valley</h5>
       <h5>Note: Angel Investing is defined as seed or angel rounds by crunchbase</h5>
-
   </div>
   <div class="grid_12">
-    <!-- bottom right -->
-    <h3>Monthly Angel Investing</h3>
+    <h3 class="center">Monthly Angel Investing</h3>
     <%= render 'individuals_bar' %>
   </div>
 </section>
-
-

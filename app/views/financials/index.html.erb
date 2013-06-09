@@ -1,33 +1,29 @@
 <div class="label">
     <h3 class= "container">Venture Capital Funding</h1>
 </div>
-<h2>Top Investors</h2>
-<p>How to do we make it so this shows the top 10 investors and not just where their id is 1-10</p>
-<table class= "sortable">
-  <tr>
-    <th>Name</th>
-    <th>Total Investments</th>
-    <th>Volume</th>
-  </tr>
-
-<% Financial.limit(10).each do |financial| %>
-  <tr>
-    <td><%= link_to financial.name, financial %></td>
-
-    <td><%= format_mil(financial.investment_sum) %></td>
-    <td><%= financial.investment_count %></td>
-
-  </tr>
-<% end %>
-</table>
-
-<h2>Investors by Industry</h2>
-<h2>Investors by Round</h2>
-<h2>Investors by Location</h2>
-
-
-<br />
-
-
-
-
+<section class="container">
+  <h3>Top Investors</h3>
+  <p>How to do we make it so this shows the top 10 investors and not just where their id is 1-10</p>
+  <table class= "sortable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Total Investments</th>
+        <th>Volume</th>
+      </tr>
+    </thead>
+    <% Financial.limit(10).each do |financial| %>
+    <tbody>
+      <tr>
+        <td><%= link_to financial.name, financial %></td>
+        <td class="currency"><%= format_mil(financial.investment_sum) %></td>
+        <td><%= financial.investment_count %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <h3>Investors by Industry</h3>
+  <h3>Investors by Round</h3>
+  <h3>Investors by Location</h3>
+  <br />
+</section>

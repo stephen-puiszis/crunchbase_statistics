@@ -4,9 +4,7 @@
           $("#map-canvas").slideToggle();
         });
       });
-
-  </script>
-
+</script>
 <div class="label">
     <h3 class= "container">Funding by Location
       <%= form_tag locations_path,class: 'container', :method => :get do %>
@@ -17,177 +15,176 @@
           <%= submit_tag "Search" %>
         </p>
       <% end %>
-      </h3>
+    </h3>
 </div>
-
 <section class="container group">
 <br>
 <h2><%= params[:search].try(:titleize) %></h2>
-<hr>
+<br>
 </section>
-
-<section class="container group">
+<section class="container group under">
   <div class="grid_12">
-    <!-- top left -->
-    <h3>LTM Funding</h3>
     <table class="table table-hover sortable">
-      <tr>
-        <th>Quarter</th>
-        <th>Amount ($ millions)</th>
-        <th>Volume</th>
-        <th>Avg. Round Investment</th>
-      </tr>
-      <tr>
-        <td>Q2 2013</td>
-        <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q2').for_city(params[:search]).sum('funding_amount')) %></td>
-        <td> <%= Funding.quarterly_fundings(Time.now().year, 'q2').for_city(params[:search]).count %></td>
-        <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q2').for_city(params[:search]).average('funding_amount')) %></td>
-      </tr>
-     </tr>
-        <td>Q1 2013</td>
-        <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q1').for_city(params[:search]).sum('funding_amount')) %></td>
-        <td> <%= Funding.quarterly_fundings(Time.now().year, 'q1').for_city(params[:search]).count %></td>
-        <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q1').for_city(params[:search]).average('funding_amount')) %></td>
-      </tr>
-    </tr>
-        <td>Q4 2012</td>
-        <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search]).sum('funding_amount')) %></td>
-        <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q4').count %></td>
-        <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search]).average('funding_amount')) %></td>
-      </tr>
-    </tr>
-        <td>Q3 2012</td>
-        <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').for_city(params[:search]).sum('funding_amount')) %></td>
-        <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q3').for_city(params[:search]).count %></td>
-        <td> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').for_city(params[:search]).average('funding_amount')) %></td>
-      </tr>
-
+      <caption>LTM Funding</caption>
+      <thead>
+        <tr>
+          <th>Quarter</th>
+          <th>Amount ($ millions)</th>
+          <th>Volume</th>
+          <th>Avg. Round Investment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Q2 2013</td>
+          <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q2').for_city(params[:search]).sum('funding_amount')) %></td>
+          <td> <%= Funding.quarterly_fundings(Time.now().year, 'q2').for_city(params[:search]).count %></td>
+          <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q2').for_city(params[:search]).average('funding_amount')) %></td>
+        </tr>
+        <tr>
+          <td>Q1 2013</td>
+          <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q1').for_city(params[:search]).sum('funding_amount')) %></td>
+          <td> <%= Funding.quarterly_fundings(Time.now().year, 'q1').for_city(params[:search]).count %></td>
+          <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q1').for_city(params[:search]).average('funding_amount')) %></td>
+        </tr>
+        <tr>
+          <td>Q4 2012</td>
+          <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search]).sum('funding_amount')) %></td>
+          <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q4').count %></td>
+          <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search]).average('funding_amount')) %></td>
+        </tr>
+        <tr>
+          <td>Q3 2012</td>
+          <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').for_city(params[:search]).sum('funding_amount')) %></td>
+          <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q3').for_city(params[:search]).count %></td>
+          <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').for_city(params[:search]).average('funding_amount')) %></td>
+        </tr>
+      </tbody>
     </table>
-
   </div>
-
   <div class="grid_12">
-
-    <h3>Industry Views for- <%= params[:search].try(:titleize) %></h3>
+    <h3 class="center">Industry Views for- <%= params[:search].try(:titleize) %></h3>
     <%= render :partial => "location_donut", locals: {fundings: Funding.ltm_fundings(365).for_city(params[:search])} %>
   </div>
 </section>
-
-<section class="container group">
-
+<section class="container group under">
   <div class="grid_12">
-    <!-- bottom left -->
-    <h3>LTM Funding by Round for: <%= params[:search].try(:titleize) %></h3>
     <table class="table table-hover sortable">
-      <tr>
-        <th>Series</th>
-        <th>Amount ($ millions)</th>
-        <th>Volume</th>
-        <th>Avg. Round Investment</th>
-      </tr>
-      <tr>
-        <td>Seed</td>
-        <td> <%=  format_mil(Funding.for_funding_round('seed').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('seed').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('seed').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
-      <tr>
-        <td>Angel</td>
-        <td> <%=  format_mil(Funding.for_funding_round('angel').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('angel').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('angel').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
-      <tr>
-        <td>Series A</td>
-        <td> <%=  format_mil(Funding.for_funding_round('a').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('a').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('a').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
-      <tr>
-        <td>Series B</td>
-        <td> <%=  format_mil(Funding.for_funding_round('b').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('b').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('b').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
-      <tr>
-        <td>Series C</td>
-        <td> <%=  format_mil(Funding.for_funding_round('c').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('c').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('c').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
-      <tr>
-        <td>Series D</td>
-        <td> <%=  format_mil(Funding.for_funding_round('d').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('d').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('d').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
-      <tr>
-        <td>Series E</td>
-        <td> <%=  format_mil(Funding.for_funding_round('e').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('e').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('e').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
-      <tr>
-        <td>Series F</td>
-        <td> <%=  format_mil(Funding.for_funding_round('f').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('f').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('f').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
-      <tr>
-        <td>Series G</td>
-        <td> <%=  format_mil(Funding.for_funding_round('g').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('g').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('g').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      <tr>
-        <td>Venture Round</td>
-        <td> <%=  format_mil(Funding.for_funding_round('venture_round').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('venture_round').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('venture_round').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
-      <tr>
-        <td>Private Equity</td>
-        <td> <%=  format_mil(Funding.for_funding_round('private_equity').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('private_equity').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('private_equity').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
-      <tr>
-        <td>Debt Round</td>
-        <td> <%=  format_mil(Funding.for_funding_round('debt_round').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
-        <td> <%=  Funding.for_funding_round('debt_round').for_city(params[:search]).ltm_fundings(365).count %></td>
-        <td> <%=  format_mil(Funding.for_funding_round('debt_round').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
-      </tr>
+      <caption>LTM Funding by Round for: <%= params[:search].try(:titleize) %></caption>
+      <thead>
+        <tr>
+          <th>Series</th>
+          <th>Amount ($ millions)</th>
+          <th>Volume</th>
+          <th>Avg. Round Investment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Seed</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('seed').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('seed').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('seed').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Angel</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('angel').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('angel').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('angel').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Series A</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('a').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('a').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('a').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Series B</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('b').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('b').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('b').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Series C</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('c').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('c').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('c').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Series D</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('d').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('d').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('d').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Series E</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('e').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('e').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('e').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Series F</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('f').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('f').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('f').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Series G</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('g').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('g').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('g').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Venture Round</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('venture_round').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('venture_round').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('venture_round').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Private Equity</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('private_equity').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('private_equity').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('private_equity').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+        <tr>
+          <td>Debt Round</td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('debt_round').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('debt_round').for_city(params[:search]).ltm_fundings(365).count %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('debt_round').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
+      </tbody>
     </table>
   </div>
-
-
   <div class="grid_12">
-    <!-- bottom right -->
     <%= render :partial => "location_bar", locals: {fundings: Funding.for_city(params[:search])} %>
-
   </div>
 </section>
-
 <section class="container group">
-<div class="grid_8">
-
-  <!-- links are still broken -->
+  <div class="grid_8">
+  
+    <!-- links are still broken -->
+  
     <% if params[:search].present? %>
     <table class="left">
-      <tr>
-        <th>Company Name</th>
-        <th>Industry</th>
-      </tr>
-      <% @companies.each do |company| %>
-      <tr>
-        <td><%= link_to company.name, company %></td>
-        <td><%= link_to company.industry.name, company.industry %></td>
-      </tr>
-      <% end %>
+      <thead>
+        <tr>
+          <th>Company Name</th>
+          <th>Industry</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @companies.each do |company| %>
+        <tr>
+          <td><%= link_to company.name, company %></td>
+          <td><%= link_to company.industry.name, company.industry %></td>
+        </tr>
+        <% end %>
+      </tbody>
     </table>
-    </div>
-   <div class="grid_16">
+  </div>
+  <div class="grid_16">
     <h7><%= image_tag 'mag_glass.svg', class: 'search-icon' %></h7>
     <%= render :partial => "map" %>
-    </div>
   <% end %>
+  </div>
 </section>
