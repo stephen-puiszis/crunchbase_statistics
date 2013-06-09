@@ -8,7 +8,7 @@
 # Location.destroy_all
 
   run_number = 0
-  number_of_queries = 1000
+  number_of_queries = 15000
 # bundle install other macs
 # ____________________________________________________________
 
