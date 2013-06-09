@@ -8,7 +8,7 @@
 # Location.destroy_all
 
   run_number = 0
-  number_of_queries = 100
+  number_of_queries = 1000
 # bundle install other macs
 # ____________________________________________________________
 
@@ -38,9 +38,9 @@ person = "person/"
 
 companies = Company.offset(run_number * number_of_queries).limit(number_of_queries)
 companies.each_index do |i|
-
+      puts "Company #{i}"
   # error 1)
-
+    begin
     company_data = JSON.parse(open(base_url+co+companies[i].perma+".js?"+api_key).read)
     unless Company.find_by_perma(company_data["permalink"]) == nil
       c = Company.find_by_perma(company_data["permalink"])
@@ -55,21 +55,23 @@ companies.each_index do |i|
       end
 
       l = Location.new
-      l.address1 = company_data['offices'][0]['address1']
-      l.address2 = company_data['offices'][0]['address12']
-      l.zipcode = company_data['offices'][0]['zip_code']
-      l.city = company_data['offices'][0]['city']
-      l.statecode = company_data['offices'][0]['state_code']
-      l.countrycode = company_data['offices'][0]['country_code']
-      if company_data['offices'][0]['latitude'].present?
-        l.latitude = company_data['offices'][0]['latitude']
-        l.longitude = company_data['offices'][0]['longitude']
+      if company_data['offices'][0].present?
+        l.address1 = company_data['offices'][0]['address1']
+        l.address2 = company_data['offices'][0]['address12']
+        l.zipcode = company_data['offices'][0]['zip_code']
+        l.city = company_data['offices'][0]['city']
+        l.statecode = company_data['offices'][0]['state_code']
+        l.countrycode = company_data['offices'][0]['country_code']
+        if company_data['offices'][0]['latitude'].present?
+          l.latitude = company_data['offices'][0]['latitude']
+          l.longitude = company_data['offices'][0]['longitude']
+        end
       end
       l.company_id = c.id
       l.save
 
 
-      puts "There are #{Company.all.count} companies in the database"
+
 
   # -------------- Company Funding Rounds -------------- #
 
@@ -108,7 +110,7 @@ companies.each_index do |i|
         end
 
         f.save
-        puts "There are #{Funding.all.count} funding rounds in the database"
+
 
   # ------------------Investments
 
@@ -182,10 +184,13 @@ companies.each_index do |i|
       f.save
 
       end
-
+    end
+  rescue
+    puts "---------------#{i} failed"
     end
 end
 end_time = Time.now
 puts "It took #{end_time - start_time} seconds to run"
+puts "There are #{Funding.all.count} funding rounds in this batch"
 
 
