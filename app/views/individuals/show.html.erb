@@ -2,46 +2,72 @@
 <div class="label">
     <h3 class= "container"> <%= @individual.name %></h3>
 </div>
-
-<div class="cbw snap_nopreview"><div class="cbw_header"><script src="http://www.crunchbase.com/javascripts/widget.js" type="text/javascript"></script><div class="cbw_header_text"><a href="http://www.crunchbase.com/">CrunchBase Information</a></div></div><div class="cbw_content"><div class="cbw_subheader"><a href="http://www.crunchbase.com/person/<%= @individual.perma %>"><%= @individual.name %></a></div><div class="cbw_subcontent"><script src="http://www.crunchbase.com/cbw/person/<%= @individual.perma %>.js" type="text/javascript"></script></div><div class="cbw_footer">Information provided by <a href="http://www.crunchbase.com/">CrunchBase</a></div></div></div>
-
-
-<h2>Recent Investments</h2>
-<table class= "sortable">
-  <tr>
-    <th>Company</th>
-    <th>Date</th>
-    <th>Round</th>
-    <th>Amount</th>
-    <th>Industry</th>
-    <th>City</th>
-  </tr>
-  <% company_array=[] %>
-  <% fcode_array=[] %>
-  <% industry_array=[] %>
-
-<% Funding.for_individual(@individual.id).order("funding_date DESC").limit(10).each do |f| %>
-  <tr>
-    <td><%= f.company.name %></td>
-    <td><%= f.funding_date %></td>
-    <td><%= f.funding_code %></td>
-    <td><%= f.funding_amount %></td>
-    <td><%= f.company.industry.name %></td>
-    <td><%= f.company.location.city %></td>
-  </tr>
-<% end %>
-</table>
-
-<h2>Industry Breakdown</h2>
-<p>Pie Chart of Invesment Dollars by Industry</p>
-<br>
-
-<h2>Round Breakdown</h2>
-<p>Breakdown by Round - table or pie chart</p>
-<br>
-1
-<h2>Location Breakdown</h2>
-<p>Breakdown by top 10 locations invested - volume & dollars</p>
-<br>
-
-<%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_individual(@individual.id)} %>
+<section class="container group">
+  <div class="grid_6 widget_info">
+    <h4 class="col_head">General Info</h4>
+    <div class="cbw snap_nopreview">
+      <!-- <div class="cbw_header">
+        <script src="http://www.crunchbase.com/javascripts/widget.js" type="text/javascript"></script>
+        <div class="cbw_header_text">
+          <a href="http://www.crunchbase.com/">CrunchBase Information</a>
+        </div>
+      </div> -->
+      <div class="cbw_content">
+        <!-- <div class="cbw_subheader">
+          <a href="http://www.crunchbase.com/person/<%= @individual.perma %>"><%= @individual.name %></a>
+        </div> -->
+        <div class="cbw_subcontent">
+          <script src="http://www.crunchbase.com/cbw/person/<%= @individual.perma %>.js" type="text/javascript"></script>
+        </div>
+        <!-- <div class="cbw_footer">
+          Information provided by <a href="http://www.crunchbase.com/">CrunchBase</a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="grid_14">
+    <h4 class="col_head">Activity</h4>
+    <table class= "sortable">
+      <caption>Recent Investments</caption>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Date</th>
+          <th>Round</th>
+          <th>Amount</th>
+          <th>Industry</th>
+          <th>City</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% company_array=[] %>
+        <% fcode_array=[] %>
+        <% industry_array=[] %>
+        <% Funding.for_individual(@individual.id).order("funding_date DESC").limit(10).each do |f| %>
+        <tr>
+          <td><%= f.company.name %></td>
+          <td><%= f.funding_date %></td>
+          <td><%= f.funding_code %></td>
+          <td class="currency"><%= f.funding_amount %></td>
+          <td><%= f.company.industry.name %></td>
+          <td><%= f.company.location.city %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <h2>Industry Breakdown</h2>
+    <p>Pie Chart of Invesment Dollars by Industry</p>
+    <br>
+    <h2>Round Breakdown</h2>
+    <p>Breakdown by Round - table or pie chart</p>
+    <br>
+    1
+    <h2>Location Breakdown</h2>
+    <p>Breakdown by top 10 locations invested - volume & dollars</p>
+    <br>
+    <%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_individual(@individual.id)} %>
+  </div>
+  <div class="grid_4">
+    <h4 class="col_head">Sponsors</h4>
+  </div>
+</section>

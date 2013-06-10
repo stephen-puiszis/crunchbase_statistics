@@ -10,7 +10,7 @@
         <tr>
           <th>Name</th>
           <th>Rank</th>
-          <th>Total Investments</th>
+          <th>Investments<span class="footnote">*</span></th>
           <th>Volume</th>
         </tr>
       </thead>
@@ -24,8 +24,13 @@
           <td class="currency"><%= format_mil(Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).sum(:funding_amount)) %></td>
           <td><%= Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).count %></td>
         </tr>
-      </tbody>
       <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">*Total in millions</td>
+        </tr>
+      </tfoot>
     </table>
     <h5>Need to make it so we are displaying the top from the database, not the guys who have id 1-10</h5>
     <h5>Footnote: Angel Investor is defined as funding in seed or angel rounds</h5>
@@ -42,7 +47,7 @@
       <thead>
         <tr>
           <th>City</th>
-          <th>Total Investments</th>
+          <th>Investments</th>
           <th>Volume</th>
         </tr>
       </thead>
@@ -98,6 +103,11 @@
           <td><%= Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">*Total in millions</td>
+        </tr>
+      </tfoot>
     </table>
       <h5>Note: San Francisco includes Menlo Park, Mountain View and Silicon Valley</h5>
       <h5>Note: Angel Investing is defined as seed or angel rounds by crunchbase</h5>

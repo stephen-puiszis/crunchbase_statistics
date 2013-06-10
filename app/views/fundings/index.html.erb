@@ -4,13 +4,12 @@
 <section class="container group under">
       <div class="grid_12">
         <p>To do: click on table row and take you to details for that table row </p>
-        <p>To do: how do we create footnotes (i.e. LTM is last tweleve months) </p>
         <table class="table table-hover sortable">
-          <caption>LTM Funding</caption>
+          <caption>LTM<span class="footnote">*</span> Funding</caption>
           <thead>
             <tr>
               <th>Quarter</th>
-              <th>Amount ($M)</th>
+              <th>Amount<span class="footnote">**</span></th>
               <th>Volume</th>
               <th>Avg. Round Investment</th>
             </tr>
@@ -41,22 +40,29 @@
               <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').average('funding_amount')) %></td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">*Last 12 Months *In Millions</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
       <div class="grid_12">
-        <h3 class="center">LTM Funding by Industry</h3>
-        <h4>To Do: Need to recolor these</h4>
+        <p>&nbsp;</p>
+        <h3 class="center">LTM<span class="footnote">*</span> Funding by Industry</h3>
         <%= render "funding_donut" %>
       </div>
+      <p>&nbsp;</p>
+      <p class="footnote">*Last 12 Months</p>
     </section>
     <section class="container group">
       <div class="grid_12">
         <table class="table table-hover sortable">
-          <caption>LTM Funding by Round</caption>
+          <caption>LTM<span class="footnote">*</span> Funding by Round</caption>
           <thead>
             <tr>
               <th>Series</th>
-              <th>Amount ($M)</th>
+              <th>Amount<span class="footnote">**</span></th>
               <th>Volume</th>
               <th>Avg. Round Investment</th>
             </tr>
@@ -135,15 +141,22 @@
               <td class="currency"> <%=  format_mil(Funding.for_funding_round('debt_round').ltm_fundings(365).average('funding_amount') ) %></td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">*Last 12 Months **In Millions</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
       <div class="grid_12">
-        <h3 class="center">LTM Total Funding</h3>
-        <p>To Do: Format $ in millions</p>
+        <h3 class="center">LTM<span class="footnote">*</span> Total Funding</h3>
+        <p>To Do: Format $ in Millions</p>
         <p>To Do: Format dates in 'Jun 2013' or Jun '13</p>
         <p>To Do: Need to recolor this to green</p>
         <%= render "funding_bar" %>
       </div>
+      <p>&nbsp;</p>
+      <p class="footnote">*Last 12 Months</p>
     </section>
 
 

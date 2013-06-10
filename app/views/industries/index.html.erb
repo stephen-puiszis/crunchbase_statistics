@@ -7,11 +7,11 @@
     <% a = Funding.ltm_fundings(365) %>
     <% total_funding = a.sum('funding_amount') %>
     <table>
-      <caption>LTM Funding By Industry</caption>
+      <caption>LTM<span class="footnote">*</span> Funding By Industry</caption>
       <thead>
         <tr>
           <th>Name</th>
-          <th>Funding ($ millions)</th>
+          <th>Funding<span class="footnote">**</span></th>
           <th>% Total</th>
           <th>Volume</th>
         </tr>
@@ -25,13 +25,19 @@
           <td><%= number_to_percentage(percent * 100, :precision => 0) %></td>
           <td><%= a.for_industry(industry.id).count %></td>
         </tr>
-      </tbody>
       <% industry_array << {label: industry_name , value: (percent*100).round(0) } %>
       <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">*Last 12 Months **In millions</td>
+        </tr>
+      </tfoot>
     </table>
   </div>
   <div class="grid_12">
-    <h3 class="center">LTM Funding By Industry</h3>
+    <p>&nbsp;</p>
+    <h3 class="center">LTM<span class="footnote">*</span> Funding By Industry</h3>
     <% j_industry_array = industry_array.to_json %>
 
     <!-- what is the purpose of the 2 lines below -->
@@ -40,19 +46,21 @@
     <div class="clearfix"></div>
     <%= render 'industry_donut' %>
   </div>
+  <p>&nbsp;</p>
+  <p class="footnote">*Last 12 Months</p>
 </section>
 <section class="container group">
   <div class="grid_12">
+    <h3>LTM<span class="footnote">*</span> Funding by Round - Web (Hardcoded)</h3>
     <%=form_tag('/industry') do %>
     <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
     <%= submit_tag "Select Industry", class: 'btn btn-success' %>
     <% end %>
     <table class="table table-hover sortable">
-      <caption>LTM Funding by Round - Web (Hardcoded)</caption>
       <thead>
         <tr>
           <th>Series</th>
-          <th>Amount ($ millions)</th>
+          <th>Amount<span class="footnote">**</span></th>
           <th>Volume</th>
           <th>Avg. Round Investment</th>
         </tr>
@@ -131,10 +139,15 @@
           <td> <%=  format_mil(Funding.for_funding_round('debt_round').for_industry(7).ltm_fundings(365).average('funding_amount') ) %></td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">*Last 12 Months **In millions</td>
+        </tr>
+      </tfoot>
     </table>
   </div>
   <div class="grid_12">
-    <h3 class="center">LTM Industry Funding (Web) - Hardcoded</h3>
+    <h3 class="center">LTM<span class="footnote">*</span> Industry Funding (Web) - Hardcoded</h3>
     <%=form_tag('/industry') do %>
     <div>
       <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
@@ -143,6 +156,8 @@
     <% end %>
     <%= render 'industry_bar' %>
   </div>
+  <p>&nbsp;</p>
+  <p class="footnote">*Last 12 Months</p>
 </section>
 <div>
 

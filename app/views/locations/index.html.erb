@@ -6,26 +6,28 @@
       });
 </script>
 <div class="label">
-    <h3 class= "container">Funding by Location
-      <%= form_tag locations_path,class: 'container', :method => :get do %>
-        <p>
-          <%= image_tag 'mag_glass.svg', class: 'search-icon' %>
-          <%= text_field_tag :search, params[:search], placeholder: 'Search by City' %>
-          <%= hidden_field_tag :radius, params[:radius], value: 100 %>
-          <%= submit_tag "Search" %>
-        </p>
-      <% end %>
-    </h3>
+    <h3 class= "container">Funding by Location</h3>
+</div>
+<div class="container">
+  <p>&nbsp;</p>
+  <%= form_tag locations_path,class: 'container', :method => :get do %>
+    <p>
+      <%= image_tag 'mag_glass.svg', class: 'search-icon' %>
+      <%= text_field_tag :search, params[:search], placeholder: 'Search by City' %>
+      <%= hidden_field_tag :radius, params[:radius], value: 100 %>
+      <%= submit_tag "Search" %>
+    </p>
+  <% end %>
 </div>
 <section class="container group">
-<br>
-<h2><%= params[:search].try(:titleize) %></h2>
-<br>
+  <br>
+  <h4 class="col_head"><%= params[:search].try(:titleize) %></h4>
+  <br>
 </section>
 <section class="container group under">
   <div class="grid_12">
     <table class="table table-hover sortable">
-      <caption>LTM Funding</caption>
+      <caption>LTM<span class="footnote">*</span> Funding</caption>
       <thead>
         <tr>
           <th>Quarter</th>
@@ -60,6 +62,11 @@
           <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').for_city(params[:search]).average('funding_amount')) %></td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">*Last 12 Months</td>
+        </tr>
+      </tfoot>
     </table>
   </div>
   <div class="grid_12">
@@ -70,11 +77,11 @@
 <section class="container group under">
   <div class="grid_12">
     <table class="table table-hover sortable">
-      <caption>LTM Funding by Round for: <%= params[:search].try(:titleize) %></caption>
+      <caption>LTM<span class="footnote">*</span> Funding by Round for: <%= params[:search].try(:titleize) %></caption>
       <thead>
         <tr>
           <th>Series</th>
-          <th>Amount ($ millions)</th>
+          <th>Amount<span class="footnote">**</span></th>
           <th>Volume</th>
           <th>Avg. Round Investment</th>
         </tr>
@@ -153,6 +160,11 @@
           <td class="currency"> <%=  format_mil(Funding.for_funding_round('debt_round').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">*Last 12 Months **In Millions</td>
+        </tr>
+      </tfoot>
     </table>
   </div>
   <div class="grid_12">

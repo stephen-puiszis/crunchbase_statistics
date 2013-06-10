@@ -2,13 +2,39 @@
 <div class="label">
     <h3 class= "container"> <%= @company.name %></h3>
 </div>
-<div class="container group">
-
-  <div class="cbw snap_nopreview"><div class="cbw_header"><script src="http://www.crunchbase.com/javascripts/widget.js" type="text/javascript"></script><div class="cbw_header_text"><a href="http://www.crunchbase.com/">CrunchBase Information</a></div></div><div class="cbw_content"><div class="cbw_subheader"><a href="http://www.crunchbase.com/company/<%= @company.perma %>"><%= @company.name %></a></div><div class="cbw_subcontent"><script src="http://www.crunchbase.com/cbw/company/<%= @company.perma %>.js" type="text/javascript"></script></div><div class="cbw_footer">Information provided by <a href="http://www.crunchbase.com/">CrunchBase</a></div></div></div>
-
-<%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_company(@company.id)} %>
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
-</div>
-
+<section class="container group">
+	<div class="grid_6 widget_info">
+		<h4 class="col_head">General Info</h4>
+		<p>&nbsp;</p>
+		<div class="cbw snap_nopreview">
+			<!-- <div class="cbw_header">
+				<script src="http://www.crunchbase.com/javascripts/widget.js" type="text/javascript"></script>
+				<div class="cbw_header_text">
+					<a href="http://www.crunchbase.com/">CrunchBase Information</a>
+				</div>
+			</div> -->
+			<div class="cbw_content">
+				<!-- <div class="cbw_subheader">
+					<a href="http://www.crunchbase.com/company/	<%= @company.perma %>"><%= @company.name %></a>
+				</div> -->
+				<div class="cbw_subcontent">
+					<script src="http://www.crunchbase.com/cbw/company/<%= @company.perma %>.js" type="text/javascript"></script>
+				</div>
+				<!-- <div class="cbw_footer">
+					Information provided by <a href="http://www.crunchbase.com/">CrunchBase</a>
+				</div> -->
+			</div>
+		</div>
+	</div>
+	<div class="grid_14">
+		<h4 class="col_head">Activity</h4>
+		<%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_company(@company.id)} %>
+	</div>
+	<div class="grid_4">
+		<h4 class="col_head">Sponsors</h4>
+	</div>
+</section>
+<section class="container">
+	<%= link_to 'Edit', edit_company_path(@company) %> |
+	<%= link_to 'Back', companies_path %>
+</section>
