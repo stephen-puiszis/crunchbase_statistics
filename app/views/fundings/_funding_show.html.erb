@@ -1,41 +1,44 @@
-<table class= "sortable">
-<caption>All Investments</caption>
-  <tr>
-    <th>Company</th>
-    <th>Date</th>
-    <th>Round</th>
-    <th>Amount</th>
-    <th>Industry</th>
-    <th>City</th>
-  </tr>
+<% if fundings.present? %>
+    <table class= "sortable">
+    <caption>All Investments</caption>
+      <tr>
+        <th>Company</th>
+        <th>Date</th>
+        <th>Round</th>
+        <th>Amount</th>
+        <th>Industry</th>
+        <th>City</th>
+      </tr>
 
-<% company_array=[] %>
-<% fcode_array=[] %>
-<% industry_array=[] %>
-<% fundings.order("funding_date DESC").each do |f| %>
-  <tr>
-    <td><%= f.company.name %></td>
-    <td><%= f.funding_date %></td>
-    <td><%= f.funding_code %></td>
-    <td><%= number_to_currency(f.funding_amount, unit: "$") %></td>
-    <td><%= f.company.industry.name %></td>
-    <td><%= f.company.location.city %></td>
-  </tr>
+    <% company_array=[] %>
+    <% fcode_array=[] %>
+    <% industry_array=[] %>
+    <% fundings.order("funding_date DESC").each do |f| %>
+      <tr>
+        <td><%= link_to f.company.name, f.company %></td>
+        <td><%= f.funding_date %></td>
+        <td><%= f.funding_code %></td>
+        <td><%= number_to_currency(f.funding_amount, unit: "$") %></td>
+        <td><%= f.company.industry.name %></td>
+        <td><%= f.company.location.city %></td>
+      </tr>
 
-  <% company_array<<{label: f.company.name, value: f.funding_amount } %>
-  <% fcode_array<<{label: f.funding_code, value: f.funding_amount } %>
-  <% industry_array<<{label: f.company.industry.name, value: f.funding_amount } %>
+      <% company_array<<{label: f.company.name, value: f.funding_amount } %>
+      <% fcode_array<<{label: f.funding_code, value: f.funding_amount } %>
+      <% industry_array<<{label: f.company.industry.name, value: f.funding_amount } %>
+    <% end %>
+    </table>
+    <% if fundings.length>1 %>
+    <% j_company_array=company_array.to_json %>
+    <% j_fcode_array=fcode_array.to_json %>
+    <% j_industry_array=industry_array.to_json %>
+
+    <div id="company_funding", class="left"></div>
+    <div id="fcode_funding", class="left"></div>
+    <div id="industry_funding", class="left"></div>
+    <div class="clearfix"></div>
+    <% end %>
 <% end %>
-</table>
-
-<% j_company_array=company_array.to_json %>
-<% j_fcode_array=fcode_array.to_json %>
-<% j_industry_array=industry_array.to_json %>
-
-<div id="company_funding", class="left"></div>
-<div id="fcode_funding", class="left"></div>
-<div id="industry_funding", class="left"></div>
-<div class="clearfix"></div>
 
 <script type="text/javascript">
 Morris.Donut({
