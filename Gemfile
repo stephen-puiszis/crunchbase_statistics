@@ -4,7 +4,7 @@ gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+gem 'seedbank'
 gem 'sqlite3'
 gem 'seed_dump'
 gem 'geocoder'
