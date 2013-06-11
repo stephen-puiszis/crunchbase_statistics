@@ -53,7 +53,7 @@
       </thead>
       <tbody>
         <tr>
-          <td> San Francisco</td>
+          <td>San Francisco</td>
           <td class="currency"><%= format_mil(Funding.for_city('San Francisco').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
           <td><%= Funding.for_city('San Francisco').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
         </tr>

@@ -7,7 +7,7 @@
     <% a = Funding.ltm_fundings(365) %>
     <% total_funding = a.sum('funding_amount') %>
     <table>
-      <caption>LTM<span class="footnote">*</span> Funding By Industry</caption>
+      <caption>Funding By Industry<span class="footnote">*</span></caption>
       <thead>
         <tr>
           <th>Name</th>
@@ -37,7 +37,7 @@
   </div>
   <div class="grid_12">
     <p>&nbsp;</p>
-    <h3 class="center">LTM<span class="footnote">*</span> Funding By Industry</h3>
+    <h3 class="center">Funding By Industry<span class="footnote">*</span></h3>
     <% j_industry_array = industry_array.to_json %>
 
     <!-- what is the purpose of the 2 lines below -->
@@ -51,7 +51,7 @@
 </section>
 <section class="container group">
   <div class="grid_12">
-    <h3>LTM<span class="footnote">*</span> Funding by Round - Web (Hardcoded)</h3>
+    <h3>Funding by Round<span class="footnote">*</span> - Web (Hardcoded)</h3>
     <%=form_tag('/industry') do %>
     <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
     <%= submit_tag "Select Industry", class: 'btn btn-success' %>
@@ -147,7 +147,7 @@
     </table>
   </div>
   <div class="grid_12">
-    <h3 class="center">LTM<span class="footnote">*</span> Industry Funding (Web) - Hardcoded</h3>
+    <h3 class="center">Industry Funding<span class="footnote">*</span> (Web) - Hardcoded</h3>
     <%=form_tag('/industry') do %>
     <div>
       <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
