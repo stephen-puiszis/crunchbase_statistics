@@ -15,16 +15,19 @@ class LocationsController < ApplicationController
     else
       @locations = Location.all
     end
-   # @fundings = @companies.map { |x| Funding.find_by_company_id(x.id) }
 
     @companies = @locations.map { |x| x.company }
+    @fundings = @companies.map { |x| Funding.find_by_company_id(x.id) }
 
-    @fundings = []
-    @companies.each do |company|
-      unless Funding.find_by_company_id(company.id).nil?
-        @fundings << (Funding.find_by_company_id(company.id))
-      end
-    end
+
+# To slow!
+        # @fundings = []
+        # @companies.each do |company|
+        #   unless Funding.find_by_company_id(company.id).nil?
+        #     @fundings << (Funding.find_by_company_id(company.id))
+        #   end
+        # end
+
 
     respond_to do |format|
       format.html # index.html.erb
