@@ -133,7 +133,9 @@ header h1{
 .footnote{
   color: #888;
   font-family: serif;
-  font-size: 12px;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 16px;
   text-align: right;
   vertical-align: super;
 }

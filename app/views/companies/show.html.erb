@@ -28,6 +28,31 @@
 	</div>
 	<div class="grid_14">
 		<h4 class="col_head">Activity</h4>
+
+
+      <table class= "sortable">
+      <caption><%= @company.name %> Investors</caption>
+      <thead>
+        <tr>
+          <th>Funding Round </th>
+          <th>Type</th>
+          <th>Investor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @investments.each do |investment| %>
+            <% if investment.investable==nil || investment.funding.company.perma!=@company.perma %>
+            <% next %>
+            <% end %>
+            <tr id="<%= investment.funding.company.perma %>">
+              <td><%= Funding.find_by_id(investment.funding_id).funding_code %></td>
+              <td><%= investment.investable_type %></td>
+              <td><%= link_to investment.investable.perma, investment.investable %></td>
+            </tr>
+        <% end %>
+       </tbody>
+   		 </table>
+
 		<%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_company(@company.id)} %>
 	</div>
 	<div class="grid_4">
