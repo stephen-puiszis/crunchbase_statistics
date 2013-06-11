@@ -2,6 +2,7 @@
     <h3 class= "container">Listing companies</h1>
 </div>
 <section class="container">
+  <h5>Need to add a scope for investments to find company id through funding.  E.g code that doesnt work but needs similar logic:  unless Investment.where(Funding.find_by_id(funding_id).company_id: @company.id)</h5>
   <table class= "sortable">
     <thead>
       <tr>
@@ -21,26 +22,4 @@
     <% end %>
   </table>
   <br />
-  <%= link_to 'New Company', new_company_path %>
-  <h4>To Do: Determine View - not this table</h4>
-  <table class= "sortable">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Total Investments</th>
-        <th>Industry</th>
-      </tr>
-    </thead>
-    <% @companies.each do |company| %>
-    <tbody>
-      <tr>
-        <td><%= link_to company.name, company %></td>
-        <td class="currency"><%= number_to_currency(company.total_investments, unit: "$") %></td>
-        <td><%= link_to Industry.find_by_id(company.industry_id).name, Industry.find_by_id(company.industry_id)%></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
-  <br />
-  <%= link_to 'New Company', new_company_path %>
 </section>
