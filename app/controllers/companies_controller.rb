@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = Company.limit(10)
 
     respond_to do |format|
       format.html # index.html.erb

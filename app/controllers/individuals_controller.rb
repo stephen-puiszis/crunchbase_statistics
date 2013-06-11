@@ -6,7 +6,8 @@ class IndividualsController < ApplicationController
     @individuals = Individual.all
     if @industry = params[:industry]
     else
-      @industry = Industry.find_by_id(7)
+      # 7 is wrong..
+      @industry = Industry.find_by_id(103)
     end
 
     respond_to do |format|

@@ -14,13 +14,12 @@
           <th>Volume</th>
         </tr>
       </thead>
-      <% i = 0 %>
-      <% Individual.limit(10).each do |individual| %>
-      <% i += 1 %>
+      <!-- needs to order by total funding amount -->
+      <% Individual.limit(10).each_with_index do |individual, index| %>
       <tbody>
         <tr>
           <td><%= link_to individual.name, individual %></td>
-          <td><%= i %></td>
+          <td><%= index + 1 %></td>
           <td class="currency"><%= format_mil(Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).sum(:funding_amount)) %></td>
           <td><%= Funding.multiple_funding_codes('seed', 'angel').for_individual(individual.id).count %></td>
         </tr>
