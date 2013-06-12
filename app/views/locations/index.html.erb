@@ -64,12 +64,14 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4">*Last 12 Months</td>
+          <td colspan="4"><em>*Millions of dollars</em>
+          </td>
         </tr>
       </tfoot>
     </table>
   </div>
   <div class="grid_12">
+    <br>
     <h3 class="center">LTM Funding by Industry</h3>
     <%= render :partial => "location_donut", locals: {fundings: Funding.ltm_fundings(365).for_city(params[:search])} %>
   </div>
@@ -171,7 +173,10 @@
     </table>
   </div>
   <div class="grid_12">
+    <br>
+    <h3 class="center">LTM Funding by Month</h3>
     <%= render :partial => "location_bar", locals: {fundings: Funding.for_city(params[:search])} %>
+    <p class="footnote"><em>*Millions of dollars</em></p>
   </div>
 </section>
 <section class="container group">

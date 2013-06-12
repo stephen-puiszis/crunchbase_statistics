@@ -19,6 +19,12 @@
 
   Morris.Donut({
     element: 'angel_industry_funding',
+    colors: [
+    '#0BA462',
+    '#39B580',
+    '#67C69D',
+    '#95D7BB'
+    ],
     data:
       <%= raw(j_industry_array) %>,
     formatter: function (x) { return x + "%" }

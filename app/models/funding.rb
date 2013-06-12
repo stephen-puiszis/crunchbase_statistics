@@ -19,11 +19,13 @@ class Funding < ActiveRecord::Base
 
   # Location Based
   # scope :for_state, lambda { |statecode| includes(:company).where('companies.location.statecode LIKE ?', statecode ) if statecode }
+
+  #TODO  - make it the surrounding 100 miles
   scope :for_city, lambda { |city| includes(:location).where('locations.city LIKE ?', "%#{city}%" ) if city }
   # scope :for_location, lambda { |location| includes(:company).where('location.city LIKE ? OR location.zipcode ? LIKE ? OR location.statecode LIKE ? OR location.countrycode LIKE ?', location, location, location, location ) if location }
 
 
-  # TODO: add_index :table_name, :foreign_key
+
   def perma
     company.perma
   end
