@@ -6,7 +6,7 @@
     <% industry_array= Array.new %>
     <% a = Funding.ltm_fundings(365) %>
     <% total_funding = a.sum('funding_amount') %>
-    <table class="sortable">
+    <table class="table table-hover sortable">
       <caption>LTM Funding By Industry</caption>
       <thead>
         <tr>
@@ -30,7 +30,9 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4"><em>*Dollars in millions</em></td>
+          <td colspan="4"><em>*Millions of dollars</em>
+                          <em><br>Note: Other is a catchall term in Crunchbase data</em>
+          </td>
         </tr>
       </tfoot>
     </table>
@@ -47,7 +49,7 @@
     <%= render 'industry_donut' %>
   </div>
   <p>&nbsp;</p>
-  <p class="footnote">*Last 12 Months</p>
+
 </section>
 <section class="container group">
   <div class="grid_12">
@@ -116,9 +118,9 @@
         </tr>
         <tr>
           <td>Venture Round</td>
-          <td class="currency"> <%=  format_mil(Funding.for_funding_round('venture_round').for_industry(97).ltm_fundings(365).sum('funding_amount') ) %></td>
-          <td> <%=  Funding.for_funding_round('venture_round').for_industry(97).ltm_fundings(365).count %></td>
-          <td> <%=  format_mil(Funding.for_funding_round('venture_round').for_industry(97).ltm_fundings(365).average('funding_amount') ) %></td>
+          <td class="currency"> <%=  format_mil(Funding.for_funding_round('venture round').for_industry(97).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_funding_round('venture round').for_industry(97).ltm_fundings(365).count %></td>
+          <td> <%=  format_mil(Funding.for_funding_round('venture round').for_industry(97).ltm_fundings(365).average('funding_amount') ) %></td>
         </tr>
         <tr>
           <td>Private Equity</td>
@@ -138,12 +140,15 @@
           <td> <%=  Funding.for_industry(97).ltm_fundings(365).count %></td>
           <td> <%=  format_mil(Funding.for_industry(97).ltm_fundings(365).average('funding_amount') ) %></td>
         </tr>
+        <tfoot>
+          <tr colspan="4">
+            <td colspan="4">
+              <em>*Millions of Dollars</em>
+              <em></br>**Venture Round is a catchall category in the Crunchbase data</em>
+            </td>
+          </tr>
+        </tfoot>
       </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="4"><em>*Dollars in millions</em></td>
-        </tr>
-      </tfoot>
     </table>
   </div>
   <div class="grid_12">
@@ -157,7 +162,7 @@
     <%= render 'industry_bar' %>
   </div>
   <p>&nbsp;</p>
-  <p class="footnote"><em>*Dollars in millions</em></p>
+  <p class="footnote"><em>*Millions of dollars</em></p>
 </section>
 <div>
 

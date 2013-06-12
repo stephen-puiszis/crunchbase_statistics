@@ -5,6 +5,9 @@ class Company < ActiveRecord::Base
   has_many :fundings
   has_many :investments, :as => :investable
   has_one :location
+
+  scope :for_investors, lambda { |company_id|
+
   def total_investments
     total=0
     Funding.for_company(self.id).each do |f|
