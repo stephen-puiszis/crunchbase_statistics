@@ -138,6 +138,12 @@
           <td> <%=  Funding.for_funding_round('debt_round').for_industry(7).ltm_fundings(365).count %></td>
           <td> <%=  format_mil(Funding.for_funding_round('debt_round').for_industry(7).ltm_fundings(365).average('funding_amount') ) %></td>
         </tr>
+        <tr>
+          <td>Total</td>
+          <td class="currency"> <%=  format_mil(Funding.for_industry(97).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.for_industry(97).ltm_fundings(365).count %></td>
+          <td> <%=  format_mil(Funding.for_industry(97).ltm_fundings(365).average('funding_amount') ) %></td>
+        </tr>
       </tbody>
       <tfoot>
         <tr>

@@ -20,19 +20,19 @@
               <td> <%= Funding.quarterly_fundings(Time.now().year, 'q2').count %></td>
               <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q2').average('funding_amount')) %></td>
             </tr>
-            </tr>
+            <tr>
               <td>Q1 2013</td>
               <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q1').sum('funding_amount')) %></td>
               <td> <%= Funding.quarterly_fundings(Time.now().year, 'q1').count %></td>
               <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year, 'q1').average('funding_amount')) %></td>
-            </tr>
+            <tr>
             </tr>
               <td>Q4 2012</td>
               <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').sum('funding_amount')) %></td>
               <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q4').count %></td>
               <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').average('funding_amount')) %></td>
             </tr>
-            </tr>
+            <tr>
               <td>Q3 2012</td>
               <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').sum('funding_amount')) %></td>
               <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q3').count %></td>
