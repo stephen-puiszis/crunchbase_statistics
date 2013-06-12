@@ -173,30 +173,7 @@
 </section>
 <section class="container group">
   <div class="grid_8">
-  
-    <!-- links are still broken -->
-  
-    <% if params[:search].present? %>
-    <table class="left">
-      <thead>
-        <tr>
-          <th>Company Name</th>
-          <th>Industry</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @companies.each do |company| %>
-        <tr>
-          <td><%= link_to company.name, company %></td>
-          <td><%= link_to company.industry.name, company.industry %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <div class="grid_16">
-    <h7><%= image_tag 'mag_glass.svg', class: 'search-icon' %></h7>
-    <%= render :partial => "map" %>
-  <% end %>
-  </div>
-</section>
+
+
+
+

@@ -52,8 +52,6 @@ class Funding < ActiveRecord::Base
   end
 
 
-
-
   def self.quarterly_fundings(year, quarter)
       if quarter == 'q1'
        start_date = Date.new(year)

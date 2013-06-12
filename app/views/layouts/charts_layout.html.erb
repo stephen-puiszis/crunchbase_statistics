@@ -16,17 +16,17 @@
 
         <header>
           <div class="container group">
-            <h1 class="grid_7">Simple<span class="bling">Fund</span></h1>
+            <a href="<%= home_url %>">
+              <h1 class="grid_8">crunch<span class="bling">stats</span> <span class="footnote">beta</span></h1>
+            </a>
             <nav class="home_nav">
               <ul>
-                <li><%= link_to "Home", root_url %></li>
+                <li><%= link_to "Funding Overview", fundings_url %></li>
                 <li><%= link_to "Industries", "/industries" %></li>
-                <li><%= link_to "Companies", companies_url %></li>
-                <li><%= link_to "Financials", financials_url %></li>
-                <li><%= link_to "Individuals", "/individuals" %></li>
-                <li><%= link_to "Fundings", fundings_url %></li>
-                <li><%= link_to "Investments", "/investments" %></li>
-                <li><%= link_to "Locations", "/locations" %></li>
+                <li><%= link_to "Geographies", "/locations" %></li>
+                <li><%= link_to "Angel Investing", "/individuals" %></li>
+                <li><%= link_to "FAQ", "#" %></li>
+                <li><%= link_to "About", "#" %></li>
               </ul>
             </nav>
           </div>
@@ -48,6 +48,8 @@
         <div class="grid_4">
           <h5>Site Map</h5>
           <ul>
+
+            <li><%= link_to "Investments", "/investments" %></li>
             <li><a href="index.html">Home</a></li>
             <li><a href="investments.html">Investments</a></li>
             <li><a href="#">Investors</a></li>
@@ -69,7 +71,7 @@
         </div>
       </div>
       <div class="sub_footer">
-        <p>&copy; Copyright Cash Money Developers and Design Group 2013. All rights reserved.</p>
+        <p>&copy; Copyright crunchstats 2013. All rights reserved.</p>
       </div>
 
     </footer>

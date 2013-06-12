@@ -8,23 +8,13 @@ class LocationsController < ApplicationController
      if params[:search].present?
       if @locations = Location.near(params[:search], params[:radius], :order => :distance).any?
         @locations = Location.near(params[:search], params[:radius], :order => :distance)
-      else
-        @locations = Location.all
-        # redirect_to locations_url, notice: "No results found"
-      end
     else
-      @locations = Location.all
+      @locations = Location.near('Chicago')
     end
    # @fundings = @companies.map { |x| Funding.find_by_company_id(x.id) }
 
-    @companies = @locations.map { |x| x.company }
-
-    @fundings = []
-    @companies.each do |company|
-      unless Funding.find_by_company_id(company.id).nil?
-        @fundings << (Funding.find_by_company_id(company.id))
-      end
-    end
+    # @companies = @locations.map { |x| x.company }
+    # @fundings = @companies.map { |x| Funding.find_by_company_id(x.id) }
 
     respond_to do |format|
       format.html # index.html.erb

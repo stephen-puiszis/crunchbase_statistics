@@ -13,17 +13,16 @@
 
         <header>
           <div class="container group">
-            <h1 class="grid_8">Simple <span class="bling">Fund</span><span class="footnote">beta</span></h1>
+            <a href="<%= home_url %>">
+              <h1 class="grid_8">crunch<span class="bling">stats</span> <span class="footnote">beta</span></h1>
+            </a>
             <nav class="home_nav">
               <ul>
-                <li><%= link_to "Home", root_url %></li>
-                <li><%= link_to "Industries", "/industries" %></li>
-                <li><%= link_to "Companies", companies_url %></li>
-                <li><%= link_to "Financials", financials_url %></li>
-                <li><%= link_to "Individuals", "/individuals" %></li>
-                <li><%= link_to "Fundings", fundings_url %></li>
-                <li><%= link_to "Investments", "/investments" %></li>
-                <li><%= link_to "Locations", "/locations" %></li>
+               <li><%= link_to "Funding Overview", fundings_url %></li>
+               <li><%= link_to "Industries", "/industries" %></li>
+               <li><%= link_to "Geographies", "/locations" %></li>
+               <li><%= link_to "Angel Investing", "/individuals" %></li>
+               <li><%= link_to "About", "/individuals" %></li>
               </ul>
             </nav>
           </div>
@@ -44,11 +43,14 @@
         <div class="grid_4">
           <h5>Site Map</h5>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="investments.html">Investments</a></li>
-            <li><a href="#">Investors</a></li>
-            <li><a href="#">Companies</a></li>
-            <li><a href="#">Industries</a></li>
+           <li><%= link_to "Home", root_url %></li>
+           <li><%= link_to "Industries", "/industries" %></li>
+           <li><%= link_to "Companies", companies_url %></li>
+           <li><%= link_to "Financials", financials_url %></li>
+           <li><%= link_to "Individuals", "/individuals" %></li>
+           <li><%= link_to "Fundings", fundings_url %></li>
+           <li><%= link_to "Investments", "/investments" %></li>
+           <li><%= link_to "Locations", "/locations" %></li>
           </ul>
         </div>
         <div class="grid_4">
