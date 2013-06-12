@@ -136,7 +136,7 @@ header h1{
   font-size: 14px;
   letter-spacing: 0;
   line-height: 16px;
-  text-align: right;
+  text-align: left;
   vertical-align: super;
 }
 p .footnote{
@@ -209,11 +209,11 @@ select{
   background: #d9d9de;
 }
 table{
-  border: 1px solid #999;
+  border: 0px solid #999;
   margin: 10px auto;
 }
 th{
-  background: #e9e9ee;
+  /*background: #e9e9ee;*/
   border-bottom: 1px solid #999;
   font-family: 'Open Sans Condensed','helvetica neue', helvetica, arial, sans-serif;
   font-size: 18px;
@@ -224,7 +224,7 @@ th{
 td{
   font-family: 'helvetica neue', helvetica, arial, sans-serif;
   font-size: 14px;
-  border-bottom: 1px solid #888;
+  /*border-bottom: 1px solid #888;*/
   padding: 10px 5px;
 }
 td a{
@@ -237,11 +237,12 @@ td a:hover{
 tbody tr:nth-child(even) td {
   background: #f9f9fe;
 }
-tfoot td{
+tfoot tr td{
   color: #888;
   font-family: serif;
   font-size: 12px;
-  text-align: right;
+  text-align: left;
+  border: 0;
 }
 .under{
   border-bottom: 1px solid #bbb;

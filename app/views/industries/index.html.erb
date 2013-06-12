@@ -6,12 +6,12 @@
     <% industry_array= Array.new %>
     <% a = Funding.ltm_fundings(365) %>
     <% total_funding = a.sum('funding_amount') %>
-    <table>
-      <caption>LTM<span class="footnote">*</span> Funding By Industry</caption>
+    <table class="sortable">
+      <caption>LTM Funding By Industry</caption>
       <thead>
         <tr>
           <th>Name</th>
-          <th>Funding<span class="footnote">**</span></th>
+          <th>Amount<span class="footnote">*</span></th>
           <th>% Total</th>
           <th>Volume</th>
         </tr>
@@ -30,14 +30,14 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4">*Last 12 Months **In millions</td>
+          <td colspan="4"><em>*Dollars in millions</em></td>
         </tr>
       </tfoot>
     </table>
   </div>
   <div class="grid_12">
     <p>&nbsp;</p>
-    <h3 class="center">LTM<span class="footnote">*</span> Funding By Industry</h3>
+    <h3 class="center">LTM Funding By Industry</h3>
     <% j_industry_array = industry_array.to_json %>
 
     <!-- what is the purpose of the 2 lines below -->
@@ -60,17 +60,17 @@
       <thead>
         <tr>
           <th>Series</th>
-          <th>Amount<span class="footnote">**</span></th>
+          <th>Amount<span class="footnote">*</span></th>
           <th>Volume</th>
-          <th>Avg. Round Investment</th>
+          <th>Avg. Investment</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Seed</td>
-          <td class="currency"> <%=  format_mil(Funding.for_funding_round('seed').for_industry(7).ltm_fundings(365).sum('funding_amount') ) %></td>
-          <td> <%=  Funding.for_funding_round('seed').for_industry(7).ltm_fundings(365).count %></td>
-          <td> <%=  format_mil(Funding.for_funding_round('seed').for_industry(7).ltm_fundings(365).average('funding_amount') ) %></td>
+          <td class="currency"> <%=  format_mil(Funding.multiple_funding_codes('angel', 'seed').for_industry(7).ltm_fundings(365).sum('funding_amount') ) %></td>
+          <td> <%=  Funding.multiple_funding_codes('angel', 'seed').for_industry(7).ltm_fundings(365).count %></td>
+          <td> <%=  format_mil(Funding.multiple_funding_codes('angel', 'seed').for_industry(7).ltm_fundings(365).average('funding_amount') ) %></td>
         </tr>
         <tr>
           <td>Angel</td>
@@ -141,13 +141,13 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4">*Last 12 Months **In millions</td>
+          <td colspan="4"><em>*Dollars in millions</em></td>
         </tr>
       </tfoot>
     </table>
   </div>
   <div class="grid_12">
-    <h3 class="center">LTM<span class="footnote">*</span> Industry Funding (Web) - Hardcoded</h3>
+    <h3 class="center">LTM Funding by Industry Funding (Web) - Hardcoded</h3>
     <%=form_tag('/industry') do %>
     <div>
       <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
@@ -157,7 +157,7 @@
     <%= render 'industry_bar' %>
   </div>
   <p>&nbsp;</p>
-  <p class="footnote">*Last 12 Months</p>
+  <p class="footnote"><em>*Dollars in millions</em></p>
 </section>
 <div>
 

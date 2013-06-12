@@ -8,6 +8,7 @@ class LocationsController < ApplicationController
      if params[:search].present?
       if @locations = Location.near(params[:search], params[:radius], :order => :distance).any?
         @locations = Location.near(params[:search], params[:radius], :order => :distance)
+      end
     else
       @locations = Location.near('Chicago')
     end

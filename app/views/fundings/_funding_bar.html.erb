@@ -32,7 +32,7 @@ Morris.Bar({
   barColors: ['#377D3C', '#228B22', '#32CD32'],
   hoverCallback: function (index, options, content) {
         var row = options.data[index];
-        return row.y + ":" + " $" + row.x
+        return row.y + ":" + " $" + row.a.toFixed(0) + "*"
       }
 
 });

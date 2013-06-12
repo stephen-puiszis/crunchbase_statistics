@@ -22,9 +22,15 @@ Morris.Bar({
   element: 'funding-bar',
   data:
       <%= raw(j_data_array) %>,
+      axes: false,
+      grid: false,
   xkey: 'y',
   ykeys: ['a'],
   labels: ['Funding'],
-  barColors: ['#377D3C', '#228B22', '#32CD32']
+  barColors: ['#377D3C', '#228B22', '#32CD32'],
+  hoverCallback: function (index, options, content) {
+        var row = options.data[index];
+        return row.y + ":" + " $" + row.a.toFixed(0) + "*"
+      }
 });
 </script>

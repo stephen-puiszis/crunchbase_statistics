@@ -142,7 +142,7 @@
           <td class="currency"> <%=  format_mil(Funding.for_funding_round('g').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>
         </tr>
         <tr>
-          <td>Venture Round</td>
+          <td>Venture Round**</td>
           <td class="currency"> <%=  format_mil(Funding.for_funding_round('venture_round').for_city(params[:search]).ltm_fundings(365).sum('funding_amount') ) %></td>
           <td> <%=  Funding.for_funding_round('venture_round').for_city(params[:search]).ltm_fundings(365).count %></td>
           <td class="currency"> <%=  format_mil(Funding.for_funding_round('venture_round').for_city(params[:search]).ltm_fundings(365).average('funding_amount') ) %></td>

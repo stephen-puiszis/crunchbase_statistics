@@ -63,24 +63,24 @@
           <td><%= Funding.for_city('New York').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
         </tr>
         <tr>
-          <td>Chicago</td>
-          <td class="currency"><%= format_mil(Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-          <td><%= Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
-        </tr>
-        <tr>
           <td>Boston</td>
           <td class="currency"><%= format_mil(Funding.for_city('Boston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
           <td><%= Funding.for_city('Boston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
         </tr>
         <tr>
-          <td>Boulder</td>
+          <td>Chicago</td>
           <td class="currency"><%= format_mil(Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
           <td><%= Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
         </tr>
         <tr>
+          <td>Boulder</td>
+          <td class="currency"><%= format_mil(Funding.for_city('Boulder').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Boulder').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+        </tr>
+        <tr>
           <td>Austin</td>
-          <td class="currency"><%= format_mil(Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-          <td><%= Funding.for_city('Chicago').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+          <td class="currency"><%= format_mil(Funding.for_city('Austin').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Austin').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
         </tr>
         <tr>
           <td>Los Angeles</td>
@@ -99,8 +99,8 @@
         </tr>
         <tr>
           <td>Atlanta</td>
-          <td class="currency"><%= format_mil(Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
-          <td><%= Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
+          <td class="currency"><%= format_mil(Funding.for_city('Atlanta').multiple_funding_codes('seed', 'angel').ltm_fundings(365).sum(:funding_amount)) %></td>
+          <td><%= Funding.for_city('Atlanta').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
         </tr>
       </tbody>
       <tfoot>

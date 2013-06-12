@@ -10,7 +10,7 @@
               <th>Quarter</th>
               <th>Amount<span class="footnote">*</span></th>
               <th>Volume</th>
-              <th>Avg. Round Investment</th>
+              <th>Avg. Investment</th>
             </tr>
           </thead>
           <tbody>
@@ -38,9 +38,14 @@
               <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q3').count %></td>
               <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q3').average('funding_amount')) %></td>
             </tr>
+            <tfoot>
+              <tr colspan="4">
+                <td colspan="4"><em>*Millions of Dollars</em></td>
+              </tr>
+            </tfoot>
           </tbody>
         </table>
-        <p class="footnote"><em>*Millions of dollars</em></p>
+
 
       </div>
       <div class="grid_12">
@@ -48,8 +53,7 @@
         <h3 class="center">LTM Total Funding by Industry</h3>
         <%= render "funding_donut" %>
       </div>
-      <p>&nbsp;</p>
-      <p class="footnote">*Last 12 Months</p>
+
 
     </section>
     <section class="container group">
@@ -131,17 +135,25 @@
               <td> <%=  Funding.for_funding_round('debt_round').ltm_fundings(365).count %></td>
               <td class="currency"> <%=  format_mil(Funding.for_funding_round('debt_round').ltm_fundings(365).average('funding_amount') ) %></td>
             </tr>
+            <tfoot>
+              <tr colspan="4">
+                <td colspan="4">
+                  <em>*Millions of Dollars</em>
+                  <em></br>**Venture Round is a catchall category in the Crunchbase data</em>
+                </td>
+              </tr>
+            </tfoot>
           </tbody>
         </table>
-        <p class="footnote"><em>*Millions of dollars</em></p>
-        <p class="footnote"><em>Note: 'Venture Round' is a catchall category in the Crunchbase data</em></p>
       </div>
 
       <div class="grid_12">
+        <br>
         <h3 class="center">LTM Total Funding by Month</h3>
-        <p>To Do: Format $ in Millions</p>
+
         <%= render "funding_bar" %>
+        <br>
+        <p class="footnote"><em>*Millions of dollars</em></p>
       </div>
       <p>&nbsp;</p>
-      <p class="footnote">*Last 12 Months</p>
     </section>
