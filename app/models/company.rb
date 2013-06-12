@@ -6,7 +6,7 @@ class Company < ActiveRecord::Base
   has_many :investments, :as => :investable
   has_one :location
 
-  scope :for_investors, lambda { |company_id|
+  # scope :for_investors, lambda { |company_id|,
 
   def total_investments
     total=0

@@ -21,19 +21,19 @@
 </div>
 <section class="container group">
   <br>
-  <h4 class="col_head"><%= params[:search].try(:titleize) %></h4>
+  <h3 class="col_head"><%= params[:search].try(:titleize) %></h4>
   <br>
 </section>
 <section class="container group under">
   <div class="grid_12">
     <table class="table table-hover sortable">
-      <caption>LTM<span class="footnote">*</span> Funding</caption>
+      <caption>LTM Funding</caption>
       <thead>
         <tr>
           <th>Quarter</th>
-          <th>Amount ($ millions)</th>
+          <th>Amount*</th>
           <th>Volume</th>
-          <th>Avg. Round Investment</th>
+          <th>Avg. Investment</th>
         </tr>
       </thead>
       <tbody>
@@ -70,20 +70,20 @@
     </table>
   </div>
   <div class="grid_12">
-    <h3 class="center">Industry Views for- <%= params[:search].try(:titleize) %></h3>
+    <h3 class="center">LTM Funding by Industry</h3>
     <%= render :partial => "location_donut", locals: {fundings: Funding.ltm_fundings(365).for_city(params[:search])} %>
   </div>
 </section>
 <section class="container group under">
   <div class="grid_12">
     <table class="table table-hover sortable">
-      <caption>LTM<span class="footnote">*</span> Funding by Round for: <%= params[:search].try(:titleize) %></caption>
+      <caption>LTM Funding by Round </caption>
       <thead>
         <tr>
           <th>Series</th>
-          <th>Amount<span class="footnote">**</span></th>
+          <th>Amount*</span></th>
           <th>Volume</th>
-          <th>Avg. Round Investment</th>
+          <th>Avg. Investment</th>
         </tr>
       </thead>
       <tbody>
@@ -161,8 +161,11 @@
         </tr>
       </tbody>
       <tfoot>
-        <tr>
-          <td colspan="4">*Last 12 Months **In Millions</td>
+        <tr colspan="4">
+          <td colspan="4">
+            <em>*Millions of Dollars</em>
+            <em></br>**Venture Round is a catchall category in the Crunchbase data</em>
+          </td>
         </tr>
       </tfoot>
     </table>
