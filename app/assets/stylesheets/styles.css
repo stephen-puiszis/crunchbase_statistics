@@ -51,6 +51,10 @@ i, em{
   font-style: italic;
 }
 
+button a {
+  color: #FFF;
+}
+
 /*---- clear fix ----*/
 
 .group:before,

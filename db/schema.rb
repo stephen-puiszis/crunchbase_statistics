@@ -11,58 +11,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605221731) do
+ActiveRecord::Schema.define(:version => 20130613211858) do
 
   create_table "companies", :force => true do |t|
-    t.string   "name"
-    t.string   "perma"
-    t.integer  "industry_id"
-    t.string   "crunch_url"
-    t.string   "home_url"
-    t.date     "founded_date"
-    t.date     "dead_date"
-    t.string   "stock_symbol"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string  "name"
+    t.string  "perma"
+    t.integer "industry_id"
   end
 
   add_index "companies", ["industry_id"], :name => "industry_id_ix"
 
   create_table "financials", :force => true do |t|
-    t.string   "name"
-    t.string   "perma"
-    t.string   "crunch_url"
-    t.string   "home_url"
-    t.date     "founded_date"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string "name"
+    t.string "perma"
   end
 
   create_table "fundings", :force => true do |t|
-    t.integer  "company_id"
-    t.string   "funding_code"
-    t.float    "funding_amount"
-    t.string   "funding_currency"
-    t.date     "funding_date"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer "company_id"
+    t.string  "funding_code"
+    t.float   "funding_amount"
+    t.string  "funding_currency"
+    t.date    "funding_date"
   end
 
   add_index "fundings", ["company_id"], :name => "company_id_ix"
 
   create_table "individuals", :force => true do |t|
-    t.string   "name"
-    t.string   "perma"
-    t.string   "crunch_url"
-    t.string   "home_url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "name"
+    t.string "perma"
   end
 
   create_table "industries", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "name"
   end
 
   create_table "investments", :force => true do |t|
@@ -77,17 +57,15 @@ ActiveRecord::Schema.define(:version => 20130605221731) do
   add_index "investments", ["investable_id", "investable_type"], :name => "index_investments_on_investable_id_and_investable_type"
 
   create_table "locations", :force => true do |t|
-    t.integer  "company_id"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "zipcode"
-    t.string   "city"
-    t.string   "statecode"
-    t.string   "countrycode"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer "company_id"
+    t.string  "address1"
+    t.string  "address2"
+    t.string  "zipcode"
+    t.string  "city"
+    t.string  "statecode"
+    t.string  "countrycode"
+    t.float   "latitude"
+    t.float   "longitude"
   end
 
   add_index "locations", ["company_id"], :name => "index_locations_on_company_id"

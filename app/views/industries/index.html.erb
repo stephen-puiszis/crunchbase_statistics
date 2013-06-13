@@ -84,7 +84,7 @@
             </tr>
             <tr>
               <td>Angel</td>
-              <td class="currency"> <%=  format_mil(@angel_funding).for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@angel_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
               <td> <%=  @angel_funding.for_industry(industry.id).count %></td>
               <td> <%=  format_mil(@angel_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>

@@ -157,9 +157,9 @@
         </tr>
         <tr>
           <td>Private Equity</td>
-          <td class="currency"> <%=  format_mil(@private_funding.sum('funding_amount') ) %></td>
-          <td> <%=  @private_funding.count %></td>
-          <td class="currency"> <%=  format_mil(@private_funding.average('funding_amount') ) %></td>
+          <td class="currency"> <%=  format_mil(@private_equity_funding.sum('funding_amount') ) %></td>
+          <td> <%=  @private_equity_funding.count %></td>
+          <td class="currency"> <%=  format_mil(@private_equity_funding.average('funding_amount') ) %></td>
         </tr>
         <tr>
           <td>Debt Round</td>

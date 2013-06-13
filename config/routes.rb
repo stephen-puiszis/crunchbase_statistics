@@ -6,30 +6,33 @@ CrunchbaseStatistics::Application.routes.draw do
   get '/home'=> 'Pages#index', as: "home"
 
   get '/contact'=> 'Pages#contact', as: "contact"
-  resources :individuals do
+  get '/faq'=> 'Pages#faq', as: "faq"
+  get '/about'=> 'Pages#about', as: "about"
+
+  resources :individuals, :only => [:index, :show] do
     resources :investments
   end
 
-  resources :financials do
+  resources :financials, :only => [:index, :show] do
     resources :investments
   end
 
-  resources :companies do
+  resources :companies, :only => [:index, :show] do
     resources :investments
   end
 
-  resources :fundings
+  resources :fundings, :only => [:index, :show]
 
   # resources :investments
 
 
-  resources :locations
+  resources :locations, :only => [:index]
 
 
-  resources :companies
+  resources :companies, :only => [:index, :show]
 
 
-  resources :industries
+  resources :industries, :only => [:index, :show]
 
 
   # The priority is based upon order of creation:

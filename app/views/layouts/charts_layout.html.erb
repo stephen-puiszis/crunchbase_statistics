@@ -22,11 +22,10 @@
             <nav class="home_nav">
               <ul>
                 <li><%= link_to "Funding Overview", fundings_url %></li>
-                <li><%= link_to "Industries", "/industries" %></li>
-                <li><%= link_to "Geographies", "/locations" %></li>
-                <li><%= link_to "Angel Investing", "/individuals" %></li>
-                <li><%= link_to "FAQ", "#" %></li>
-                <li><%= link_to "About", "#" %></li>
+                <li><%= link_to "Industries", industries_url %></li>
+                <li><%= link_to "Geographies", locations_url %></li>
+                <li><%= link_to "Angel Investing", individuals_url %></li>
+                <li><%= link_to "Contact", contact_url %></li>
               </ul>
             </nav>
           </div>
@@ -48,20 +47,18 @@
         <div class="grid_4">
           <h5>Site Map</h5>
           <ul>
-
-            <li><a href="index.html">Home</a></li>
-
-            <li><a href="#">Investors</a></li>
-            <li><a href="#">Companies</a></li>
-            <li><a href="#">Industries</a></li>
+            <li><%= link_to "Funding Overview", fundings_url %></li>
+            <li><%= link_to "Industries", industries_url %></li>
+            <li><%= link_to "Geographies", locations_url %></li>
+            <li><%= link_to "Angel Investing", individuals_url %></li>
           </ul>
         </div>
         <div class="grid_4">
           <h5>About</h5>
           <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Privacy Policy</a></li>
             <li><%= link_to "Contact", contact_url %></li>
+            <li><%= link_to "FAQ", faq_url %></li>
+            <li><%= link_to "About", about_url %></li>
           </ul>
         </div>
         <div class="grid_16">
@@ -70,7 +67,7 @@
         </div>
       </div>
       <div class="sub_footer">
-        <p>&copy; Copyright crunchstats 2013. All rights reserved.</p>
+        <p>&copy; Copyright CrunchStats 2013. All rights reserved.</p>
       </div>
 
     </footer>

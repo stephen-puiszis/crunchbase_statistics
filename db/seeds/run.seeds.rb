@@ -1,4 +1,4 @@
-# In new file:
+  # In new file:
 # Industry.destroy_all
 # Company.destroy_all
 # Individual.destroy_all

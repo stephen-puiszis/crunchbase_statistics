@@ -55,16 +55,7 @@
         <% end %>
       </tbody>
     </table>
-    <h2>Industry Breakdown</h2>
-    <p>Pie Chart of Invesment Dollars by Industry</p>
-    <br>
-    <h2>Round Breakdown</h2>
-    <p>Breakdown by Round - table or pie chart</p>
-    <br>
-    1
-    <h2>Location Breakdown</h2>
-    <p>Breakdown by top 10 locations invested - volume & dollars</p>
-    <br>
+
     <%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_individual(@individual.id)} %>
   </div>
   <div class="grid_4">
