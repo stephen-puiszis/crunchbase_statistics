@@ -127,7 +127,6 @@
           <td><%= Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).count %></td>
           <td><%= format_mil(Funding.for_city('Houston').multiple_funding_codes('seed', 'angel').ltm_fundings(365).average(:funding_amount)) %></td>
         </tr>
-
       </tbody>
       <tfoot>
         <tr>
@@ -139,6 +138,7 @@
     </table>
   </div>
   <div class="grid_12">
+    <br>
     <h3 class="center">Monthly Angel Investing</h3>
     <%= render 'individuals_bar' %>
   </div>
