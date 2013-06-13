@@ -52,7 +52,7 @@
         <tr>
           <td>Q4 2012</td>
           <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search]).sum('funding_amount')) %></td>
-          <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q4').count %></td>
+          <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search].count %></td>
           <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search]).average('funding_amount')) %></td>
         </tr>
         <tr>
