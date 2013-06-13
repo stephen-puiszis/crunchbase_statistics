@@ -132,23 +132,11 @@ companies.each_index do |i|
           unless Financial.find_by_perma(investment["financial_org"]["permalink"]) == nil
             financial = Financial.find_by_perma(investment["financial_org"]["permalink"])
             financial.investments.create(funding_id: f.id)
-
-            i = Investment.new
-            i.funding_id = f.id
-            i.investable_id = Financial.find_by_perma(investment["financial_org"]["permalink"]).id
-            i.investable_type="financial"
-            i.save
           end
           elsif investment["person"] != nil
             unless Individual.find_by_perma(investment["person"]["permalink"]) == nil
             individual = Individual.find_by_perma(investment["person"]["permalink"])
             individual.investments.create(funding_id: f.id)
-
-            i = Investment.new
-            i.funding_id = f.id
-            i.investable_id = Individual.find_by_perma(investment["person"]["permalink"]).id
-            i.investable_type="individual"
-            i.save
             end
           else
 

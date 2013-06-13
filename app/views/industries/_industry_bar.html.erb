@@ -9,7 +9,7 @@
 <% end  %>
 
 <% dates.each do |d| %>
-  <% data_array << { a: (Funding.monthly_fundings(d).for_industry(97).sum(:funding_amount)/1000000).round(0), y: d.strftime("%b%y")} %>
+  <% data_array << { a: (Funding.monthly_fundings(d).for_industry(i_id).sum(:funding_amount)/1000000).round(0), y: d.strftime("%b%y")} %>
 <% end %>
 
 <% j_data_array = data_array.reverse.to_json %>

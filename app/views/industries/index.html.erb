@@ -156,7 +156,7 @@
 
   <div class="grid_12">
     <h3 class="center">LTM Industry Funding by Month</h3>
-    <%= render 'industry_bar' %>
+    <%= render 'industry_bar', :i_id  => @industry.id %>
     <p class="footnote"><em>*Dollars in millions</em></p>
   </div>
   <p>&nbsp;</p>
@@ -174,7 +174,7 @@
   $(document).ready(function(){
      $('#industry_id').change(function(){
        var str = $('#industry_id :checked').text();
-       // dont know why!
+      // dont know why!
        var selected_industry = str.substring(0, str.length - 5);
        // end dont know why
        var filtered_industry_header = $("#industry-header-" + selected_industry).html();
@@ -184,7 +184,7 @@
      });
    });
 </script>
-// <script>
+//<script>
 //   $(document).ready(function(){
 //     var students = $('#message_student_id').html();
 //     $('#message_course_id').change(function(){
@@ -194,4 +194,4 @@
 //       $('#message_student_id').html(filtered_students);
 //     });
 //   });
-// </script>
+//</script>

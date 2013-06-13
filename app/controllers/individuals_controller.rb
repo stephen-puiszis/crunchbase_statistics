@@ -3,10 +3,9 @@ class IndividualsController < ApplicationController
   # GET /individuals
   # GET /individuals.json
   def index
-    @individuals = Individual.all
     if @industry = params[:industry]
     else
-      @industry = Industry.find_by_id(7)
+      @industry = Industry.find_by_id(97)
     end
 
     respond_to do |format|

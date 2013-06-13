@@ -26,10 +26,7 @@
       </div>
     </div>
   </div>
-  <% company_array=[] %>
-  <% fcode_array=[] %>
-  <% industry_array=[] %>
-  <div class="grid_14">
+  <div class="grid_18">
     <h4 class="col_head">Activity</h4>
     <table class= "sortable">
       <caption>Recent Investments</caption>
@@ -38,39 +35,27 @@
           <th>Company</th>
           <th>Date</th>
           <th>Round</th>
-          <th>Amount</th>
+          <th>Round Amount</th>
           <th>Industry</th>
-          <th>City</th>
         </tr>
       </thead>
       <tbody>
         <% Funding.for_financial(@financial.id).order("funding_date DESC").limit(10).each do |f| %>
         <tr>
           <td><%= f.company.name %></td>
-          <td><%= f.funding_date %></td>
-          <td><%= f.funding_code %></td>
-          <td class="currency"><%= f.funding_amount %></td>
-          <td><%= f.company.industry.name %></td>
-          <td><%= f.company.location.city %></td>
+          <td><%= f.funding_date.strftime("%b '%y") %></td>
+          <td><%= f.funding_code.titleize %></td>
+          <td class="currency"><%= format_mil(f.funding_amount) %></td>
+          <td><%= f.company.industry.name.titleize %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
-    <h2>Industry Breakdown</h2>
-    <p>Pie Chart of Invesment Dollars by Industry</p>
-    <br>
-    
-    <h2>Round Breakdown</h2>
-    <p>Breakdown by Round - table or pie chart</p>
-    <br>
-    
-    <h2>Location Breakdown</h2>
-    <p>Breakdown by top 10 locations invested - volume & dollars</p>
-    <br>
-    
-    <%= render :partial => 'fundings/funding_show', locals: {fundings: Funding.for_financial(@financial.id)} %>
-  </div>
-  <div class="grid_4">
-    <h4 class="col_head">Sponsors</h4>
+
+  <h3 class="center">LTM Investments By Industry</h3>
+
+    <%= render 'financial_donut', :fin_id => @financial.id  %>
+
+
   </div>
 </section>

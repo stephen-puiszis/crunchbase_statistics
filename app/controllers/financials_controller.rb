@@ -3,7 +3,7 @@ class FinancialsController < ApplicationController
   # GET /financials
   # GET /financials.json
   def index
-    @financials = Financial.all
+
 
     respond_to do |format|
       format.html # index.html.erb
