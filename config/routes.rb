@@ -20,7 +20,7 @@ CrunchbaseStatistics::Application.routes.draw do
 
   resources :fundings
 
-  resources :investments
+  # resources :investments
 
 
   resources :locations

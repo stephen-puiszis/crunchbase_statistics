@@ -9,12 +9,6 @@
     <h3 class= "container">Listing investments</h1>
 </div>
 <section class="container">
-  <h3>Ideas for page:</h3>
-  <h7>hello</h7>
-  <h4>Top Investors by Round</h4>
-  <h4>Biggest Rounds for Time Period</h4>
-  <h4>Biggest Rounds for Time Period by Location</h4>
-  <h4>Biggest Rounds for Time Period by Location</h4>
   <table class= "sortable">
     <caption>Table Name</caption>
     <thead>
@@ -26,15 +20,15 @@
       </tr>
     </thead>
     <tbody>
-      <% @investments.each do |investment| %>
+      <% Investment.limit(100).each do |investment| %>
       <% if investment.investable==nil %>
       <% next %>
       <% end %>
       <tr id="<%= investment.funding.company.perma %>">
-        <td><%= Funding.find_by_id(investment.funding_id).funding_code %></td>
-        <td><%= link_to investment.funding.company.name, investment.funding.company %></td>
-        <td><%= investment.investable_type %></td>
-        <td><%= link_to investment.investable.perma, investment.investable %></td>
+        <td><%= Funding.find_by_id(investment.investable).company.name%></td>
+        <td><%#= link_to investment.funding.company.name, investment.funding.company %></td>
+        <td><%#= investment.investable_type %></td>
+        <td><%#= link_to investment.investable.perma, investment.investable %></td>
       </tr>
       <% end %>
     </tbody>

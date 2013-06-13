@@ -1,25 +1,23 @@
 class LocationsController < ApplicationController
-  layout 'charts_layout' , only: [:index]
+  layout 'charts_layout' , only: [:index, :show]
   # GET /locations
   # GET /locations.json
 
 
   def index
      if params[:search].present?
-      if @locations = Location.near(params[:search], params[:radius], :order => :distance).any?
-        @locations = Location.near(params[:search], params[:radius], :order => :distance)
-      end
+        if @locations = Location.near(params[:search], params[:radius], :order => :distance).any?
+          @locations = Location.near(params[:search], params[:radius], :order => :distance)
+        else
+          @locations = Location.near('Chicago', 100, :order => :distance)
+        end
     else
-      @locations = Location.near('Chicago')
+      @locations = Location.near('Chicago', 100, :order => :distance)
     end
-   # @fundings = @companies.map { |x| Funding.find_by_company_id(x.id) }
-
-    # @companies = @locations.map { |x| x.company }
-    # @fundings = @companies.map { |x| Funding.find_by_company_id(x.id) }
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @locations }
+      # format.json { render json: @locations }
     end
   end
 

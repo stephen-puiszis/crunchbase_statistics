@@ -64,7 +64,7 @@
       <h3 id='industry-header'>LTM Funding by Industry<h3>
       <table id="industry-table"></table>
 
-    <% @industries.each do |industry| %>
+    <% Industry.find_each do |industry| %>
       <h3 id="industry-header-<%= industry.name %>" style="display: none">LTM<span class="footnote">*</span> Funding by Round - <%= industry.name %></h3>
        <table class="table table-hover sortable" id="industry-table-<%= industry.name %>" style="display: none">
           <thead>

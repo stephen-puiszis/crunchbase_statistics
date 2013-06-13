@@ -2,7 +2,7 @@ class InvestmentsController < ApplicationController
   # GET /investments
   # GET /investments.json
   def index
-    @investments = Investment.all
+
 
     respond_to do |format|
       format.html # index.html.erb

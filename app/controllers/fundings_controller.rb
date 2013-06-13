@@ -5,7 +5,7 @@ class FundingsController < ApplicationController
   # GET /fundings
   # GET /fundings.json
   def index
-    @fundings = Funding.order("funding_date DESC")
+    @fundings = Funding.order("funding_date DESC").limit(100)
 
     respond_to do |format|
       format.html # index.html.erb

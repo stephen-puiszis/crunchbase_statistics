@@ -4,7 +4,7 @@ class IndustriesController < ApplicationController
   # GET /industries
   # GET /industries.json
   def index
-    @industries = Industry.all
+    # @industries = Industry.all
     # @industry = Industry.find_by_id(97)
     respond_to do |format|
       format.html # index.html.erb

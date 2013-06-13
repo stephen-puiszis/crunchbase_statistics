@@ -5,9 +5,11 @@
         });
       });
 </script>
+
 <div class="label">
     <h3 class= "container">Funding by Location</h3>
 </div>
+
 <div class="container">
   <p>&nbsp;</p>
   <%= form_tag locations_path,class: 'container', :method => :get do %>
@@ -19,11 +21,13 @@
     </p>
   <% end %>
 </div>
+
 <section class="container group">
   <br>
   <h3 class="col_head"><%= params[:search].try(:titleize) %></h4>
   <br>
 </section>
+
 <section class="container group under">
   <div class="grid_12">
     <table class="table table-hover sortable">
@@ -52,7 +56,7 @@
         <tr>
           <td>Q4 2012</td>
           <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search]).sum('funding_amount')) %></td>
-          <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search].count %></td>
+          <td> <%= Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search]).count %></td>
           <td class="currency"> <%= format_mil(Funding.quarterly_fundings(Time.now().year - 1, 'q4').for_city(params[:search]).average('funding_amount')) %></td>
         </tr>
         <tr>
@@ -70,12 +74,14 @@
       </tfoot>
     </table>
   </div>
+
   <div class="grid_12">
     <br>
     <h3 class="center">LTM Funding by Industry</h3>
-    <%= render :partial => "location_donut", locals: {fundings: Funding.ltm_fundings(365).for_city(params[:search])} %>
+    <%= render :partial => "location_donut", locals: { fundings: Funding.ltm_fundings(365).for_city(params[:search]) } %>
   </div>
 </section>
+
 <section class="container group under">
   <div class="grid_12">
     <table class="table table-hover sortable">
@@ -172,15 +178,11 @@
       </tfoot>
     </table>
   </div>
+
   <div class="grid_12">
     <br>
     <h3 class="center">LTM Funding by Month</h3>
-    <%= render :partial => "location_bar", locals: {fundings: Funding.for_city(params[:search])} %>
-    <p class="footnote"><em>*Millions of dollars</em></p>
+      <%= render :partial => "location_bar", locals: { fundings: Funding.for_city(params[:search]) } %>
+      <p class="footnote"><em>*Millions of dollars</em></p>
   </div>
 </section>
-
-
-
-
-
