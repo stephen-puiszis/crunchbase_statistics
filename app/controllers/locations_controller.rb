@@ -14,6 +14,23 @@ class LocationsController < ApplicationController
     else
       @locations = Location.near('Chicago', 100, :order => :distance)
     end
+    @fundings = Funding.ltm_fundings(365)
+    @fundings_q1 = Funding.quarterly_fundings(Time.now().year, 'q1').for_city(params[:search])
+    @fundings_q2 = Funding.quarterly_fundings(Time.now().year, 'q2').for_city(params[:search])
+    @fundings_q3 = Funding.quarterly_fundings(Time.now().year-1, 'q3').for_city(params[:search])
+    @fundings_q4 = Funding.quarterly_fundings(Time.now().year-1, 'q4').for_city(params[:search])
+    @seed_funding = @fundings.for_funding_round('seed').for_city(params[:search])
+    @angel_funding = @fundings.for_funding_round('angel').for_city(params[:search])
+    @a_funding = @fundings.for_funding_round('a').for_city(params[:search])
+    @b_funding = @fundings.for_funding_round('b').for_city(params[:search])
+    @c_funding = @fundings.for_funding_round('c').for_city(params[:search])
+    @d_funding = @fundings.for_funding_round('d').for_city(params[:search])
+    @e_funding = @fundings.for_funding_round('e').for_city(params[:search])
+    @f_funding = @fundings.for_funding_round('f').for_city(params[:search])
+    @g_funding = @fundings.for_funding_round('g').for_city(params[:search])
+    @venture_funding = @fundings.for_funding_round('venture_round')
+    @private_equity_funding = @fundings.for_funding_round('private_equity')
+    @debt_funding = @fundings.for_funding_round('debt_round')
 
     respond_to do |format|
       format.html # index.html.erb
