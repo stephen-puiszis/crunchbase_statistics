@@ -4,7 +4,7 @@
 <section class="container group under">
   <div class="grid_12">
     <% industry_array= Array.new %>
-    <% a = Funding.ltm_fundings(365) %>
+    <% a = @fundings %>
     <% total_funding = a.sum('funding_amount') %>
 
     <table class="table table-hover sortable">
@@ -17,7 +17,7 @@
           <th>Volume</th>
         </tr>
       </thead>
-      <% @industries.each do |industry| %>
+      <% @industries.find_each do |industry| %>
       <tbody>
         <tr>
           <td><%= industry_name = industry.name.titleize %></td>
@@ -60,11 +60,11 @@
 
   <div class="grid_12">
 
-    <%= select_tag :industry_id, options_from_collection_for_select(Industry.all, :id, :name) %>
+    <%= select_tag :industry_id, options_from_collection_for_select(@industries, :id, :name) %>
       <h3 id='industry-header'>LTM Funding by Industry<h3>
       <table id="industry-table"></table>
 
-    <% Industry.find_each do |industry| %>
+    <% @industries.find_each do |industry| %>
       <h3 id="industry-header-<%= industry.name %>" style="display: none">LTM<span class="footnote">*</span> Funding by Round - <%= industry.name %></h3>
        <table class="table table-hover sortable" id="industry-table-<%= industry.name %>" style="display: none">
           <thead>
@@ -84,69 +84,69 @@
             </tr>
             <tr>
               <td>Angel</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('angel').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('angel').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('angel').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@angel_funding).for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @angel_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@angel_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
             <tr>
               <td>Series A</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('a').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('a').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('a').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@a_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @a_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@a_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
             <tr>
               <td>Series B</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('b').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('b').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('b').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@b_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @b_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@b_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
             <tr>
               <td>Series C</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('c').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('c').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('c').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@c_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @c_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@c_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
             <tr>
               <td>Series D</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('d').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('d').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('d').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@d_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @d_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@d_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
-            <tr>
+             <tr>
               <td>Series E</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('e').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('e').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('e').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@e_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @e_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@e_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
-            <tr>
+             <tr>
               <td>Series F</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('f').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('f').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('f').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@f_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @f_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@f_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
             <tr>
               <td>Series G</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('g').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('g').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('g').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@g_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @g_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@g_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
             <tr>
               <td>Venture Round</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('venture_round').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('venture_round').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('venture_round').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@venture_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @venture_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@venture_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
             <tr>
               <td>Private Equity</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('private_equity').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('private_equity').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('private_equity').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@private_equity_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @private_equity_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@private_equity_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
             <tr>
               <td>Debt Round</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('debt_round').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('debt_round').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('debt_round').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@debt_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @debt_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@debt_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
           </tbody>
           <tfoot>

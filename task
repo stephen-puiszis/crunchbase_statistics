@@ -1,0 +1,5 @@
+  desc "Pick a random product as the prize"
+  task :prize => :environment do
+    puts "Prize: #{pick(Product).name}"
+  end
+

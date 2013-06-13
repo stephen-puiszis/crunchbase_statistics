@@ -7,8 +7,17 @@ class IndustriesController < ApplicationController
     @industries = Industry.order('name ASC')
     @fundings = Funding.ltm_fundings(365)
     @seed_funding = @fundings.for_funding_round('seed')
-    # @industries = Industry.all
-    # @industry = Industry.find_by_id(97)
+    @angel_funding = @fundings.for_funding_round('angel')
+    @a_funding = @fundings.for_funding_round('a')
+    @b_funding = @fundings.for_funding_round('b')
+    @c_funding = @fundings.for_funding_round('c')
+    @d_funding = @fundings.for_funding_round('d')
+    @e_funding = @fundings.for_funding_round('e')
+    @f_funding = @fundings.for_funding_round('f')
+    @g_funding = @fundings.for_funding_round('g')
+    @venture_funding = @fundings.for_funding_round('venture_round')
+    @private_equity_funding = @fundings.for_funding_round('private_equity')
+    @debt_funding = @fundings.for_funding_round('debt_round')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @industries }
