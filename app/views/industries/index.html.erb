@@ -17,7 +17,7 @@
           <th>Volume</th>
         </tr>
       </thead>
-      <% Industry.order('name ASC').each do |industry| %>
+      <% @industries.each do |industry| %>
       <tbody>
         <tr>
           <td><%= industry_name = industry.name.titleize %></td>
@@ -78,9 +78,9 @@
           <tbody>
             <tr>
               <td>Seed</td>
-              <td class="currency"> <%=  format_mil(Funding.for_funding_round('seed').for_industry(industry.id).ltm_fundings(365).sum('funding_amount') ) %></td>
-              <td> <%=  Funding.for_funding_round('seed').for_industry(industry.id).ltm_fundings(365).count %></td>
-              <td> <%=  format_mil(Funding.for_funding_round('seed').for_industry(industry.id).ltm_fundings(365).average('funding_amount') ) %></td>
+              <td class="currency"> <%=  format_mil(@seed_funding.for_industry(industry.id).sum('funding_amount') ) %></td>
+              <td> <%=  @seed_funding.for_industry(industry.id).count %></td>
+              <td> <%=  format_mil(@seed_funding.for_industry(industry.id).average('funding_amount') ) %></td>
             </tr>
             <tr>
               <td>Angel</td>
