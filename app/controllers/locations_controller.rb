@@ -28,9 +28,9 @@ class LocationsController < ApplicationController
     @e_funding = @fundings.for_funding_round('e').for_city(params[:search])
     @f_funding = @fundings.for_funding_round('f').for_city(params[:search])
     @g_funding = @fundings.for_funding_round('g').for_city(params[:search])
-    @venture_funding = @fundings.for_funding_round('venture_round')
-    @private_equity_funding = @fundings.for_funding_round('private_equity')
-    @debt_funding = @fundings.for_funding_round('debt_round')
+    @venture_funding = @fundings.for_funding_round('venture_round').for_city(params[:search])
+    @private_equity_funding = @fundings.for_funding_round('private_equity').for_city(params[:search])
+    @debt_funding = @fundings.for_funding_round('debt_round').for_city(params[:search])
 
     respond_to do |format|
       format.html # index.html.erb

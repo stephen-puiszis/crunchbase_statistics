@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
   belongs_to :company
 
   geocoded_by :city
-  # after_validation :geocode, if: :address_changed_and_no_longitude_and_latitude?
+  after_validation :geocode, if: :address_changed_and_no_longitude_and_latitude?
 
   def address_changed_and_no_longitude_and_latitude?
     city_changed? && self.latitude.blank? && self.longitude.blank?
@@ -18,7 +18,7 @@ class Location < ActiveRecord::Base
     end
   end
 
-  # after_validation :reverse_geocode, if: :lat_and_long_changed_and_no_city?
+  after_validation :reverse_geocode, if: :lat_and_long_changed_and_no_city?
 
   def lat_and_long_changed_and_no_city?
       latitude_changed? && self.zipcode.blank?
