@@ -18,7 +18,7 @@ class Location < ActiveRecord::Base
     end
   end
 
-  after_validation :reverse_geocode, if: :lat_and_long_changed_and_no_city?
+  # after_validation :reverse_geocode, if: :lat_and_long_changed_and_no_city?
 
   def lat_and_long_changed_and_no_city?
       latitude_changed? && self.zipcode.blank?
