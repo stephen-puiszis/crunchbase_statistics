@@ -1,4 +1,5 @@
 start_time = Time.now
+puts start_time
 Industry.create([
   { :name => "other" },
   { :name => "web" },

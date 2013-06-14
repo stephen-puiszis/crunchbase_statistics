@@ -1,4 +1,5 @@
 start_time = Time.now
+puts start_time
 Financial.create([
   { :name => "Greylock Partners", :perma => "greylock" },
   { :name => "Omidyar Network", :perma => "omidyar-network" },
