@@ -11,8 +11,10 @@ gem 'geocoder'
 
 group :development do
   gem 'better_errors'
-  gem 'sqlite3'
+  gem 'pg'
 end
+
+gem 'yaml_db'
 
 group :production do
   gem 'pg'
